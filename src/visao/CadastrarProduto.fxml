@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <JFXTreeTableView prefHeight="439.0" prefWidth="1029.0" BorderPane.alignment="CENTER">
+         <columns>
+            <TreeTableColumn maxWidth="1.7976931348623157E308" prefWidth="60.0" text="ID" />
+            <TreeTableColumn prefWidth="500.0" text="PRODUTO" />
+            <TreeTableColumn prefWidth="160.0" text="CÓDIGO DE BARRAS" />
+            <TreeTableColumn prefWidth="60.0" text="PREÇO" />
+            <TreeTableColumn prefWidth="120.0" text="QUANTIDADE" />
+            <TreeTableColumn prefWidth="120.0" text="MEDIDA" />
+         </columns>
+      </JFXTreeTableView>
+   </center>
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="258.0" prefWidth="672.0" spacing="20.0">
+               <children>
+                  <GridPane alignment="CENTER" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="68.0" prefWidth="393.0" vgap="30.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" maxWidth="457.0" minWidth="10.0" prefWidth="350.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="350.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <JFXTextField labelFloat="true" prefHeight="19.0" prefWidth="366.0" promptText="ID DO PRODUTO" />
+                        <JFXTextField labelFloat="true" prefHeight="14.0" prefWidth="366.0" promptText="CÓDIGO DE BARRA" GridPane.rowIndex="1" />
+                        <JFXTextField labelFloat="true" promptText="NOME DO PRODUTO" GridPane.columnIndex="1" />
+                        <JFXTextField labelFloat="true" promptText="PREÇO" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <JFXTextField labelFloat="true" promptText="QUANTIDADE" GridPane.rowIndex="2" />
+                        <JFXTextField labelFloat="true" promptText="UNIDADE DE MEDIDA" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </VBox.margin>
+                  </GridPane>
+                  <HBox alignment="CENTER" prefHeight="82.0" prefWidth="609.0" spacing="20.0">
+                     <children>
+                        <JFXButton style="-fx-background-color: #06c;" text="CADASTRAR" textFill="WHITE" />
+                        <JFXButton style="-fx-background-color: #090;" text="ATUALIZAR" textFill="WHITE" />
+                        <JFXButton style="-fx-background-color: #c00;" text="CANCELAR" textFill="WHITE" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="217.0" prefWidth="484.0" spacing="20.0">
+               <children>
+                  <JFXTextField labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="256.0" promptText="NOME" />
+                  <JFXButton style="-fx-background-color: #f30;" text="BUSCAR" textFill="WHITE" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>
