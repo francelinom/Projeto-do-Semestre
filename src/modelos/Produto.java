@@ -8,6 +8,7 @@ public class Produto {
     private int qtd_produto;
     private String und_medida;
 
+    //CONCSTRUTOR PARA INSERIR
     public Produto(String nome_produto, double cod_barra_produto, double preco_produto, int qtd_produto, String und_medida) {
         this.nome_produto = nome_produto;
         this.cod_barra_produto = cod_barra_produto;
@@ -15,7 +16,17 @@ public class Produto {
         this.qtd_produto = qtd_produto;
         this.und_medida = und_medida;
     }
+    //CONSTRUTOR PARA CONCULTAR
 
+    public Produto(int id_produto, String nome_produto, double cod_barra_produto, double preco_produto, int qtd_produto, String und_medida) {
+        this.id_produto = id_produto;
+        this.nome_produto = nome_produto;
+        this.cod_barra_produto = cod_barra_produto;
+        this.preco_produto = preco_produto;
+        this.qtd_produto = qtd_produto;
+        this.und_medida = und_medida;
+    }
+    
     public String getNome_produto() {
         return nome_produto;
     }

@@ -5,19 +5,33 @@ public class Venda {
     private int itens;
     private double totVenda;
     private int totItens;
-    private int idVenda;
-    private String nome_cliente;
+    //private String nome_cliente;
     private String dataVenda;
-    private String formaPgto;
+    //private String formaPgto;
     
+    
+    //CONSTRUTOR PARA INSERIR
     public Venda(int itens, double totVenda, int totItens, String nome_cliente, String dataVenda, String formaPgto) {
         this.itens = itens;
         this.totVenda = totVenda;
         this.totItens = totItens;
-        this.nome_cliente = nome_cliente;
+  //      this.nome_cliente = nome_cliente;
         this.dataVenda = dataVenda;
-        this.formaPgto = formaPgto;
-        
+       // this.formaPgto = formaPgto;
+    }
+
+    //CONSTRUTOR PARA CONSULTAR
+    public Venda(int id_venda, int itens, double totVenda, int totItens, String dataVenda) {
+        this.id_venda = id_venda;
+        this.itens = itens;
+        this.totVenda = totVenda;
+        this.totItens = totItens;
+        this.dataVenda = dataVenda;
+    }
+    
+
+    public void setId_venda(int id_venda) {
+        this.id_venda = id_venda;
     }
 
     public int getItens() {
@@ -44,17 +58,13 @@ public class Venda {
         this.totItens = totItens;
     }
 
-    public void setIdVenda(int idVenda) {
-        this.idVenda = idVenda;
-    }
-
-    public String getNome_cliente() {
-        return nome_cliente;
-    }
-
-    public void setNome_cliente(String nome_cliente) {
-        this.nome_cliente = nome_cliente;
-    }
+//    public String getNome_cliente() {
+//        return nome_cliente;
+//    }
+//
+//    public void setNome_cliente(String nome_cliente) {
+//        this.nome_cliente = nome_cliente;
+//    }
 
     public String getDataVenda() {
         return dataVenda;
@@ -64,11 +74,11 @@ public class Venda {
         this.dataVenda = dataVenda;
     }
 
-    public String getFormaPgto() {
-        return formaPgto;
-    }
-
-    public void setFormaPgto(String formaPgto) {
-        this.formaPgto = formaPgto;
-    }
+//    public String getFormaPgto() {
+//        return formaPgto;
+//    }
+//
+//    public void setFormaPgto(String formaPgto) {
+//        this.formaPgto = formaPgto;
+//    }
 }
