@@ -37,7 +37,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icones/house.png" />
+                        <Image url="@../Icones/house.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -49,7 +49,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icones/shopping-cart%20(1).png" />
+                        <Image url="@../Icones/shopping-cart%20(1).png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -64,19 +64,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icones/add.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-            <JFXButton alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" text="ESTOQUE">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icones/stock.png" />
+                        <Image url="@../Icones/add.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -88,7 +76,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icones/notepad.png" />
+                        <Image url="@../Icones/notepad.png" />
                      </image>
                   </ImageView>
                </graphic>

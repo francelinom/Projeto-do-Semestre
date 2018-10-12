@@ -1,8 +1,8 @@
 package modelos;
 
 public class Produto {
-    private String nome_produto;
     private int id_produto;
+    private String nome_produto;
     private double cod_barra_produto;
     private double preco_produto;
     private int qtd_produto;

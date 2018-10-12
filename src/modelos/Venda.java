@@ -9,16 +9,15 @@ public class Venda {
     private String nome_cliente;
     private String dataVenda;
     private String formaPgto;
-    private int qtdParcelas;
-
-    public Venda(int itens, double totVenda, int totItens, String nome_cliente, String dataVenda, String formaPgto, int qtdParcelas) {
+    
+    public Venda(int itens, double totVenda, int totItens, String nome_cliente, String dataVenda, String formaPgto) {
         this.itens = itens;
         this.totVenda = totVenda;
         this.totItens = totItens;
         this.nome_cliente = nome_cliente;
         this.dataVenda = dataVenda;
         this.formaPgto = formaPgto;
-        this.qtdParcelas = qtdParcelas;
+        
     }
 
     public int getItens() {
@@ -72,14 +71,4 @@ public class Venda {
     public void setFormaPgto(String formaPgto) {
         this.formaPgto = formaPgto;
     }
-
-    public int getQtdParcelas() {
-        return qtdParcelas;
-    }
-
-    public void setQtdParcelas(int qtdParcelas) {
-        this.qtdParcelas = qtdParcelas;
-    }
-
-    
 }

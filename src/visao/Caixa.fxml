@@ -20,7 +20,6 @@
          <children>
             <JFXButton fx:id="finalizarVenda" maxWidth="1.7976931348623157E308" onAction="#finalizarVenda" style="-fx-background-color: BLUE;" text="FINALIZAR VENDA" textAlignment="CENTER" textFill="WHITE" />
             <JFXButton maxWidth="1.7976931348623157E308" style="-fx-background-color: BLUE;" text="CANCELAR VENDA" textFill="WHITE" />
-            <JFXButton maxWidth="1.7976931348623157E308" style="-fx-background-color: BLUE;" text="SAIR DO PVD" textFill="WHITE" />
          </children>
       </VBox>
    </left>
@@ -36,7 +35,7 @@
       </JFXTreeTableView>
    </center>
    <bottom>
-      <HBox alignment="CENTER_RIGHT" prefHeight="82.0" prefWidth="764.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="82.0" prefWidth="764.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <TextField prefHeight="39.0" prefWidth="297.0" promptText="Código de barras " />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL R$">

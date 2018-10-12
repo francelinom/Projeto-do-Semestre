@@ -16,6 +16,7 @@ public class Principal extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+       
         Parent root = FXMLLoader.load(getClass().getResource("/visao/Principal.fxml"));
         Scene scene = new Scene(root);
         
@@ -27,5 +28,5 @@ public class Principal extends Application {
         primaryStage.setTitle("PDV Fácil");
         primaryStage.show();
     }
-    
+ 
 }
