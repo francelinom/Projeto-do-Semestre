@@ -15,41 +15,41 @@ import java.sql.SQLException;
  */
 public class ConexaoBanco {
     private String usuario;			//nome do usuario do banco
-	private String senha;			//senha do banco  
-	private String caminho;			//caminho para o banco
-	private String driverjdbc;		//driver jdbc
-	private Connection conexao;		//objeto do tipo Connection
+    private String senha;			//senha do banco  
+    private String caminho;			//caminho para o banco
+    private String driverjdbc;		//driver jdbc
+    private Connection conexao;		//objeto do tipo Connection
 
-	//METODO CONSTRUTOR
-	public ConexaoBanco() {
-		this.caminho = "jdbc:h2:~/GBib/biblioteca;INIT=runscript from '~/GBib/createBiblioteca.sql'";
-		this.usuario = "admin"; 
-		this.senha = "admin";
-		this.driverjdbc = "org.h2.Driver";
-	}
-	
-	//METODO QUE EFETUA A CONEXAO COM O BANCO DE DADOS
-	public void conecta() {
-		try {
-			Class.forName(driverjdbc); //Carrega o driver (inicializa um objeto da classe org.postgresql.Driver) 
-			conexao = DriverManager.getConnection(caminho, usuario,senha); //Cria a conexao
-		} catch (Exception e) {
-			System.err.println(e);
-			e.printStackTrace();
-		}
-	}
+    //METODO CONSTRUTOR
+    public ConexaoBanco() {
+        this.caminho = "jdbc:h2:~/GBib/biblioteca;INIT=runscript from '~/GBib/createBiblioteca.sql'";
+        this.usuario = "admin";
+        this.senha = "admin";
+        this.driverjdbc = "org.h2.Driver";
+    }
 
-	//METODO QUE DESCONECTA O BANCO DE DADOS
-	public void desconecta() {
-		try {
-			conexao.close();//fecha a conexao
-		} catch (SQLException ex) {
-			System.err.println(ex);
-			ex.printStackTrace();
-		}
-	}
+    //METODO QUE EFETUA A CONEXAO COM O BANCO DE DADOS
+    public void conecta() {
+        try {
+            Class.forName(driverjdbc); //Carrega o driver (inicializa um objeto da classe org.postgresql.Driver) 
+            conexao = DriverManager.getConnection(caminho, usuario, senha); //Cria a conexao
+        } catch (Exception e) {
+            System.err.println(e);
+            e.printStackTrace();
+        }
+    }
 
-	public Connection getConexao() {
-		return conexao;
-	}
+    //METODO QUE DESCONECTA O BANCO DE DADOS
+    public void desconecta() {
+        try {
+            conexao.close();//fecha a conexao
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            ex.printStackTrace();
+        }
+    }
+
+    public Connection getConexao() {
+        return conexao;
+    }
 }

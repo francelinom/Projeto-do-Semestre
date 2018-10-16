@@ -6,8 +6,11 @@
 package controlador;
 
 import com.jfoenix.controls.JFXButton;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -79,7 +82,15 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private void gerarRelatorio(ActionEvent event) {
-        
+        Parent relatorio;
+        try {
+            relatorio = FXMLLoader.load(getClass().getResource("/visao/Relatorio.fxml"));
+            tela.setCenter(relatorio);
+            titulo.setText("RELATÓRIOS");
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }
     
 }
