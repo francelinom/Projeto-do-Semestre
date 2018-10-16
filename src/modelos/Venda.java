@@ -2,7 +2,7 @@ package modelos;
 
 public class Venda {
     private int id_venda;
-    private int itens;
+    private int itens;//mudar para lista
     private double totVenda;
     private int totItens;
     //private String nome_cliente;
