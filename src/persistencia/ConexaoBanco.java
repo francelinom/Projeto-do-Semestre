@@ -22,10 +22,10 @@ public class ConexaoBanco {
 
     //METODO CONSTRUTOR
     public ConexaoBanco() {
-        this.caminho = "jdbc:h2:~/GBib/biblioteca;INIT=runscript from '~/GBib/createBiblioteca.sql'";
-        this.usuario = "admin";
-        this.senha = "admin";
-        this.driverjdbc = "org.h2.Driver";
+        this.caminho = "jdbc:postgresql://localhost:5432/PDVfacil'";
+        this.usuario = "postgres";
+        this.senha = "1234";
+        this.driverjdbc = "org.postgresql.Driver";
     }
 
     //METODO QUE EFETUA A CONEXAO COM O BANCO DE DADOS
@@ -33,6 +33,7 @@ public class ConexaoBanco {
         try {
             Class.forName(driverjdbc); //Carrega o driver (inicializa um objeto da classe org.postgresql.Driver) 
             conexao = DriverManager.getConnection(caminho, usuario, senha); //Cria a conexao
+            System.out.println("Banco conectado");
         } catch (Exception e) {
             System.err.println(e);
             e.printStackTrace();
