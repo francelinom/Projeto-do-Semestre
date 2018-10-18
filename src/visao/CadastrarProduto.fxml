@@ -21,7 +21,7 @@
             <TreeTableColumn prefWidth="160.0" text="CÓDIGO DE BARRAS" />
             <TreeTableColumn prefWidth="60.0" text="PREÇO" />
             <TreeTableColumn prefWidth="120.0" text="QUANTIDADE" />
-            <TreeTableColumn prefWidth="120.0" text="MEDIDA" />
+            <TreeTableColumn prefWidth="120.0" text="UNIDADE" />
          </columns>
       </JFXTreeTableView>
    </center>
@@ -42,11 +42,11 @@
                     </rowConstraints>
                      <children>
                         <JFXTextField labelFloat="true" prefHeight="19.0" prefWidth="366.0" promptText="ID DO PRODUTO" />
-                        <JFXTextField labelFloat="true" prefHeight="14.0" prefWidth="366.0" promptText="CÓDIGO DE BARRA" GridPane.rowIndex="1" />
-                        <JFXTextField labelFloat="true" promptText="NOME DO PRODUTO" GridPane.columnIndex="1" />
-                        <JFXTextField labelFloat="true" promptText="PREÇO" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <JFXTextField labelFloat="true" promptText="QUANTIDADE" GridPane.rowIndex="2" />
-                        <JFXTextField labelFloat="true" promptText="UNIDADE DE MEDIDA" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <JFXTextField fx:id="codBarras" labelFloat="true" prefHeight="14.0" prefWidth="366.0" promptText="CÓDIGO DE BARRA" GridPane.rowIndex="1" />
+                        <JFXTextField fx:id="nomeProduto" labelFloat="true" promptText="NOME DO PRODUTO" GridPane.columnIndex="1" />
+                        <JFXTextField fx:id="precoProduto" labelFloat="true" promptText="PREÇO" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <JFXTextField fx:id="quantProduto" labelFloat="true" promptText="QUANTIDADE" GridPane.rowIndex="2" />
+                        <JFXTextField fx:id="unidadeProduto" labelFloat="true" promptText="UNIDADE DE MEDIDA" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                      <VBox.margin>
                         <Insets left="50.0" right="50.0" />
@@ -54,9 +54,10 @@
                   </GridPane>
                   <HBox alignment="CENTER" prefHeight="82.0" prefWidth="609.0" spacing="20.0">
                      <children>
-                        <JFXButton style="-fx-background-color: #06c;" text="CADASTRAR" textFill="WHITE" />
-                        <JFXButton style="-fx-background-color: #090;" text="ATUALIZAR" textFill="WHITE" />
-                        <JFXButton style="-fx-background-color: #c00;" text="CANCELAR" textFill="WHITE" />
+                        <JFXButton onAction="#cadastrarProduto" style="-fx-background-color: #06c;" text="CADASTRAR" textFill="WHITE" />
+                        <JFXButton onAction="#atualizarProduto" style="-fx-background-color: #090;" text="ATUALIZAR" textFill="WHITE" />
+                        <JFXButton onAction="#limparCampos" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: #9932CC;" text="LIMPAR" textFill="WHITE" />
+                        <JFXButton onAction="#ExcluirCadastro" style="-fx-background-color: #c00;" text="CANCELAR" textFill="WHITE" />
                      </children>
                   </HBox>
                </children>
