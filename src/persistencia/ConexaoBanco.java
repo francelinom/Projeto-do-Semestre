@@ -22,7 +22,7 @@ public class ConexaoBanco {
 
     //METODO CONSTRUTOR
     public ConexaoBanco() {
-        this.caminho = "jdbc:postgresql://localhost:5432/PDVfacil'";
+        this.caminho = "jdbc:postgresql://localhost:5432/PDVfacil";
         this.usuario = "postgres";
         this.senha = "1234";
         this.driverjdbc = "org.postgresql.Driver";

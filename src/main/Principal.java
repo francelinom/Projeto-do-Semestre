@@ -8,10 +8,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import persistencia.ConexaoBanco;
 
 public class Principal extends Application {
     public static void main(String[] args) {
         launch(args);
+//        ConexaoBanco bd = new ConexaoBanco();
+//        
+//        bd.conecta();
     }
 
     @Override

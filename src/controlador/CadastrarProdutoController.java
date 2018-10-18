@@ -45,11 +45,15 @@ public class CadastrarProdutoController implements Initializable {
     @FXML
     private void cadastrarProduto(ActionEvent event) {
         Produto a = new Produto(nomeProduto.getText(),Double.parseDouble(codBarras.getText()),Double.parseDouble(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText());
+        //Produto a = new Produto("arroz", 1, 1, 1, "KG");
         p.cadastrarProduto(a);
     }
 
     @FXML
     private void atualizarProduto(ActionEvent event) {
+         Produto a = new Produto(nomeProduto.getText(),Double.parseDouble(codBarras.getText()),Double.parseDouble(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText());
+        //Produto a = new Produto("arroz", 1, 1, 1, "KG");
+         p.atulizarProduto(a);
     }
 
     @FXML

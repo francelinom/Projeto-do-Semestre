@@ -27,9 +27,8 @@ public class CadastroProtudoDAO {
             prepararInstrucao.setString(1, p.getNome_produto());
             prepararInstrucao.setDouble(2, p.getCod_barra_produto());
             prepararInstrucao.setDouble(3, p.getPreco_produto());
-            prepararInstrucao.setInt(3, p.getQtd_produto());
+            prepararInstrucao.setInt(4, p.getQtd_produto());
             prepararInstrucao.setString(5, p.getUnd_medida());
-            
             prepararInstrucao.execute();
             
             con.desconecta();
@@ -37,5 +36,9 @@ public class CadastroProtudoDAO {
             Logger.getLogger(CadastroProtudoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         }
+
+    public void atulizarProduto(Produto a) {
+        
+    }
     }
 
