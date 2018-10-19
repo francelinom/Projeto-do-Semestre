@@ -10,11 +10,11 @@ public class CadastroProtudoDAO {
     private ConexaoBanco con = new ConexaoBanco();
     
 	
-	private final String CADASTRARPRODUTO = "INSERT INTO PRODUTOS (NOME_PRODUTO,COD_BARRAS,PRECO,QUANTIDADE,UND_MEDIDA) VALUES (?,?,?,?,?)";
-//	private final String UPDATEUSUARIO = "UPDATE USUARIO SET NOME_USUARIO = ?, TEL_USUARIO = ?, EMAIL_USUARIO = ? WHERE ID_USUARIO = ?";
-//	private final String DELETEUSUARIO = "DELETE FROM USUARIO WHERE ID_USUARIO = ?";
-//	private final String LISTUSUARIO = "SELECT * FROM USUARIO";
-//	private final String BUSCARUSUARIO = "SELECT * FROM USUARIO WHERE UPPER(NOME_USUARIO) LIKE ?";
+    private final String CADASTRARPRODUTO = "INSERT INTO PRODUTOS (NOME_PRODUTO,COD_BARRAS,PRECO,QUANTIDADE,UND_MEDIDA) VALUES (?,?,?,?,?)";
+//private final String UPDATEUSUARIO = "UPDATE USUARIO SET NOME_USUARIO = ?, TEL_USUARIO = ?, EMAIL_USUARIO = ? WHERE ID_USUARIO = ?";
+//private final String DELETEUSUARIO = "DELETE FROM USUARIO WHERE ID_USUARIO = ?";
+//private final String LISTUSUARIO = "SELECT * FROM USUARIO";
+//private final String BUSCARUSUARIO = "SELECT * FROM USUARIO WHERE UPPER(NOME_USUARIO) LIKE ?";
 
     
 	public void cadastrarProduto(Produto p){
@@ -38,6 +38,9 @@ public class CadastroProtudoDAO {
         }
 
     public void atulizarProduto(Produto a) {
+        
+    }
+    public void deletaProduto(int id){
         
     }
     }
