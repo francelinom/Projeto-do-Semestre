@@ -2,9 +2,9 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -13,37 +13,26 @@
 
 <BorderPane fx:id="caixa" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CaixaController">
    <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <HBox prefHeight="27.0" prefWidth="764.0" BorderPane.alignment="CENTER" />
    </top>
    <left>
       <VBox prefHeight="517.0" prefWidth="138.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
             <JFXButton fx:id="finalizarVenda" maxWidth="1.7976931348623157E308" onAction="#finalizarVenda" style="-fx-background-color: BLUE;" text="FINALIZAR VENDA" textAlignment="CENTER" textFill="WHITE" />
-            <JFXButton maxWidth="1.7976931348623157E308" style="-fx-background-color: BLUE;" text="CANCELAR VENDA" textFill="WHITE" />
+            <JFXButton fx:id="canVenda" maxWidth="1.7976931348623157E308" onAction="#canelarVenda" style="-fx-background-color: BLUE;" text="CANCELAR VENDA" textFill="WHITE" />
          </children>
       </VBox>
    </left>
-   <center>
-      <JFXTreeTableView BorderPane.alignment="CENTER">
-         <columns>
-            <TreeTableColumn prefWidth="61.0" text="Código" />
-            <TreeTableColumn prefWidth="299.0" text="Produto" />
-            <TreeTableColumn minWidth="0.0" prefWidth="84.0" text="Quantidade" />
-            <TreeTableColumn prefWidth="90.0" text="Preço" />
-            <TreeTableColumn prefWidth="90.0" text="Total Unitário" />
-         </columns>
-      </JFXTreeTableView>
-   </center>
    <bottom>
       <HBox alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="82.0" prefWidth="764.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField prefHeight="39.0" prefWidth="297.0" promptText="Código de barras " />
+            <TextField fx:id="campoLeitura" prefHeight="39.0" prefWidth="297.0" promptText="Código de barras " />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL R$">
                <font>
                   <Font size="36.0" />
                </font>
             </Text>
-            <JFXTextField editable="false" prefHeight="48.0" prefWidth="86.0" promptText="0,00" text="0,00">
+            <JFXTextField fx:id="totalVenda" editable="false" prefHeight="81.0" prefWidth="110.0" promptText="0,00" text="0,00">
                <font>
                   <Font size="38.0" />
                </font>
@@ -51,4 +40,15 @@
          </children>
       </HBox>
    </bottom>
+   <center>
+      <TableView fx:id="tabelaVenda" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="idProduto" prefWidth="36.0" text="ID" />
+          <TableColumn fx:id="nomeProduto" prefWidth="361.0" text="PRODUTO" />
+            <TableColumn fx:id="precoProduto" prefWidth="58.0" text="PREÇO" />
+            <TableColumn fx:id="quantProduto" prefWidth="106.0" text="QUANTIDADE" />
+            <TableColumn fx:id="totalItem" prefWidth="60.0" text="TOTAL" />
+        </columns>
+      </TableView>
+   </center>
 </BorderPane>

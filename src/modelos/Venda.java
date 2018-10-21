@@ -2,62 +2,62 @@ package modelos;
 
 public class Venda {
     private int id_venda;
-    private int itens;//mudar para lista
-    private double totVenda;
-    private int totItens;
-    private String dataVenda;
+    private itensVenda lista_venda;//mudar para lista
+    private double total_venda;
+    private int total_iten;
+    private String data_venda;
     
     
     //CONSTRUTOR PARA INSERIR
     public Venda(int itens, double totVenda, int totItens, String nome_cliente, String dataVenda, String formaPgto) {
-        this.itens = itens;
-        this.totVenda = totVenda;
-        this.totItens = totItens;  
-        this.dataVenda = dataVenda;     
+        this.total_venda = totVenda;
+        this.total_iten = totItens;  
+        this.data_venda = dataVenda;     
     }
 
     //CONSTRUTOR PARA CONSULTAR
-    public Venda(int id_venda, int itens, double totVenda, int totItens, String dataVenda) {
+    public Venda(int id_venda, itensVenda lista_venda, double total_venda, int total_iten, String data_venda) {
         this.id_venda = id_venda;
-        this.itens = itens;
-        this.totVenda = totVenda;
-        this.totItens = totItens;
-        this.dataVenda = dataVenda;
+        this.lista_venda = lista_venda;
+        this.total_venda = total_venda;
+        this.total_iten = total_iten;
+        this.data_venda = data_venda;
     }
-    
-
+  
+   
     public void setId_venda(int id_venda) {
         this.id_venda = id_venda;
     }
 
-    public int getItens() {
-        return itens;
+    public double getTotal_venda() {
+        return total_venda;
     }
 
-    public void setItens(int itens) {
-        this.itens = itens;
+    public void setTotal_venda(double total_venda) {
+        this.total_venda = total_venda;
     }
 
-    public double getTotVenda() {
-        return totVenda;
+    public int getTotal_iten() {
+        return total_iten;
     }
 
-    public void setTotVenda(double totVenda) {
-        this.totVenda = totVenda;
+    public void setTotal_iten(int total_iten) {
+        this.total_iten = total_iten;
+    }
+    public String getData_venda() {
+        return data_venda;
     }
 
-    public int getTotItens() {
-        return totItens;
+    public void setData_venda(String data_venda) {
+        this.data_venda = data_venda;
     }
 
-    public void setTotItens(int totItens) {
-        this.totItens = totItens;
-    }
-    public String getDataVenda() {
-        return dataVenda;
+    public itensVenda getLista_venda() {
+        return lista_venda;
     }
 
-    public void setDataVenda(String dataVenda) {
-        this.dataVenda = dataVenda;
+    public void setLista_venda(itensVenda lista_venda) {
+        this.lista_venda = lista_venda;
     }
+    
 }

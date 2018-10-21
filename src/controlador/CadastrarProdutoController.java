@@ -5,12 +5,22 @@
  */
 package controlador;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.util.Observer;
+import java.util.Properties;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import modelos.Produto;
 import persistencia.CadastroProtudoDAO;
 
@@ -20,7 +30,10 @@ import persistencia.CadastroProtudoDAO;
  * @author Thiago Dantas
  */
 public class CadastrarProdutoController implements Initializable {
-    
+    //OBJETO PRODUTO
+    private Produto mproduto = new Produto();
+    private ObservableList<Produto> itens = FXCollections.observableArrayList();
+  
     private CadastroProtudoDAO p = new CadastroProtudoDAO();
     
     @FXML
@@ -33,36 +46,102 @@ public class CadastrarProdutoController implements Initializable {
     private JFXTextField unidadeProduto;
     @FXML
     private JFXTextField quantProduto;
+    @FXML
+    private JFXTextField idProduto;
+    @FXML
+    private JFXButton cadprodutos;
+    @FXML
+    private JFXButton atualziarProduto;
+    @FXML
+    private JFXButton limpa;
+    @FXML
+    private JFXButton excluirProd;
+    
+    
+    //TABELA
+    @FXML
+    private TableView<Produto> tabelasProdutos;
+    @FXML
+    private TableColumn<Produto, Integer> idProdCol;
+    @FXML
+    private TableColumn<Produto, String> nomeProdCol;
+    @FXML
+    private TableColumn<Produto, Double> codBarrasCol;
+    @FXML
+    private TableColumn<Produto, Double> precoProdCol;
+    @FXML
+    private TableColumn<Produto, Integer> quantProdCol;
+    @FXML
+    private TableColumn<Produto, String> unidProdCol;
+   
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        idProdCol.setCellValueFactory(new PropertyValueFactory<Produto,Integer>("id_produto"));
+        nomeProdCol.setCellValueFactory(new PropertyValueFactory<Produto, String>("nome_produto"));
+        codBarrasCol.setCellValueFactory(new PropertyValueFactory<Produto, Double>("cod_barra_produto"));
+        precoProdCol.setCellValueFactory(new PropertyValueFactory<Produto, Double>("preco_produto"));
+        quantProdCol.setCellValueFactory(new PropertyValueFactory<Produto, Integer>("qtd_produto"));
+        unidProdCol.setCellValueFactory(new PropertyValueFactory<Produto, String>("und_medida"));
+        
+        atualizarTabela();
+        
+        tabelasProdutos.setOnMouseClicked(event -> {
+            mproduto = tabelasProdutos.getSelectionModel().getSelectedItem();
+            idProduto.setText(Integer.toString(mproduto.getId_produto()));
+            nomeProduto.setText(mproduto.getNome_produto());
+            codBarras.setText(Integer.toString(mproduto.getQtd_produto()));
+            precoProduto.setText(Double.toString(mproduto.getPreco_produto()));
+            quantProduto.setText(Integer.toString(mproduto.getQtd_produto()));
+            unidadeProduto.setText(mproduto.getUnd_medida());
+		});
     }    
 
     @FXML
-    private void cadastrarProduto(ActionEvent event) {
-        Produto a = new Produto(nomeProduto.getText(),Double.parseDouble(codBarras.getText()),Double.parseDouble(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText());
+    private void cadastrarProduto() {
+        Produto a = new Produto(nomeProduto.getText(),Integer.parseInt(codBarras.getText()),Double.parseDouble(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText());
         //Produto a = new Produto("arroz", 1, 1, 1, "KG");
         p.cadastrarProduto(a);
+        atualizarTabela();
+        limparCampos();
     }
 
     @FXML
     private void atualizarProduto(ActionEvent event) {
-         Produto a = new Produto(nomeProduto.getText(),Double.parseDouble(codBarras.getText()),Double.parseDouble(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText());
-        //Produto a = new Produto("arroz", 1, 1, 1, "KG");
-         p.atulizarProduto(a);
+        Produto a = new Produto(Integer.parseInt(idProduto.getText()), nomeProduto.getText(),Integer.parseInt(codBarras.getText()),Double.parseDouble(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText());
+        p.atulizarProduto(a);
+        atualizarTabela();
+        limparCampos();
     }
 
     @FXML
     private void limparCampos(ActionEvent event) {
+        limparCampos();
     }
 
     @FXML
     private void ExcluirCadastro(ActionEvent event) {
+        Produto a = new Produto(Integer.parseInt(idProduto.getText()));
+        p.deletaProduto(a);
+        atualizarTabela();
+        limparCampos();
     }
+
+    private void atualizarTabela() {
+        itens.clear();
+	itens.addAll(p.listarProdutos());
+        tabelasProdutos.setItems(itens);
+    }
+    private void limparCampos() {
+		nomeProduto.clear();
+                codBarras.clear();
+                precoProduto.clear();
+                quantProduto.clear();
+                unidadeProduto.clear();
+	}
 
        
 }
