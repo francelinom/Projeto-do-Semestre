@@ -18,7 +18,7 @@ public class CadastroProtudoDAO {
     private final String ATUALIZARPRODUTO = "UPDATE PRODUTOS SET NOME_PRODUTO = ?, COD_BARRAS = ?, PRECO = ?, QUANTIDADE = ?, UND_MEDIDA = ? WHERE ID = ?";
     private final String DELETARPRODUTO = "DELETE FROM PRODUTOS WHERE ID = ?";
     private final String LISTPRODUTOS = "SELECT * FROM PRODUTOS";
-//private final String BUSCARUSUARIO = "SELECT * FROM USUARIO WHERE UPPER(NOME_USUARIO) LIKE ?";
+    //private final String BUSCARPRODUTO = "SELECT * FROM USUARIO WHERE UPPER(NOME_USUARIO) LIKE ?";
 
     
 	public void cadastrarProduto(Produto p){
