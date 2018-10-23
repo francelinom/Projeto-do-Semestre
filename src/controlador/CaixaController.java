@@ -71,9 +71,14 @@ public class CaixaController implements Initializable {
     @FXML
     private TableColumn<itensVenda, Double> precoProduto;
     @FXML
+    private TableColumn<itensVenda, String> und;
+    @FXML
     private TableColumn<itensVenda, Double> totalItem;
     @FXML
     private JFXButton excluirItem;
+    @FXML
+    private TextField quantP;
+    
    
     
     
@@ -83,6 +88,7 @@ public class CaixaController implements Initializable {
         idProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,Integer>("id_produto"));
         nomeProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,String>("nome_produto"));
         precoProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,Double>("preco_produto"));
+        und.setCellValueFactory(new PropertyValueFactory<itensVenda,String>("und_medida"));
         quantProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,Integer>("quantidade"));
         totalItem.setCellValueFactory(new PropertyValueFactory<itensVenda,Double>("total_item"));
         
@@ -93,7 +99,7 @@ public class CaixaController implements Initializable {
     @FXML
     private void finalizarVenda(ActionEvent event) throws IOException {
        
-        Parent root =FXMLLoader.load(getClass().getResource("/visao/FinalizarVenda.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/visao/FinalizarVenda.fxml"));
         Scene janela = new Scene(root);
         
         Stage stage = new Stage();
@@ -117,17 +123,44 @@ public class CaixaController implements Initializable {
     private void excluirItem(ActionEvent event) {
     }
 
+//    private void listar(KeyEvent event) {
+//        System.out.println("teste");
+//        double total;
+//        
+//        Produto po = p.consultaProduto(Integer.parseInt(campoLeitura.getText()));
+//        
+//        total = calcTotalItens(Integer.parseInt(quantP.getText()), po.getPreco_produto());
+//        
+//        item = new itensVenda(Integer.parseInt(quantP.getText()), total, po.getId_produto(), po.getNome_produto(), po.getPreco_produto(), po.getUnd_medida());
+//        //idProduto n = new itensVenda(quant, totaliten, id, nome_produto, preco, und_medida);
+//        
+//        atualizarTabela();
+//        
+//        //p.cadastradarProduto();
+//    }
+    
     @FXML
-    private void listar(KeyEvent event) {
+    private void listar(ActionEvent event) {
         System.out.println("teste");
-        itensVenda item = p.consultaProduto(Integer.parseInt(campoLeitura.getText()));
+        
+        Produto po = p.consultaProduto(Integer.parseInt(campoLeitura.getText()));
+        
+        //double total = calcTotalItens(Integer.parseInt(quantP.getText()), po.getPreco_produto());
+        
+        item = new itensVenda(Integer.parseInt(quantP.getText()),calcTotalItens(Integer.parseInt(quantP.getText()), po.getPreco_produto()), po.getId_produto(), po.getNome_produto(), po.getPreco_produto(), po.getUnd_medida());
+        //idProduto n = new itensVenda(quant, totaliten, id, nome_produto, preco, und_medida);        
         atualizarTabela();
         
         //p.cadastradarProduto();
     }
-    
-     private void atualizarTabela() {
+      private void atualizarTabela() {
 	itens.add(item);
         tabelaVenda.setItems(itens);
+    }
+
+    private double calcTotalItens(int quantP, double precoP) {
+        double r = quantP * precoP;
+        System.out.println(r);
+        return r;
     }
 }
