@@ -27,7 +27,7 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="82.0" prefWidth="764.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="campoLeitura" prefHeight="39.0" prefWidth="297.0" promptText="Código de barras " />
+            <TextField fx:id="campoLeitura" onKeyPressed="#listar" prefHeight="39.0" prefWidth="297.0" promptText="Código de barras " />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL R$">
                <font>
                   <Font size="36.0" />

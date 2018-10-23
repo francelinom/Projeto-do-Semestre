@@ -8,7 +8,7 @@ public class itensVenda extends Produto{
         super(id_produto, nome_produto, preco_produto, und_medida);
         this.quantidade = quantidade;
         this.total_iten = total_iten;
-    }
+    }   
 
     public int getQuantidade() {
         return quantidade;
