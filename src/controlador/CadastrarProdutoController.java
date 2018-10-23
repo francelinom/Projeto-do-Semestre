@@ -56,7 +56,10 @@ public class CadastrarProdutoController implements Initializable {
     private JFXButton limpa;
     @FXML
     private JFXButton excluirProd;
-    
+    @FXML
+    private JFXTextField buscarProduto;
+    @FXML
+    private JFXButton buscarBotao;
     
     //TABELA
     @FXML
@@ -73,6 +76,7 @@ public class CadastrarProdutoController implements Initializable {
     private TableColumn<Produto, Integer> quantProdCol;
     @FXML
     private TableColumn<Produto, String> unidProdCol;
+  
    
 
     /**

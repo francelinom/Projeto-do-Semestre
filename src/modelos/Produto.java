@@ -88,6 +88,8 @@ public class Produto {
         this.und_medida = und_medida;
     }
     
-    
+    enum unidade{
+        KG,PC, L, G;
+    }
     
 }

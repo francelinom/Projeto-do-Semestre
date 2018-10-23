@@ -60,6 +60,8 @@ public class CaixaController implements Initializable {
     private TableColumn<?, ?> precoProduto;
     @FXML
     private TableColumn<?, ?> totalItem;
+    @FXML
+    private JFXButton excluirItem;
    
     
     
@@ -89,6 +91,10 @@ public class CaixaController implements Initializable {
 
     @FXML
     private void canelarVenda(ActionEvent event) {
+    }
+
+    @FXML
+    private void excluirItem(ActionEvent event) {
     }
     
      
