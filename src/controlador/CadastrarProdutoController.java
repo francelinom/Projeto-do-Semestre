@@ -101,7 +101,7 @@ public class CadastrarProdutoController implements Initializable {
             precoProduto.setText(Double.toString(mproduto.getPreco_produto()));
             quantProduto.setText(Integer.toString(mproduto.getQtd_produto()));
             unidadeProduto.setText(mproduto.getUnd_medida());
-		});
+        });
     }    
 
     @FXML
@@ -117,20 +117,21 @@ public class CadastrarProdutoController implements Initializable {
     private void atualizarProduto(ActionEvent event) {
         Produto a = new Produto(Integer.parseInt(idProduto.getText()), nomeProduto.getText(),Integer.parseInt(codBarras.getText()),Double.parseDouble(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText());
         p.atulizarProduto(a);
+       //p.atulizarProduto(tabelasProdutos.getSelectionModel().getSelectedItem());
         atualizarTabela();
-        limparCampos();
-    }
-
-    @FXML
-    private void limparCampos(ActionEvent event) {
         limparCampos();
     }
 
     @FXML
     private void ExcluirCadastro(ActionEvent event) {
-        Produto a = new Produto(Integer.parseInt(idProduto.getText()));
-        p.deletaProduto(a);
+        // Produto a = new Produto(Integer.parseInt(idProduto.getText()));
+        p.deletaProduto(tabelasProdutos.getSelectionModel().getSelectedItem());
         atualizarTabela();
+        limparCampos();
+    }
+    
+    @FXML
+    private void limparCampos(ActionEvent event) {
         limparCampos();
     }
 

@@ -1,8 +1,10 @@
 package modelos;
 
+import java.util.ArrayList;
+
 public class Venda {
     private int id_venda;
-    private itensVenda lista_venda;//mudar para lista
+    private ArrayList<itensVenda> lista_venda;//mudar para lista
     private double total_venda;
     private int total_iten;
     private String data_venda;
@@ -18,7 +20,7 @@ public class Venda {
     //CONSTRUTOR PARA CONSULTAR
     public Venda(int id_venda, itensVenda lista_venda, double total_venda, int total_iten, String data_venda) {
         this.id_venda = id_venda;
-        this.lista_venda = lista_venda;
+       // this.lista_venda = lista_venda;
         this.total_venda = total_venda;
         this.total_iten = total_iten;
         this.data_venda = data_venda;
@@ -52,12 +54,12 @@ public class Venda {
         this.data_venda = data_venda;
     }
 
-    public itensVenda getLista_venda() {
-        return lista_venda;
-    }
-
-    public void setLista_venda(itensVenda lista_venda) {
-        this.lista_venda = lista_venda;
-    }
+//    public itensVenda getLista_venda() {
+//        return lista_venda;
+//    }
+//
+//    public void setLista_venda(itensVenda lista_venda) {
+//        this.lista_venda = lista_venda;
+//    }
     
 }
