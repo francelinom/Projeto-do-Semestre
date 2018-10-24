@@ -25,6 +25,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
@@ -40,9 +41,11 @@ import persistencia.CaixaDAO;
  */
 public class CaixaController implements Initializable {
     
-    CaixaDAO p = new CaixaDAO();
+    private CaixaDAO p = new CaixaDAO();
     
-    itensVenda item;
+    private itensVenda item;
+    
+    private double somaTotal;
     
         
     @FXML
@@ -93,6 +96,7 @@ public class CaixaController implements Initializable {
         totalItem.setCellValueFactory(new PropertyValueFactory<itensVenda,Double>("total_item"));
         
         atualizarTabela();
+        itens.clear();
         
     }    
     
@@ -107,52 +111,33 @@ public class CaixaController implements Initializable {
         stage.show();
         stage.setTitle("Finalizar Venda");
         
-//        try {                
-//            //Parent finalizar = FXMLLoader.load(getClass().getResource("/visao/FinalizarVenda.fxml"));
-//            //caixa.setCenter(finalizar);
-//                       
-//        } catch (Exception e) {
-//        }
     }
-
+     @FXML
+    private void listarProdutos(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            //System.out.println("teste");
+            Produto po = p.consultaProduto(Integer.parseInt(campoLeitura.getText()));
+            item = new itensVenda(Integer.parseInt(quantP.getText()),calcTotalItens(Integer.parseInt(quantP.getText()), po.getPreco_produto()), po.getId_produto(), po.getNome_produto(), po.getPreco_produto(), po.getUnd_medida());
+            //System.out.println(item.getTotal_item());
+            atualizarTabela();
+            limparCampos();
+            somarTotalvenda(item);
+        }
+        
+    }
+    
     @FXML
     private void canelarVenda(ActionEvent event) {
+        itens.clear();
+        somaTotal = 0;
+        totalVenda.clear();
     }
 
     @FXML
     private void excluirItem(ActionEvent event) {
     }
-
-//    private void listar(KeyEvent event) {
-//        System.out.println("teste");
-//        double total;
-//        
-//        Produto po = p.consultaProduto(Integer.parseInt(campoLeitura.getText()));
-//        
-//        total = calcTotalItens(Integer.parseInt(quantP.getText()), po.getPreco_produto());
-//        
-//        item = new itensVenda(Integer.parseInt(quantP.getText()), total, po.getId_produto(), po.getNome_produto(), po.getPreco_produto(), po.getUnd_medida());
-//        //idProduto n = new itensVenda(quant, totaliten, id, nome_produto, preco, und_medida);
-//        
-//        atualizarTabela();
-//        
-//        //p.cadastradarProduto();
-//    }
     
-    @FXML
-    private void listar(ActionEvent event) {
-        System.out.println("teste");
-        
-        Produto po = p.consultaProduto(Integer.parseInt(campoLeitura.getText()));
-        
-        //double total = calcTotalItens(Integer.parseInt(quantP.getText()), po.getPreco_produto());
-        
-        item = new itensVenda(Integer.parseInt(quantP.getText()),calcTotalItens(Integer.parseInt(quantP.getText()), po.getPreco_produto()), po.getId_produto(), po.getNome_produto(), po.getPreco_produto(), po.getUnd_medida());
-        //idProduto n = new itensVenda(quant, totaliten, id, nome_produto, preco, und_medida);        
-        atualizarTabela();
-        
-        //p.cadastradarProduto();
-    }
+    //metodos
       private void atualizarTabela() {
 	itens.add(item);
         tabelaVenda.setItems(itens);
@@ -160,7 +145,17 @@ public class CaixaController implements Initializable {
 
     private double calcTotalItens(int quantP, double precoP) {
         double r = quantP * precoP;
-        System.out.println(r);
+        //System.out.println(r);
         return r;
     }
+    private void limparCampos() {
+	campoLeitura.clear();
+        quantP.setText("1");
+    }
+
+    private void somarTotalvenda(itensVenda item) {
+        somaTotal = somaTotal + item.getTotal_item();
+        totalVenda.setText(String.format("%.2f", somaTotal));
+    }
+   
 }
