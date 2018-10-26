@@ -135,6 +135,8 @@ public class CaixaController implements Initializable {
 
     @FXML
     private void excluirItem(ActionEvent event) {
+        itens.remove(tabelaVenda.getSelectionModel().getSelectedItem());
+        atualizarTabela();
     }
     
     //metodos

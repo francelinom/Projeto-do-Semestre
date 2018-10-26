@@ -141,12 +141,12 @@ public class CadastrarProdutoController implements Initializable {
         tabelasProdutos.setItems(itens);
     }
     private void limparCampos() {
-		nomeProduto.clear();
-                codBarras.clear();
-                precoProduto.clear();
-                quantProduto.clear();
-                unidadeProduto.clear();
-	}
-
+        idProduto.clear();
+        nomeProduto.clear();
+        codBarras.clear();
+        precoProduto.clear();
+        quantProduto.clear();
+        unidadeProduto.clear();
+    }
        
 }
