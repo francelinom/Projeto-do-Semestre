@@ -44,6 +44,7 @@ public class CaixaController implements Initializable {
     private CaixaDAO p = new CaixaDAO();
     
     private itensVenda item;
+    private int numeroItem = 1;
     
     private double somaTotal;
     
@@ -66,6 +67,8 @@ public class CaixaController implements Initializable {
     @FXML
     private TableView<itensVenda> tabelaVenda;
     @FXML
+    private TableColumn<itensVenda, Integer> itemNum;
+    @FXML
     private TableColumn<itensVenda, Integer> idProduto;
     @FXML
     private TableColumn<itensVenda, String> nomeProduto;
@@ -81,6 +84,7 @@ public class CaixaController implements Initializable {
     private JFXButton excluirItem;
     @FXML
     private TextField quantP;
+
     
    
     
@@ -88,6 +92,7 @@ public class CaixaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        itemNum.setCellValueFactory(new PropertyValueFactory<itensVenda,Integer>("idItem"));
         idProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,Integer>("id_produto"));
         nomeProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,String>("nome_produto"));
         precoProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,Double>("preco_produto"));
@@ -117,11 +122,12 @@ public class CaixaController implements Initializable {
         if (event.getCode() == KeyCode.ENTER) {
             //System.out.println("teste");
             Produto po = p.consultaProduto(Integer.parseInt(campoLeitura.getText()));
-            item = new itensVenda(Integer.parseInt(quantP.getText()),calcTotalItens(Integer.parseInt(quantP.getText()), po.getPreco_produto()), po.getId_produto(), po.getNome_produto(), po.getPreco_produto(), po.getUnd_medida());
+            item = new itensVenda(numeroItem, Integer.parseInt(quantP.getText()),calcTotalItens(Integer.parseInt(quantP.getText()), po.getPreco_produto()), po.getId_produto(), po.getNome_produto(), po.getPreco_produto(), po.getUnd_medida());
             //System.out.println(item.getTotal_item());
             atualizarTabela();
             limparCampos();
             somarTotalvenda(item);
+            numeroItem++;
         }
         
     }
@@ -129,14 +135,15 @@ public class CaixaController implements Initializable {
     @FXML
     private void canelarVenda(ActionEvent event) {
         itens.clear();
+        numeroItem = 0;
         somaTotal = 0;
         totalVenda.clear();
+        
     }
 
     @FXML
     private void excluirItem(ActionEvent event) {
-        itens.remove(tabelaVenda.getSelectionModel().getSelectedItem());
-        atualizarTabela();
+     
     }
     
     //metodos

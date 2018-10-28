@@ -54,12 +54,13 @@
    <center>
       <TableView fx:id="tabelaVenda" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="idProduto" prefWidth="36.0" text="ID" />
-          <TableColumn fx:id="nomeProduto" prefWidth="252.0" text="PRODUTO" />
-            <TableColumn fx:id="precoProduto" prefWidth="97.0" text="PREÇO" />
-            <TableColumn fx:id="quantProduto" prefWidth="99.0" text="QUANTIDADE" />
-            <TableColumn fx:id="und" prefWidth="75.0" text="UND" />
-            <TableColumn fx:id="totalItem" prefWidth="65.0" text="TOTAL" />
+            <TableColumn fx:id="itemNum" prefWidth="40.0" text="ITEM" />
+          <TableColumn fx:id="idProduto" minWidth="9.0" prefWidth="41.0" text="ID" />
+          <TableColumn fx:id="nomeProduto" prefWidth="280.0" text="PRODUTO" />
+            <TableColumn fx:id="und" prefWidth="41.0" text="UND" />
+            <TableColumn fx:id="precoProduto" prefWidth="65.0" text="PREÇO" />
+            <TableColumn fx:id="quantProduto" prefWidth="100.0" text="QUANTIDADE" />
+            <TableColumn fx:id="totalItem" prefWidth="57.0" text="TOTAL" />
         </columns>
       </TableView>
    </center>

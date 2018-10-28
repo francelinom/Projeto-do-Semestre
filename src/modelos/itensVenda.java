@@ -1,14 +1,24 @@
 package modelos;
 
 public class itensVenda extends Produto{
+    private int idItem;
     private int quantidade;
     private double total_item;
 
-    public itensVenda(int quantidade, double total_iten, int id_produto, String nome_produto, double preco_produto, String und_medida) {
+    public itensVenda(int idItem, int quantidade, double total_iten, int id_produto, String nome_produto, double preco_produto, String und_medida) {
         super(id_produto, nome_produto, preco_produto, und_medida);
+        this.idItem = idItem;
         this.quantidade = quantidade;
         this.total_item = total_iten;
     }   
+
+    public int getIdItem() {
+        return idItem;
+    }
+
+    public void setIdItem(int idItem) {
+        this.idItem = idItem;
+    }
 
     public int getQuantidade() {
         return quantidade;
