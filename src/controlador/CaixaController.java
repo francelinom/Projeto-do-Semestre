@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,6 +43,9 @@ import persistencia.CaixaDAO;
 public class CaixaController implements Initializable {
     
     private CaixaDAO p = new CaixaDAO();
+   // private ObservableList<Produto> codigo = FXCollections.observableArrayList();
+    private ArrayList<Integer> codigo  = new ArrayList<>();
+    
     
     private itensVenda item;
     private int numeroItem = 1;
@@ -102,7 +106,10 @@ public class CaixaController implements Initializable {
         
         atualizarTabela();
         itens.clear();
-        
+        codigo.addAll(p.listarProdutos());
+        for(Integer codigo : codigo){
+            System.out.println(codigo);
+        }
     }    
     
     @FXML
@@ -119,8 +126,13 @@ public class CaixaController implements Initializable {
     }
      @FXML
     private void listarProdutos(KeyEvent event) {
+        
         if (event.getCode() == KeyCode.ENTER) {
-            //System.out.println("teste");
+            
+            int c = Integer.parseInt(campoLeitura.getText());
+            if(codigo. contains(c)){
+                
+                //System.out.println("teste");
             Produto po = p.consultaProduto(Integer.parseInt(campoLeitura.getText()));
             item = new itensVenda(numeroItem, Integer.parseInt(quantP.getText()),calcTotalItens(Integer.parseInt(quantP.getText()), po.getPreco_produto()), po.getId_produto(), po.getNome_produto(), po.getPreco_produto(), po.getUnd_medida());
             //System.out.println(item.getTotal_item());
@@ -128,8 +140,11 @@ public class CaixaController implements Initializable {
             limparCampos();
             somarTotalvenda(item);
             numeroItem++;
+            }else {
+                System.out.println("codigo não cadastrado");
+                limparCampos();
+            }
         }
-        
     }
     
     @FXML
