@@ -6,7 +6,7 @@ public class Venda {
     private int id_venda;
     private ArrayList<itensVenda> lista_venda;//mudar para lista
     private double total_venda;
-    private int total_iten;
+    private int total_iten;//rever já que tá lista
     private String data_venda;
     
     

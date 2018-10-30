@@ -17,7 +17,7 @@ import java.sql.Statement;
 public class ConexaoBanco {
     private static final String USUARIO = "admin";	
 	private static final String SENHA = "admin";
-	private static final String CAMINHO = "jdbc:h2:~/PDVfacil/banco"; // runscript from '~/ProjetoDoSemestre/persistencia/ModeloBancoPDV.sql'";
+	private static final String CAMINHO = "jdbc:h2:~/PDVfacil/banco"; //INIT = runscript from '~/ProjetoDoSemestre/persistencia/ModeloBancoPDV.sql'";
 	private static final String DRIVER = "org.h2.Driver";
         private Connection conexao;
         
