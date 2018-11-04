@@ -52,8 +52,8 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="217.0" prefWidth="484.0" spacing="20.0">
                <children>
-                  <JFXTextField fx:id="buscarProduto" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="256.0" promptText="NOME" />
-                  <JFXButton fx:id="buscarBotao" style="-fx-background-color: #f30;" text="BUSCAR" textFill="WHITE" />
+                  <JFXTextField fx:id="buscarProduto" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" onKeyPressed="#buscarBotao" prefHeight="26.0" prefWidth="256.0" promptText="NOME" />
+                  <JFXButton style="-fx-background-color: #f30;" text="BUSCAR" textFill="WHITE" />
                </children>
             </VBox>
          </children>

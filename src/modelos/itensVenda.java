@@ -1,6 +1,6 @@
 package modelos;
 
-public class itensVenda extends Produto{
+public class itensVenda extends Produto{ 
     private int idItem;
     private int quantidade;
     private double total_item;

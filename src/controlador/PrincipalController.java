@@ -6,6 +6,7 @@
 package controlador;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,8 +19,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import modelos.Produto;
+import persistencia.ConsultarPrecoDAO;
 
 /**
  * FXML Controller class
@@ -27,12 +31,14 @@ import javafx.scene.layout.BorderPane;
  * @author thiago
  */
 public class PrincipalController implements Initializable {
-
+        
+    private ConsultarPrecoDAO c = new ConsultarPrecoDAO();
+    //private Produto p;
+    
     @FXML
     private JFXButton iniciobtn;
     @FXML
     private JFXButton cadasbtn;
-    @FXML
     private AnchorPane panielPrinc;
     @FXML
     private BorderPane tela;
@@ -45,18 +51,32 @@ public class PrincipalController implements Initializable {
     @FXML
     private JFXButton btnrelatorio;
 
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            Parent principal = FXMLLoader.load(getClass().getResource("/visao/ConsultarPreco.fxml"));
+            tela.setCenter(principal);
+            titulo.setText("INICIO");
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }    
 
     @FXML
     private void telaPrincipal(ActionEvent event) {
-        tela.setCenter(panielPrinc);
-        titulo.setText("INICIO");
+        try {
+            Parent principal = FXMLLoader.load(getClass().getResource("/visao/ConsultarPreco.fxml"));
+            tela.setCenter(principal);
+            titulo.setText("INICIO");
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }
 
     @FXML
@@ -92,5 +112,6 @@ public class PrincipalController implements Initializable {
         }
        
     }
+
     
 }

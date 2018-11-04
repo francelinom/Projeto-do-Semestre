@@ -9,6 +9,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -41,7 +43,7 @@ import persistencia.CaixaDAO;
  * @author thiago
  */
 public class CaixaController implements Initializable {
-    
+    private DecimalFormat formato = new DecimalFormat("#.##");
     private CaixaDAO p = new CaixaDAO();
    // private ObservableList<Produto> codigo = FXCollections.observableArrayList();
     private ArrayList<Integer> codigo  = new ArrayList<>();

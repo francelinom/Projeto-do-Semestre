@@ -1,6 +1,10 @@
 package modelos;
 
+import java.text.DecimalFormat;
+
 public class Produto {
+    private DecimalFormat formato = new DecimalFormat("#.##");
+    
     private int id_produto;
     private String nome_produto;
     private int cod_barra_produto;
@@ -16,8 +20,8 @@ public class Produto {
         this.qtd_produto = qtd_produto;
         this.und_medida = und_medida;
     }
-    //CONSTRUTOR PARA CONSULTAR/RELATORIO
 
+    //CONSTRUTOR PARA CONSULTAR/RELATORIO
     public Produto(int id_produto, String nome_produto, int cod_barra_produto, double preco_produto, int qtd_produto, String und_medida) {
         this.id_produto = id_produto;
         this.nome_produto = nome_produto;
@@ -34,12 +38,16 @@ public class Produto {
         this.preco_produto = preco_produto;
         this.und_medida = und_medida;
     }
-      
+    // CONSTRUTOR PARA CONSULTAR PREÇO
+    public Produto(String nome_produto, double preco_produto) {
+        this.nome_produto = nome_produto;
+        this.preco_produto = preco_produto;
+    }
+    
     //cosntrutor para a tabela
     public Produto() {
     }
-    //contrutor para excluir
-
+   
     public Produto(int id_produto) {
         this.id_produto = id_produto;
     }
@@ -69,7 +77,7 @@ public class Produto {
     }
 
     public void setPreco_produto(double preco_produto) {
-        this.preco_produto = preco_produto;
+        this.preco_produto = Double.valueOf(formato.format(preco_produto));
     }
 
     public int getQtd_produto() {
@@ -88,8 +96,8 @@ public class Produto {
         this.und_medida = und_medida;
     }
     
-    enum unidade{
-        KG,PC, L, G;
-    }
+//    enum unidade{
+//        KG,PC, L, G;
+//    }
     
 }

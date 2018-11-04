@@ -21,6 +21,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
 import modelos.Produto;
 import persistencia.CadastroProtudoDAO;
 
@@ -33,7 +35,6 @@ public class CadastrarProdutoController implements Initializable {
     //OBJETO PRODUTO
     private Produto mproduto = new Produto();
     private ObservableList<Produto> itens = FXCollections.observableArrayList();
-  
     private CadastroProtudoDAO p = new CadastroProtudoDAO();
     
     @FXML
@@ -58,8 +59,6 @@ public class CadastrarProdutoController implements Initializable {
     private JFXButton excluirProd;
     @FXML
     private JFXTextField buscarProduto;
-    @FXML
-    private JFXButton buscarBotao;
     
     //TABELA
     @FXML
@@ -148,5 +147,23 @@ public class CadastrarProdutoController implements Initializable {
         quantProduto.clear();
         unidadeProduto.clear();
     }
-       
+
+    private void buscarProdutos(KeyEvent event) {
+      
+    }
+
+//    @FXML
+//    private void buscarBotao(ActionEvent event) {
+//        itens.clear();
+//	itens.addAll(p.listarProdutosBusca(buscarProduto.getText()));
+//        tabelasProdutos.setItems(itens);
+//    }
+
+
+    @FXML
+    private void buscarBotao(KeyEvent event) {
+        itens.clear();
+	itens.addAll(p.listarProdutosBusca(buscarProduto.getText()));
+        tabelasProdutos.setItems(itens);
+    }  
 }

@@ -1,5 +1,6 @@
 package persistencia;
 
+import com.jfoenix.controls.JFXTextField;
 import com.sun.corba.se.spi.orbutil.fsm.Guard;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +19,7 @@ public class CadastroProtudoDAO {
     private final String ATUALIZARPRODUTO = "UPDATE PRODUTOS SET NOME_PRODUTO = ?, COD_BARRAS = ?, PRECO = ?, QUANTIDADE = ?, UND_MEDIDA = ? WHERE ID = ?";
     private final String DELETARPRODUTO = "DELETE FROM PRODUTOS WHERE ID = ?";
     private final String LISTPRODUTOS = "SELECT * FROM PRODUTOS";
-    //private final String BUSCARPRODUTO = "SELECT * FROM USUARIO WHERE UPPER(NOME_USUARIO) LIKE ?";
+    private final String BUSCARPRODUTOS = "SELECT * FROM PRODUTOS LIKE NOME_PRODUTO = '%?%'";
 
     
 	public void cadastrarProduto(Produto p){
@@ -102,5 +103,29 @@ public class CadastroProtudoDAO {
         }
         return  lista;
     }
+
+    public ArrayList<Produto> listarProdutosBusca(String buscarProduto) {
+        ArrayList<Produto> lista = new ArrayList<>();
+        
+        try {
+            con.conecta();
+            PreparedStatement prepararInstrucao;
+            prepararInstrucao = con.getConexao().prepareStatement(BUSCARPRODUTOS);
+            
+            prepararInstrucao.setString(1, buscarProduto);
+            
+            ResultSet rs = prepararInstrucao.executeQuery();
+            while (rs.next()) {                
+                Produto p = new Produto(rs.getInt("ID"),rs.getString("NOME_PRODUTO"), rs.getInt("COD_BARRAS"),rs.getDouble("PRECO"), rs.getInt("QUANTIDADE"), rs.getString("UND_MEDIDA"));
+                lista.add(p);
+                //Produto p = new Produto(0, LISTPRODUTOS, 0, 0, 0, LISTPRODUTOS);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroProtudoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return  lista;
+
     }
+}
 
