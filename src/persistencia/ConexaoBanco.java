@@ -40,7 +40,9 @@ public class ConexaoBanco {
 "			   \n" +
 "CREATE TABLE IF NOT EXISTS caixas (\n" +
 " 	idcaixas SERIAL NOT NULL ,\n" +
+"       total_vend DECIMAL NULL,"+
 "	PRIMARY KEY (idcaixas));\n" +
+        
 "\n" +
 "-- -----------------------------------------------------\n" +
 "-- Table vendas\n" +
@@ -48,8 +50,8 @@ public class ConexaoBanco {
 "CREATE TABLE IF NOT EXISTS vendas (\n" +
 "  idvendas SERIAL NOT NULL ,\n" +
 "  total_venda DECIMAL NULL,\n" +
-"  vendascol VARCHAR(45) NULL,\n" +
-"  caixas_idcaixas INT NOT NULL,\n" +
+"  vendas VARCHAR(45) NULL,\n" +
+"  caixas_idcaixas INT,\n" +
 "  PRIMARY KEY (idvendas),\n" +
 "  CONSTRAINT fk_vendas_caixas1\n" +
 "    FOREIGN KEY (caixas_idcaixas)\n" +

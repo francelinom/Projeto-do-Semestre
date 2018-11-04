@@ -19,16 +19,11 @@ import modelos.Produto;
 import persistencia.CaixaDAO;
 import persistencia.ConsultarPrecoDAO;
 
-/**
- * FXML Controller class
- *
- * @author Thiago
- */
 public class ConsultaPrecoController implements Initializable {
     private ConsultarPrecoDAO c = new ConsultarPrecoDAO();
     private Produto p;
     private ArrayList<Integer> codigo  = new ArrayList<>();
-    CaixaDAO li = new CaixaDAO();
+    private CaixaDAO li = new CaixaDAO();
     @FXML
     private BorderPane tela;
     @FXML

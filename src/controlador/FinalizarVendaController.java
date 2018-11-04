@@ -5,11 +5,14 @@
  */
 package controlador;
 
+import static controlador.CaixaController.controleVenda;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import modelos.Venda;
+import persistencia.FinalizarVendaDAO;
 
 /**
  * FXML Controller class
@@ -17,13 +20,14 @@ import javafx.fxml.Initializable;
  * @author Thiago
  */
 public class FinalizarVendaController implements Initializable {
-
+    FinalizarVendaDAO gravarVenda = new FinalizarVendaDAO();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+         
     }    
 
 
@@ -33,6 +37,7 @@ public class FinalizarVendaController implements Initializable {
 
     @FXML
     private void finalizarPagamento(ActionEvent event) {
+        
     }
     
 }

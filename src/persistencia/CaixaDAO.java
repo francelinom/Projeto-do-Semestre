@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelos.Produto;
+import modelos.Venda;
 import modelos.itensVenda;
 
 /**
@@ -23,6 +24,8 @@ public class CaixaDAO {
     Produto p, listaDeCodigo;
     private final String CONSULTARPRODUTO = "SELECT ID, NOME_PRODUTO, PRECO, UND_MEDIDA FROM PRODUTOS WHERE COD_BARRAS = (?)";
     private final String CONSULTARCODIGO = "SELECT COD_BARRAS FROM PRODUTOS";
+    private final String GRAVARVENDA = "INSERT INTO CAIXA (TOTAL_VEND) VALUES(?);";
+                                       // + "INSERT INTO VENDAS(TOTAL_VENDA, ID) VALUES (?) ";
 
     public Produto consultaProduto (int cod) {
         try {
@@ -68,6 +71,23 @@ public class CaixaDAO {
             Logger.getLogger(CadastroProtudoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lista;
+    }
+
+    public void gravarVenda(Venda venda) {
+         try {
+            con.conecta();
+            PreparedStatement prepararInstrucao;
+            prepararInstrucao = con.getConexao().prepareStatement(GRAVARVENDA);
+            
+            prepararInstrucao.setDouble(1, venda.getTotal_venda());
+            //prepararInstrucao.setDouble(2, venda.getTotal_venda());
+            
+            prepararInstrucao.execute();
+            
+            con.desconecta();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroProtudoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

@@ -22,6 +22,16 @@
             <JFXButton fx:id="finalizarVenda" maxWidth="1.7976931348623157E308" onAction="#finalizarVenda" style="-fx-background-color: BLUE;" text="FINALIZAR VENDA" textAlignment="CENTER" textFill="WHITE" />
             <JFXButton fx:id="canVenda" maxWidth="1.7976931348623157E308" onAction="#canelarVenda" style="-fx-background-color: BLUE;" text="CANCELAR VENDA" textFill="WHITE" />
             <JFXButton fx:id="excluirItem" maxWidth="1.7976931348623157E308" onAction="#excluirItem" style="-fx-background-color: BLUE;" text="EXCLUIR ITEM" textFill="WHITE" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="145.0" text="Venda:" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="numVenda" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="145.0" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
          </children>
       </VBox>
    </left>

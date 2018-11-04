@@ -9,9 +9,14 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +28,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -33,8 +39,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.converter.LocalDateStringConverter;
 import main.Principal;
 import modelos.Produto;
+import modelos.Venda;
 import modelos.itensVenda;
 import persistencia.CaixaDAO;
 /**
@@ -43,17 +51,17 @@ import persistencia.CaixaDAO;
  * @author thiago
  */
 public class CaixaController implements Initializable {
+    static  CaixaController controleVenda;
+    private Venda venda;
     private DecimalFormat formato = new DecimalFormat("#.##");
     private CaixaDAO p = new CaixaDAO();
    // private ObservableList<Produto> codigo = FXCollections.observableArrayList();
     private ArrayList<Integer> codigo  = new ArrayList<>();
-    
-    
+   
     private itensVenda item;
     private int numeroItem = 1;
-    
+    private int numeroVenda;
     private double somaTotal;
-    
         
     @FXML
     private JFXButton finalizarVenda;
@@ -65,6 +73,12 @@ public class CaixaController implements Initializable {
     private TextField campoLeitura;
     @FXML
     private JFXTextField totalVenda;
+    @FXML
+    private JFXButton excluirItem;
+    @FXML
+    private TextField quantP;
+    @FXML
+    private Label numVenda;
     
     //tabela
     
@@ -86,10 +100,7 @@ public class CaixaController implements Initializable {
     private TableColumn<itensVenda, String> und;
     @FXML
     private TableColumn<itensVenda, Double> totalItem;
-    @FXML
-    private JFXButton excluirItem;
-    @FXML
-    private TextField quantP;
+   
 
     
    
@@ -116,7 +127,10 @@ public class CaixaController implements Initializable {
     
     @FXML
     private void finalizarVenda(ActionEvent event) throws IOException {
-       
+        
+        venda = new Venda(somaTotal);
+        p.gravarVenda(venda);
+                
         Parent root = FXMLLoader.load(getClass().getResource("/visao/FinalizarVenda.fxml"));
         Scene janela = new Scene(root);
         
@@ -183,5 +197,11 @@ public class CaixaController implements Initializable {
         somaTotal = somaTotal + item.getTotal_item();
         totalVenda.setText(String.format("%.2f", somaTotal));
     }
-   
+    private String getDateTime() { 
+        Date dataHoraAtual;
+        dataHoraAtual = new Date();
+        DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+        String dataFormatada = formatterData.format((TemporalAccessor) dataHoraAtual);
+       return dataFormatada;
+    }
 }

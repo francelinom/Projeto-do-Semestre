@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS caixas (
 CREATE TABLE IF NOT EXISTS vendas (
   idvendas SERIAL NOT NULL ,
   total_venda DECIMAL NULL,
-  vendascol VARCHAR(45) NULL,
+ 
   caixas_idcaixas INT NOT NULL,
   PRIMARY KEY (idvendas),
   CONSTRAINT fk_vendas_caixas1
