@@ -7,6 +7,7 @@ package controlador;
 
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +16,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import modelos.Produto;
+import persistencia.CaixaDAO;
 import persistencia.ConsultarPrecoDAO;
 
 /**
@@ -25,7 +27,8 @@ import persistencia.ConsultarPrecoDAO;
 public class ConsultaPrecoController implements Initializable {
     private ConsultarPrecoDAO c = new ConsultarPrecoDAO();
     private Produto p;
-    
+    private ArrayList<Integer> codigo  = new ArrayList<>();
+    CaixaDAO li = new CaixaDAO();
     @FXML
     private BorderPane tela;
     @FXML
@@ -41,19 +44,25 @@ public class ConsultaPrecoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        codigo.addAll(li.listarProdutos());
     }    
 
     @FXML
     private void consPreco(KeyEvent event) {
+        
        if (event.getCode() == KeyCode.ENTER) {
-            p = c.consultaPreco(Integer.parseInt(consultaPreco.getText()));
-            mostrarNome.setText(p.getNome_produto());
-            mostraPreco.setText(String.format("R$ "+"%.2f", p.getPreco_produto()));
-            limparCampos();
+           int i = Integer.parseInt(consultaPreco.getText());
+           if(codigo.contains(i)){
+                p = c.consultaPreco(Integer.parseInt(consultaPreco.getText()));
+                mostrarNome.setText(p.getNome_produto());
+                mostraPreco.setText(String.format("R$ "+"%.2f", p.getPreco_produto()));
+                consultaPreco.clear();
+           }else{
+               mostrarNome.setText("Não encontrado");
+               consultaPreco.clear();
+               mostraPreco.setText("");
+           }
        }
     }
-
-    private void limparCampos() {
-        consultaPreco.clear();
-    }
+   
 }
