@@ -20,7 +20,6 @@ public class ConexaoBanco {
 	private static final String CAMINHO = "jdbc:h2:~/PDVfacil/banco"; //INIT = runscript from '~/ProjetoDoSemestre/persistencia/ModeloBancoPDV.sql'";
 	private static final String DRIVER = "org.h2.Driver";
         private Connection conexao;
-        
         private static final String CRIAR_TABELAS =
 "-- -----------------------------------------------------\n" +
 "-- Table produtos\n" +
@@ -35,29 +34,12 @@ public class ConexaoBanco {
 "  PRIMARY KEY (id));\n" +
 "\n" +
 "-- -----------------------------------------------------\n" +
-"--Table caixas\n" +
-"-- -----------------------------------------------------\n" +
-"			   \n" +
-"CREATE TABLE IF NOT EXISTS caixas (\n" +
-" 	idcaixas SERIAL NOT NULL ,\n" +
-"       total_vend DECIMAL NULL,"+
-"	PRIMARY KEY (idcaixas));\n" +
-        
-"\n" +
-"-- -----------------------------------------------------\n" +
 "-- Table vendas\n" +
 "-- -----------------------------------------------------\n" +
 "CREATE TABLE IF NOT EXISTS vendas (\n" +
 "  idvendas SERIAL NOT NULL ,\n" +
 "  total_venda DECIMAL NULL,\n" +
-"  vendas VARCHAR(45) NULL,\n" +
-"  caixas_idcaixas INT,\n" +
-"  PRIMARY KEY (idvendas),\n" +
-"  CONSTRAINT fk_vendas_caixas1\n" +
-"    FOREIGN KEY (caixas_idcaixas)\n" +
-"    REFERENCES caixas (idcaixas)\n" +
-"    ON DELETE NO ACTION\n" +
-"    ON UPDATE NO ACTION);\n" +
+"  PRIMARY KEY (idvendas));\n" +
 "\n" +
 "-- -----------------------------------------------------\n" +
 "-- Table itens\n" +
@@ -77,7 +59,6 @@ public class ConexaoBanco {
 "    REFERENCES vendas (idvendas)\n" +
 "    ON DELETE NO ACTION\n" +
 "    ON UPDATE NO ACTION);";
-		
 
     //METODO QUE EFETUA A CONEXAO COM O BANCO DE DADOS
     public void conecta() {

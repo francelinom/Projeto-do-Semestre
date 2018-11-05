@@ -55,6 +55,7 @@ public class CaixaController implements Initializable {
     private Venda venda;
     private DecimalFormat formato = new DecimalFormat("#.##");
     private CaixaDAO p = new CaixaDAO();
+    private FinalizarVendaController fv = new FinalizarVendaController();
    // private ObservableList<Produto> codigo = FXCollections.observableArrayList();
     private ArrayList<Integer> codigo  = new ArrayList<>();
    
@@ -128,8 +129,9 @@ public class CaixaController implements Initializable {
     @FXML
     private void finalizarVenda(ActionEvent event) throws IOException {
         
-        venda = new Venda(somaTotal);
-        p.gravarVenda(venda);
+        
+//      venda = new Venda(somaTotal);
+//      p.gravarVenda(venda);
                 
         Parent root = FXMLLoader.load(getClass().getResource("/visao/FinalizarVenda.fxml"));
         Scene janela = new Scene(root);
@@ -138,6 +140,7 @@ public class CaixaController implements Initializable {
         stage.setScene(janela);
         stage.show();
         stage.setTitle("Finalizar Venda");
+        fv.finalizar(itens, somaTotal);
         
     }
      @FXML
@@ -147,7 +150,7 @@ public class CaixaController implements Initializable {
             
             int c = Integer.parseInt(campoLeitura.getText());
             if(codigo. contains(c)){
-                
+                numVenda.setText("a");
                 //System.out.println("teste");
             Produto po = p.consultaProduto(Integer.parseInt(campoLeitura.getText()));
             item = new itensVenda(numeroItem, Integer.parseInt(quantP.getText()),calcTotalItens(Integer.parseInt(quantP.getText()), po.getPreco_produto()), po.getId_produto(), po.getNome_produto(), po.getPreco_produto(), po.getUnd_medida());

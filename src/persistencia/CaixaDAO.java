@@ -24,8 +24,8 @@ public class CaixaDAO {
     Produto p, listaDeCodigo;
     private final String CONSULTARPRODUTO = "SELECT ID, NOME_PRODUTO, PRECO, UND_MEDIDA FROM PRODUTOS WHERE COD_BARRAS = (?)";
     private final String CONSULTARCODIGO = "SELECT COD_BARRAS FROM PRODUTOS";
-    private final String GRAVARVENDA = "INSERT INTO CAIXA (TOTAL_VEND) VALUES(?);";
-                                       // + "INSERT INTO VENDAS(TOTAL_VENDA, ID) VALUES (?) ";
+    private final String GRAVARVENDA = "INSERT INTO VENDAS(TOTAL_VENDA) VALUES (?)";
+                                       // INSERT INTO CAIXA (TOTAL_VEND) VALUES(?);) ";
 
     public Produto consultaProduto (int cod) {
         try {

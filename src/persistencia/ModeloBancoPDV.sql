@@ -11,27 +11,12 @@ CREATE TABLE IF NOT EXISTS produtos (
   PRIMARY KEY (id));
 
 -- -----------------------------------------------------
---Table caixas
--- -----------------------------------------------------
-			   
-CREATE TABLE IF NOT EXISTS caixas (
- 	idcaixas SERIAL NOT NULL ,
-	PRIMARY KEY (idcaixas));
-
--- -----------------------------------------------------
 -- Table vendas
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS vendas (
   idvendas SERIAL NOT NULL ,
   total_venda DECIMAL NULL,
- 
-  caixas_idcaixas INT NOT NULL,
-  PRIMARY KEY (idvendas),
-  CONSTRAINT fk_vendas_caixas1
-    FOREIGN KEY (caixas_idcaixas)
-    REFERENCES caixas (idcaixas)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+  PRIMARY KEY (idvendas));
 
 -- -----------------------------------------------------
 -- Table itens

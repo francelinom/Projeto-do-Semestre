@@ -22,12 +22,8 @@ public class Venda {
         this.data_venda = data_venda;
     }
 
-    public Venda(double somaTotal, String dateTime) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public Venda(double somaTotal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        somaTotal = this.total_venda;
     }
     
     

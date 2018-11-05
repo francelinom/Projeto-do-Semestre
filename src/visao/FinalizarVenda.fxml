@@ -81,32 +81,27 @@
                   <Font size="29.0" />
                </font>
             </Label>
-            <JFXTextField alignment="CENTER" focusColor="#4960a4" prefHeight="26.0" prefWidth="141.0" unFocusColor="BLACK" GridPane.columnIndex="3">
+            <JFXTextField fx:id="dinheiro" alignment="CENTER" focusColor="#4960a4" prefHeight="26.0" prefWidth="141.0" unFocusColor="BLACK" GridPane.columnIndex="3">
                <font>
                   <Font size="29.0" />
                </font></JFXTextField>
-            <JFXTextField alignment="CENTER" focusColor="#4960a4" prefHeight="26.0" prefWidth="133.0" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <JFXTextField fx:id="credito" alignment="CENTER" focusColor="#4960a4" prefHeight="26.0" prefWidth="133.0" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
                   <Font size="29.0" />
                </font></JFXTextField>
-            <JFXTextField alignment="CENTER" focusColor="#4960a4" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <JFXTextField fx:id="debito" alignment="CENTER" focusColor="#4960a4" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <font>
                   <Font size="29.0" />
                </font></JFXTextField>
-            <JFXTextField alignment="CENTER" focusColor="#4960a4" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <JFXTextField fx:id="alimentacao" alignment="CENTER" focusColor="#4960a4" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <font>
                   <Font size="29.0" />
                </font></JFXTextField>
-            <JFXTextField alignment="CENTER" focusColor="#4960a4" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <JFXTextField fx:id="desconto" alignment="CENTER" focusColor="#4960a4" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <font>
                   <Font size="29.0" />
                </font></JFXTextField>
-            <Label alignment="CENTER" prefHeight="42.0" prefWidth="109.0" text="0,00" textAlignment="RIGHT" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="42.0" prefWidth="109.0" text="0,00" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
+            <Label fx:id="troco" alignment="CENTER" prefHeight="42.0" prefWidth="109.0" text="0,00" textAlignment="RIGHT" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
                <font>
                   <Font size="29.0" />
                </font>
@@ -142,6 +137,11 @@
                </font>
             </Label>
             <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="195.0" text="(R$)" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="6">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <Label fx:id="total" alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="108.0" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="5">
                <font>
                   <Font size="29.0" />
                </font>
