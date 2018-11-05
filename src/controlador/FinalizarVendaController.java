@@ -14,6 +14,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import modelos.Venda;
 import modelos.itensVenda;
 import persistencia.FinalizarVendaDAO;
@@ -27,48 +30,89 @@ public class FinalizarVendaController implements Initializable {
     
     private FinalizarVendaDAO gravarVenda = new FinalizarVendaDAO();
     
-    private double somaTotal;
+    private double sTotal, dTotal;
     private ObservableList<itensVenda> nitens;
     
-    @FXML
-    private JFXTextField dinheiro;
-    @FXML
-    private JFXTextField credito;
-    @FXML
-    private JFXTextField debito;
-    @FXML
-    private JFXTextField alimentacao;
-    @FXML
-    private JFXTextField desconto;
     @FXML
     private Label troco;
     @FXML
     private Label total;
+    @FXML
+    private BorderPane finalizarVenda;
+    @FXML
+    private JFXTextField vDinheiro;
+    @FXML
+    private JFXTextField vCredito;
+    @FXML
+    private JFXTextField vDebito;
+    @FXML
+    private JFXTextField vAlimen;
+    @FXML
+    private JFXTextField vDesconto;
+  
     
-    
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        total.setText("nome");
+        nitens = CaixaController.controleVenda.itens;
+        sTotal = CaixaController.controleVenda.somaTotal;
+        dTotal = sTotal*-1;
+        iniciarTotal();
     }    
-
 
     @FXML
     private void cancelarPagamento(ActionEvent event) {
+        
     }
-
+    
     @FXML
     private void finalizarPagamento(ActionEvent event) {
         
     }
+   
+    @FXML
+    private void dinheiro(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            calculaTroco(Double.parseDouble(vDinheiro.getText()));
+            //Double.parseDouble(vDinheiro.getText());
+        }
+    }
 
-    public void finalizar(ObservableList<itensVenda> itens, double totalVenda) {
-        ObservableList<itensVenda> nitens = itens;
-        somaTotal = totalVenda;
-        System.out.println(somaTotal);
+    @FXML
+    private void credito(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            
+        }
+    }
 
+    @FXML
+    private void debito(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            
+        }
+    }
+
+    @FXML
+    private void alimentacao(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            
+        }
+    }
+
+    @FXML
+    private void desconto(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            
+        }
+    }
+    
+    private void iniciarTotal() {
+        total.setText(String.valueOf(sTotal));
+        troco.setText(String.valueOf(dTotal));
+    }
+
+    private void calculaTroco(double num) {
+        
+       
     }
 }

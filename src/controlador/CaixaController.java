@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import com.jfoenix.controls.JFXButton;
@@ -52,17 +47,19 @@ import persistencia.CaixaDAO;
  */
 public class CaixaController implements Initializable {
     static  CaixaController controleVenda;
+    
     private Venda venda;
     private DecimalFormat formato = new DecimalFormat("#.##");
     private CaixaDAO p = new CaixaDAO();
+    
     private FinalizarVendaController fv = new FinalizarVendaController();
-   // private ObservableList<Produto> codigo = FXCollections.observableArrayList();
+   
     private ArrayList<Integer> codigo  = new ArrayList<>();
    
     private itensVenda item;
     private int numeroItem = 1;
     private int numeroVenda;
-    private double somaTotal;
+    double somaTotal;
         
     @FXML
     private JFXButton finalizarVenda;
@@ -102,13 +99,9 @@ public class CaixaController implements Initializable {
     @FXML
     private TableColumn<itensVenda, Double> totalItem;
    
-
-    
-   
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        controleVenda = this;
         // TODO
         itemNum.setCellValueFactory(new PropertyValueFactory<itensVenda,Integer>("idItem"));
         idProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,Integer>("id_produto"));
@@ -129,7 +122,6 @@ public class CaixaController implements Initializable {
     @FXML
     private void finalizarVenda(ActionEvent event) throws IOException {
         
-        
 //      venda = new Venda(somaTotal);
 //      p.gravarVenda(venda);
                 
@@ -140,7 +132,6 @@ public class CaixaController implements Initializable {
         stage.setScene(janela);
         stage.show();
         stage.setTitle("Finalizar Venda");
-        fv.finalizar(itens, somaTotal);
         
     }
      @FXML
@@ -150,15 +141,13 @@ public class CaixaController implements Initializable {
             
             int c = Integer.parseInt(campoLeitura.getText());
             if(codigo. contains(c)){
-                numVenda.setText("a");
-                //System.out.println("teste");
-            Produto po = p.consultaProduto(Integer.parseInt(campoLeitura.getText()));
-            item = new itensVenda(numeroItem, Integer.parseInt(quantP.getText()),calcTotalItens(Integer.parseInt(quantP.getText()), po.getPreco_produto()), po.getId_produto(), po.getNome_produto(), po.getPreco_produto(), po.getUnd_medida());
-            //System.out.println(item.getTotal_item());
-            atualizarTabela();
-            limparCampos();
-            somarTotalvenda(item);
-            numeroItem++;
+                Produto po = p.consultaProduto(Integer.parseInt(campoLeitura.getText()));
+                item = new itensVenda(numeroItem, Integer.parseInt(quantP.getText()),calcTotalItens(Integer.parseInt(quantP.getText()), po.getPreco_produto()), po.getId_produto(), po.getNome_produto(), po.getPreco_produto(), po.getUnd_medida());
+                //System.out.println(item.getTotal_item());
+                atualizarTabela();
+                limparCampos();
+                somarTotalvenda(item);
+                numeroItem++;
             }else {
                 System.out.println("codigo não cadastrado");
                 limparCampos();
@@ -205,6 +194,6 @@ public class CaixaController implements Initializable {
         dataHoraAtual = new Date();
         DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
         String dataFormatada = formatterData.format((TemporalAccessor) dataHoraAtual);
-       return dataFormatada;
+        return dataFormatada;
     }
 }
