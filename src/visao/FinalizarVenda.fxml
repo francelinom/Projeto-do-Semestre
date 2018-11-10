@@ -37,36 +37,36 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="202.0" minWidth="20.0" prefWidth="145.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="DINHEIRO" textAlignment="CENTER" GridPane.columnIndex="1">
+            <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="DINHEIRO" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="29.0" />
                </font>
             </Label>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="CREDITO" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="CREDITO" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="29.0" />
                </font>
             </Label>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="DEBITO" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="DEBITO" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="29.0" />
                </font>
             </Label>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="ALIMENTAÇAO" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="ALIMENTAÇAO" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="29.0" />
                </font>
             </Label>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="DESCONTO" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="DESCONTO" textAlignment="CENTER" GridPane.columnIndex="1">
                <font>
                   <Font size="29.0" />
                </font>
@@ -81,37 +81,27 @@
                   <Font size="29.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="vDinheiro" alignment="CENTER" focusColor="#4960a4" onKeyPressed="#dinheiro" prefHeight="26.0" prefWidth="141.0" unFocusColor="BLACK" GridPane.columnIndex="3">
+            <JFXTextField fx:id="vDinheiro" alignment="CENTER" focusColor="#4960a4" onKeyPressed="#dinheiro" prefHeight="26.0" prefWidth="141.0" promptText="0,00" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
                   <Font size="29.0" />
                </font></JFXTextField>
-            <JFXTextField fx:id="vCredito" alignment="CENTER" focusColor="#4960a4" onKeyPressed="#credito" prefHeight="26.0" prefWidth="133.0" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <JFXTextField fx:id="vCredito" alignment="CENTER" focusColor="#4960a4" onKeyPressed="#credito" prefHeight="26.0" prefWidth="133.0" promptText="0,00" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <font>
                   <Font size="29.0" />
                </font></JFXTextField>
-            <JFXTextField fx:id="vDebito" alignment="CENTER" focusColor="#4960a4" onKeyPressed="#debito" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <JFXTextField fx:id="vDebito" alignment="CENTER" focusColor="#4960a4" onKeyPressed="#debito" promptText="0,00" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <font>
                   <Font size="29.0" />
                </font></JFXTextField>
-            <JFXTextField fx:id="vAlimen" alignment="CENTER" focusColor="#4960a4" onKeyPressed="#alimentacao" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <JFXTextField fx:id="vAlimen" alignment="CENTER" focusColor="#4960a4" onKeyPressed="#alimentacao" promptText="0,00" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <font>
                   <Font size="29.0" />
                </font></JFXTextField>
-            <JFXTextField fx:id="vDesconto" alignment="CENTER" focusColor="#4960a4" onKeyPressed="#desconto" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <JFXTextField fx:id="vDesconto" alignment="CENTER" focusColor="#4960a4" onKeyPressed="#desconto" promptText="0,00" unFocusColor="BLACK" GridPane.columnIndex="3">
                <font>
                   <Font size="29.0" />
                </font></JFXTextField>
-            <Label fx:id="troco" alignment="CENTER" prefHeight="42.0" prefWidth="109.0" text="0,00" textAlignment="RIGHT" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="195.0" text="(R$)" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="195.0" text="(R$)" textAlignment="RIGHT" GridPane.columnIndex="2">
+            <Label fx:id="troco" alignment="CENTER" prefHeight="42.0" prefWidth="109.0" textAlignment="RIGHT" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
                <font>
                   <Font size="29.0" />
                </font>
@@ -121,12 +111,22 @@
                   <Font size="29.0" />
                </font>
             </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="195.0" text="(R$)" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
             <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="195.0" text="(R$)" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
                   <Font size="29.0" />
                </font>
             </Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="195.0" text="(%)" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="195.0" text="(R$)" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="195.0" text="(%)" textAlignment="RIGHT" GridPane.columnIndex="2">
                <font>
                   <Font size="29.0" />
                </font>
