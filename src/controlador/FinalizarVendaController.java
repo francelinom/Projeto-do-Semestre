@@ -30,7 +30,7 @@ public class FinalizarVendaController implements Initializable {
     
     private FinalizarVendaDAO gravarVenda = new FinalizarVendaDAO();
     
-    private double sTotal, dTotal;
+    private double sTotal,dTotal, dinheiro = 0, credito=0, somaPag;
     private ObservableList<itensVenda> nitens;
     
     @FXML
@@ -55,8 +55,7 @@ public class FinalizarVendaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         nitens = CaixaController.controleVenda.itens;
-        sTotal = CaixaController.controleVenda.somaTotal;
-        dTotal = sTotal*-1;
+        dTotal = sTotal = CaixaController.controleVenda.somaTotal;
         iniciarTotal();
     }    
 
@@ -73,15 +72,15 @@ public class FinalizarVendaController implements Initializable {
     @FXML
     private void dinheiro(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
-            calculaTroco(Double.parseDouble(vDinheiro.getText()));
-            //Double.parseDouble(vDinheiro.getText());
+            dinheiro = Double.parseDouble(vDinheiro.getText());
+            somaP();
         }
     }
 
     @FXML
     private void credito(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
-            
+            credito = Double.parseDouble(vDinheiro.getText());
         }
     }
 
@@ -111,8 +110,15 @@ public class FinalizarVendaController implements Initializable {
         troco.setText(String.valueOf(dTotal));
     }
 
-    private void calculaTroco(double num) {
+    private void calculaTroco() {
         
-       
+       dTotal = sTotal - somaPag;
+       troco.setText(String.valueOf(dTotal));
+               
+    }
+
+    private void somaP() {
+        somaPag = dinheiro + credito;
+        calculaTroco();
     }
 }
