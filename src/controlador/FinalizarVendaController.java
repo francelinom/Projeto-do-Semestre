@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
@@ -62,18 +63,6 @@ public class FinalizarVendaController implements Initializable {
         recalcular();
         iniciarTotal();
     }    
-
-    @FXML
-    private void cancelarPagamento(ActionEvent event) {
-        limparValores();
-        Stage stage = (Stage) finalizarVenda.getScene().getWindow(); //Obtendo a janela atual
-        stage.close(); //Fechando o Stage
-    }
-    
-    @FXML
-    private void finalizarPagamento(ActionEvent event) {
-        
-    }
    
     @FXML
     private void dinheiro(KeyEvent event) {
@@ -121,6 +110,20 @@ public class FinalizarVendaController implements Initializable {
             }
         }
     }
+       
+    @FXML
+    private void cancelarPagamento(ActionEvent event) {
+        limparValores();
+        Stage stage = (Stage) finalizarVenda.getScene().getWindow(); //Obtendo a janela atual
+        stage.close(); //Fechando o Stage
+    }
+    
+    @FXML
+    private void finalizarPagamento(ActionEvent event) {
+        
+    }
+    
+    //metodos da classe
     
     private void iniciarTotal() {
         total.setText(String.format("%.2f",totalVenda));
@@ -157,4 +160,5 @@ public class FinalizarVendaController implements Initializable {
     private void limparValores() {
         totalN = somaPag = totalVenda = pagTotal = dinheiro=credito=debibo=alimentacao=desconto=0;
     }
+
 }
