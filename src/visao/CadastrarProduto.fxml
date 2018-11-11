@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -11,8 +12,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CadastrarProdutoController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="749.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CadastrarProdutoController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -50,10 +54,22 @@
                   </HBox>
                </children>
             </VBox>
+            <Line endX="-99.66484069824219" endY="17.404253005981445" startX="-99.664794921875" startY="255.6971435546875" strokeLineJoin="BEVEL">
+               <rotationAxis>
+                  <Point3D />
+               </rotationAxis>
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </Line>
             <VBox alignment="CENTER" prefHeight="217.0" prefWidth="484.0" spacing="20.0">
                <children>
-                  <JFXTextField fx:id="buscarProduto" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" onKeyPressed="#buscarBotao" prefHeight="26.0" prefWidth="256.0" promptText="NOME" />
-                  <JFXButton style="-fx-background-color: #f30;" text="BUSCAR" textFill="WHITE" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="BUSCAR">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Text>
+                  <JFXTextField fx:id="buscarProduto" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" onKeyPressed="#buscarBotao" prefHeight="26.0" prefWidth="256.0" promptText="DIGITE O NOME" />
                </children>
             </VBox>
          </children>

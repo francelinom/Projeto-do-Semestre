@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,16 +12,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="caixa" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CaixaController">
+<BorderPane fx:id="caixa" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CaixaController">
    <top>
       <HBox prefHeight="27.0" prefWidth="764.0" BorderPane.alignment="CENTER" />
    </top>
    <left>
-      <VBox prefHeight="517.0" prefWidth="138.0" spacing="20.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="508.0" prefWidth="161.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <JFXButton fx:id="finalizarVenda" maxWidth="1.7976931348623157E308" onAction="#finalizarVenda" style="-fx-background-color: BLUE;" text="FINALIZAR VENDA" textAlignment="CENTER" textFill="WHITE" />
-            <JFXButton fx:id="canVenda" maxWidth="1.7976931348623157E308" onAction="#canelarVenda" style="-fx-background-color: BLUE;" text="CANCELAR VENDA" textFill="WHITE" />
-            <JFXButton fx:id="excluirItem" maxWidth="1.7976931348623157E308" onAction="#excluirItem" style="-fx-background-color: BLUE;" text="EXCLUIR ITEM" textFill="WHITE" />
+            <JFXButton fx:id="finalizarVenda" maxWidth="1.7976931348623157E308" onAction="#finalizarVenda" style="-fx-background-color: #06c;" text="FINALIZAR VENDA" textAlignment="CENTER" textFill="WHITE" />
+            <JFXButton fx:id="canVenda" maxWidth="1.7976931348623157E308" onAction="#canelarVenda" style="-fx-background-color: #06c;" text="CANCELAR VENDA" textFill="WHITE" />
+            <JFXButton fx:id="excluirItem" maxWidth="1.7976931348623157E308" onAction="#excluirItem" style="-fx-background-color: #06c;" text="EXCLUIR ITEM" textFill="WHITE" />
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="145.0" text="Venda:" textAlignment="CENTER">
                <font>
                   <Font size="24.0" />
@@ -33,6 +33,9 @@
                </font>
             </Label>
          </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
       </VBox>
    </left>
    <bottom>
@@ -53,16 +56,22 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <JFXTextField fx:id="totalVenda" editable="false" prefHeight="81.0" prefWidth="110.0" promptText="0,00" text="0,00">
+            <Label fx:id="totalVenda" text="0,00">
                <font>
-                  <Font size="38.0" />
+                  <Font size="36.0" />
                </font>
-            </JFXTextField>
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </HBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
          </children>
       </HBox>
    </bottom>
    <center>
-      <TableView fx:id="tabelaVenda" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tabelaVenda" maxWidth="-Infinity" prefHeight="508.0" prefWidth="800.0" BorderPane.alignment="CENTER">
         <columns>
             <TableColumn fx:id="itemNum" prefWidth="40.0" text="ITEM" />
           <TableColumn fx:id="idProduto" minWidth="9.0" prefWidth="41.0" text="ID" />
@@ -70,7 +79,7 @@
             <TableColumn fx:id="und" prefWidth="41.0" text="UND" />
             <TableColumn fx:id="precoProduto" prefWidth="65.0" text="PREÇO" />
             <TableColumn fx:id="quantProduto" prefWidth="100.0" text="QUANTIDADE" />
-            <TableColumn fx:id="totalItem" prefWidth="57.0" text="TOTAL" />
+            <TableColumn fx:id="totalItem" prefWidth="72.0" text="TOTAL" />
         </columns>
       </TableView>
    </center>

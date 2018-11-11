@@ -24,7 +24,7 @@
    <bottom>
       <HBox alignment="BOTTOM_RIGHT" prefHeight="39.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <JFXButton style="-fx-background-color: BLUE;" text="IMPRIMIR" textFill="WHITE" />
+            <JFXButton prefHeight="31.0" prefWidth="89.0" style="-fx-background-color: #FF8C00;" text="IMPRIMIR" textFill="WHITE" />
          </children>
       </HBox>
    </bottom>

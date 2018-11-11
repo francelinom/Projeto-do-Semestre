@@ -14,7 +14,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="51.0" prefWidth="454.0" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
-            <JFXButton onAction="#finalizarPagamento" style="-fx-background-color: #03c;" text="FINALIZAR" textFill="WHITE">
+            <JFXButton onAction="#finalizarPagamento" style="-fx-background-color: #06c;" text="FINALIZAR" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

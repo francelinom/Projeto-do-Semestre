@@ -70,8 +70,6 @@ public class CaixaController implements Initializable {
     @FXML
     private TextField campoLeitura;
     @FXML
-    private JFXTextField totalVenda;
-    @FXML
     private JFXButton excluirItem;
     @FXML
     private TextField quantP;
@@ -98,6 +96,8 @@ public class CaixaController implements Initializable {
     private TableColumn<itensVenda, String> und;
     @FXML
     private TableColumn<itensVenda, Double> totalItem;
+    @FXML
+    private Label totalVenda;
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -160,7 +160,7 @@ public class CaixaController implements Initializable {
         itens.clear();
         numeroItem = 0;
         somaTotal = 0;
-        totalVenda.clear();
+        totalVenda.setText("0");
         
     }
 
