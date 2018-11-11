@@ -8,6 +8,9 @@ package controlador;
 import com.jfoenix.controls.JFXTextField;
 import static controlador.CaixaController.controleVenda;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,10 +36,10 @@ import persistencia.FinalizarVendaDAO;
 public class FinalizarVendaController implements Initializable {
     
     private FinalizarVendaDAO gravarVenda = new FinalizarVendaDAO();
-    
+    private String datadehoje;
     private double totalN, somaPag, totalVenda, pagTotal, dinheiro = 0, credito=0, debibo = 0, alimentacao = 0, desconto = 0;
     private ObservableList<itensVenda> nitens;
-    
+    private int idVendaAtual;
     @FXML
     private Label troco;
     @FXML
@@ -59,40 +62,42 @@ public class FinalizarVendaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         nitens = CaixaController.controleVenda.itens;
+        idVendaAtual = CaixaController.controleVenda.numeroVendaAtual;
         totalVenda = CaixaController.controleVenda.somaTotal;
         recalcular();
         iniciarTotal();
+        datadehoje();
     }    
    
     @FXML
     private void dinheiro(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
-            dinheiro = converteVirgula(vDinheiro.getText());
-            somaP();
+            dinheiro = converterVirgula(vDinheiro.getText());
+            somarFormasPg();
         }
     }
 
     @FXML
     private void credito(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
-            credito = converteVirgula(vCredito.getText());
-            somaP();
+            credito = converterVirgula(vCredito.getText());
+            somarFormasPg();
         }
     }
 
     @FXML
     private void debito(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
-            debibo = converteVirgula(vDebito.getText());
-            somaP();
+            debibo = converterVirgula(vDebito.getText());
+            somarFormasPg();
         }
     }
 
     @FXML
     private void alimentacao(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
-            alimentacao = converteVirgula(vAlimen.getText());
-            somaP();
+            alimentacao = converterVirgula(vAlimen.getText());
+            somarFormasPg();
         }
     }
 
@@ -100,17 +105,17 @@ public class FinalizarVendaController implements Initializable {
     private void desconto(KeyEvent event) {
         
         if (event.getCode() == KeyCode.ENTER) {
-            if(converteVirgula(vDesconto.getText())>0){
+            if(converterVirgula(vDesconto.getText())>0){
                 totalVenda = CaixaController.controleVenda.somaTotal;
                 desconto = totalVenda * (Double.parseDouble(vDesconto.getText())/100);
                 totalVenda = totalVenda - desconto;
                 recalcular();
-                somaP();
+                somarFormasPg();
                
             }
         }
     }
-       
+    //Botões
     @FXML
     private void cancelarPagamento(ActionEvent event) {
         limparValores();
@@ -120,7 +125,12 @@ public class FinalizarVendaController implements Initializable {
     
     @FXML
     private void finalizarPagamento(ActionEvent event) {
+        CaixaController.controleVenda.cxDAO.criarVenda(totalVenda, datadehoje);
+        int n = nitens.size();
+        CaixaController.controleVenda.cxDAO.gravarVenda((ArrayList<itensVenda>) nitens, idVendaAtual, n);
         
+        Stage stage = (Stage) finalizarVenda.getScene().getWindow(); //Obtendo a janela atual
+        stage.close();
     }
     
     //metodos da classe
@@ -142,7 +152,7 @@ public class FinalizarVendaController implements Initializable {
         }
     }
 
-    private void somaP() {
+    private void somarFormasPg() {
         somaPag = dinheiro + credito + debibo + alimentacao;
         calculaTroco();
     }
@@ -152,13 +162,19 @@ public class FinalizarVendaController implements Initializable {
         totalN = totalN * -1;
         
     }
-    private double converteVirgula(String entrada){
+    private double converterVirgula(String entrada){
         double valor = Double.parseDouble(entrada.replace(',', '.'));
         return valor;
     }
 
     private void limparValores() {
         totalN = somaPag = totalVenda = pagTotal = dinheiro=credito=debibo=alimentacao=desconto=0;
+    }
+
+    private void datadehoje() {
+        
+        SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy");  
+        datadehoje = out.format(new Date());
     }
 
 }

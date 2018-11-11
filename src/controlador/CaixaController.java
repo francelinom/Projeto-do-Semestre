@@ -4,14 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,16 +42,15 @@ public class CaixaController implements Initializable {
     static  CaixaController controleVenda;
     
     private Venda venda;
-    private DecimalFormat formato = new DecimalFormat("#.##");
-    private CaixaDAO p = new CaixaDAO();
     
-    private FinalizarVendaController fv = new FinalizarVendaController();
+    CaixaDAO cxDAO = new CaixaDAO();
    
     private ArrayList<Integer> codigo  = new ArrayList<>();
    
     private itensVenda item;
-    private int numeroItem = 1;
-    private int numeroVenda;
+    private int numeroItem = 0;
+    int numeroVendaAtual;
+    private int numeroVendaAnterior;
     double somaTotal;
         
     @FXML
@@ -75,7 +67,9 @@ public class CaixaController implements Initializable {
     private TextField quantP;
     @FXML
     private Label numVenda;
+    @FXML
     
+    private Label totalVenda;
     //tabela
     
     ObservableList<itensVenda> itens = FXCollections.observableArrayList();
@@ -96,14 +90,13 @@ public class CaixaController implements Initializable {
     private TableColumn<itensVenda, String> und;
     @FXML
     private TableColumn<itensVenda, Double> totalItem;
-    @FXML
-    private Label totalVenda;
+  
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controleVenda = this;
         // TODO
-        itemNum.setCellValueFactory(new PropertyValueFactory<itensVenda,Integer>("idItem"));
+        itemNum.setCellValueFactory(new PropertyValueFactory<itensVenda,Integer>("itenN"));
         idProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,Integer>("id_produto"));
         nomeProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,String>("nome_produto"));
         precoProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,Double>("preco_produto"));
@@ -113,7 +106,10 @@ public class CaixaController implements Initializable {
         
         atualizarTabela();
         itens.clear();
-        codigo.addAll(p.listarProdutos());
+        codigo.addAll(cxDAO.listarProdutos());
+        consultaUltimaVenda();
+        
+        
         for(Integer codigo : codigo){
             System.out.println(codigo);
         }
@@ -121,10 +117,7 @@ public class CaixaController implements Initializable {
     
     @FXML
     private void finalizarVenda(ActionEvent event) throws IOException {
-        
-//      venda = new Venda(somaTotal);
-//      p.gravarVenda(venda);
-                
+              
         Parent root = FXMLLoader.load(getClass().getResource("/visao/FinalizarVenda.fxml"));
         Scene janela = new Scene(root);
         
@@ -141,9 +134,8 @@ public class CaixaController implements Initializable {
             
             int c = Integer.parseInt(campoLeitura.getText());
             if(codigo. contains(c)){
-                Produto po = p.consultaProduto(Integer.parseInt(campoLeitura.getText()));
+                Produto po = cxDAO.consultaProduto(Integer.parseInt(campoLeitura.getText()));
                 item = new itensVenda(numeroItem, Integer.parseInt(quantP.getText()),calcTotalItens(Integer.parseInt(quantP.getText()), po.getPreco_produto()), po.getId_produto(), po.getNome_produto(), po.getPreco_produto(), po.getUnd_medida());
-                //System.out.println(item.getTotal_item());
                 atualizarTabela();
                 limparCampos();
                 somarTotalvenda(item);
@@ -177,7 +169,6 @@ public class CaixaController implements Initializable {
 
     private double calcTotalItens(int quantP, double precoP) {
         double r = quantP * precoP;
-        //System.out.println(r);
         return r;
     }
     private void limparCampos() {
@@ -189,11 +180,14 @@ public class CaixaController implements Initializable {
         somaTotal = somaTotal + item.getTotal_item();
         totalVenda.setText(String.format("%.2f", somaTotal));
     }
-    private String getDateTime() { 
-        Date dataHoraAtual;
-        dataHoraAtual = new Date();
-        DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
-        String dataFormatada = formatterData.format((TemporalAccessor) dataHoraAtual);
-        return dataFormatada;
+
+    private void consultaUltimaVenda() {
+        numeroVendaAnterior = cxDAO.consultarUltimaVenda();
+        if(numeroVendaAnterior > 0){
+            numeroVendaAtual = numeroVendaAnterior+1;
+            numVenda.setText(Integer.toString(numeroVendaAtual));
+        }else{
+            numVenda.setText(Integer.toString(numeroVendaAtual));
+        }
     }
 }

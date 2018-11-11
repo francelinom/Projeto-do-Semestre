@@ -29,7 +29,7 @@ public class ConexaoBanco {
 "  	nome_produto VARCHAR(45) NULL,\n" +
 "  	cod_barras NUMERIC NULL,\n" +
 "  	preco DECIMAL NULL,\n" +
-"  quantidade INT NULL,\n" +
+"       quantidade INT NULL,\n" +
 "  und_medida VARCHAR(10) NULL,\n" +
 "  PRIMARY KEY (id));\n" +
 "\n" +
@@ -38,21 +38,23 @@ public class ConexaoBanco {
 "-- -----------------------------------------------------\n" +
 "CREATE TABLE IF NOT EXISTS vendas (\n" +
 "  idvendas SERIAL NOT NULL ,\n" +
-"  total_venda DECIMAL NULL,\n" +
+"  total_venda DECIMAL NULL,\n"+
+"  data_venda VARCHAR(10) NULL,\n" +
 "  PRIMARY KEY (idvendas));\n" +
 "\n" +
 "-- -----------------------------------------------------\n" +
 "-- Table itens\n" +
 "-- -----------------------------------------------------\n" +
 "CREATE TABLE IF NOT EXISTS itens (\n" +
-"  iditens SERIAL NOT NULL ,\n" +
+"  iditens SERIAL NOT NULL ,\n"+
+"  num_item_venda INT NULL,\n" +
 "  vendas_idvendas INT NOT NULL,\n" +
 "  iddoproduto INT NOT NULL,\n" +
 "  nomeproduto VARCHAR(45) NOT NULL,\n" +
 "  undproduto VARCHAR(45) NOT NULL,\n" +
 "  precoproduto VARCHAR(45) NOT NULL,\n" +
 "  quantproduto INT NOT NULL,\n" +
-"  totaldoiten VARCHAR(45) NOT NULL,\n" +
+"  totaldoitem VARCHAR(45) NOT NULL,\n" +
 "  PRIMARY KEY (iditens),\n" +
 "  CONSTRAINT fk_itens_vendas1\n" +
 "    FOREIGN KEY (vendas_idvendas)\n" +

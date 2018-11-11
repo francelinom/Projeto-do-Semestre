@@ -24,7 +24,7 @@ public class CadastroProtudoDAO {
     
 
     
-	public void cadastrarProduto(Produto p){
+    public void cadastrarProduto(Produto p){
                   
         try {
             con.conecta();

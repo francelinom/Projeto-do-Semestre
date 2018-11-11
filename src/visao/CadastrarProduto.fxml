@@ -76,15 +76,18 @@
       </HBox>
    </top>
    <center>
-      <TableView fx:id="tabelasProdutos" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tabelasProdutos" maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="idProdCol" prefWidth="31.0" text="ID" />
-          <TableColumn fx:id="nomeProdCol" prefWidth="486.0" text="NOME" />
-            <TableColumn fx:id="codBarrasCol" prefWidth="202.0" text="COD BARRAS" />
-            <TableColumn fx:id="precoProdCol" text="PREÇO" />
-            <TableColumn fx:id="quantProdCol" prefWidth="114.0" text="QUANTIDADE" />
-            <TableColumn fx:id="unidProdCol" prefWidth="113.0" text="UNID MEDEDIDA" />
+          <TableColumn fx:id="nomeProdCol" prefWidth="581.0" text="NOME" />
+            <TableColumn fx:id="codBarrasCol" prefWidth="91.0" text="COD BARRAS" />
+            <TableColumn fx:id="precoProdCol" prefWidth="57.0" text="PREÇO" />
+            <TableColumn fx:id="quantProdCol" prefWidth="111.0" text="QUANTIDADE" />
+            <TableColumn fx:id="unidProdCol" prefWidth="114.0" text="UNID MEDEDIDA" />
         </columns>
+         <BorderPane.margin>
+            <Insets left="20.0" right="20.0" />
+         </BorderPane.margin>
       </TableView>
    </center>
 </BorderPane>

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Venda {
     private int id_venda;
     private double total_venda;
-    private ArrayList<itensVenda> lista_venda;//mudar para lista
+    private ArrayList<itensVenda> lista_venda;
     private String data_venda;
     
     //consulta
