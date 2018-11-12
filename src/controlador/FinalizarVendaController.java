@@ -127,11 +127,10 @@ public class FinalizarVendaController implements Initializable {
     @FXML
     private void finalizarPagamento(ActionEvent event) {
         FinDAO.criarVenda(totalVenda, datadehoje);
-        
         for(int i = 0;  i<nitens.size(); i++){
             FinDAO.gravarVenda((itensVenda) nitens.get(i), idVendaAtual);
         }
-        CaixaController.controleVenda.canelarVenda(event);
+        CaixaController.controleVenda.cancelarVenda(event);
         CaixaController.controleVenda.consultaUltimaVenda();
         Stage stage = (Stage) finalizarVenda.getScene().getWindow();
         stage.close();
@@ -176,7 +175,6 @@ public class FinalizarVendaController implements Initializable {
     }
 
     private void datadehoje() {
-        
         SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy");  
         datadehoje = out.format(new Date());
     }

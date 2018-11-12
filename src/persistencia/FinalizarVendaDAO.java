@@ -22,8 +22,7 @@ public class FinalizarVendaDAO {
     
     private final String CRIARVENDA = "INSERT INTO VENDAS(TOTAL_VENDA, DATA_VENDA) VALUES (?,?)";
     private final String GRAVARVENDA = "INSERT INTO ITENS(NUM_ITEM, VENDAS_IDVENDAS, IDDOPRODUTO, NOMEPRODUTO, UNDPRODUTO, PRECOPRODUTO, QUANTPRODUTO, TOTALDOITEM) VALUES (?,?,?,?,?,?,?,?)";
-    private final String CONSULTARULTIMOITEM = "SELECT MAX(IDVENDAS)FROM ITENS;";
-    
+        
     public void criarVenda(double totalVenda, String datadehoje) {
         try {
             con.conecta();
@@ -46,8 +45,8 @@ public class FinalizarVendaDAO {
         try {
             con.conecta();
             PreparedStatement prepararInstrucao;
-            prepararInstrucao = con.getConexao().prepareStatement(GRAVARVENDA);
-            System.out.println("Tá indo");
+                prepararInstrucao = con.getConexao().prepareStatement(GRAVARVENDA);
+                System.out.println("Tá indo");
                 
                 prepararInstrucao.setInt(1, itensDaVenda.getItenN());
                 prepararInstrucao.setInt(2, idVendaAtual);
@@ -59,9 +58,7 @@ public class FinalizarVendaDAO {
                 prepararInstrucao.setDouble(8, itensDaVenda.getTotal_item() );
 
                 prepararInstrucao.execute();
-                System.out.println(itensDaVenda.toString());
-                
-            
+  
             con.desconecta();
         } catch (SQLException ex) {
             Logger.getLogger(CadastroProtudoDAO.class.getName()).log(Level.SEVERE, null, ex);

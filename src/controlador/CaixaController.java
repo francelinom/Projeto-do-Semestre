@@ -49,7 +49,7 @@ public class CaixaController implements Initializable {
    
     private itensVenda item;
     private int numeroItem = 1;
-    int numeroVendaAtual;
+    int numeroVendaAtual = 1;
     private int numeroVendaAnterior;
     double somaTotal;
         
@@ -147,13 +147,12 @@ public class CaixaController implements Initializable {
         }
     }
     
-    @FXML
-    void canelarVenda(ActionEvent event) {
+   @FXML
+    void cancelarVenda(ActionEvent event) {
         itens.clear();
         numeroItem = 0;
         somaTotal = 0;
         totalVenda.setText("0");
-        
     }
 
     @FXML

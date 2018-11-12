@@ -20,7 +20,7 @@
       <VBox prefHeight="508.0" prefWidth="161.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
             <JFXButton fx:id="finalizarVenda" maxWidth="1.7976931348623157E308" onAction="#finalizarVenda" style="-fx-background-color: #06c;" text="FINALIZAR VENDA" textAlignment="CENTER" textFill="WHITE" />
-            <JFXButton fx:id="canVenda" maxWidth="1.7976931348623157E308" onAction="#canelarVenda" style="-fx-background-color: #06c;" text="CANCELAR VENDA" textFill="WHITE" />
+            <JFXButton fx:id="canVenda" maxWidth="1.7976931348623157E308" onAction="#cancelarVenda" style="-fx-background-color: #06c;" text="CANCELAR VENDA" textFill="WHITE" />
             <JFXButton fx:id="excluirItem" maxWidth="1.7976931348623157E308" onAction="#excluirItem" style="-fx-background-color: #06c;" text="EXCLUIR ITEM" textFill="WHITE" />
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="145.0" text="Venda:" textAlignment="CENTER">
                <font>
