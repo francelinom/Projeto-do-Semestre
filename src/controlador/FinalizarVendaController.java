@@ -34,12 +34,13 @@ import persistencia.FinalizarVendaDAO;
  * @author Thiago
  */
 public class FinalizarVendaController implements Initializable {
+    private FinalizarVendaDAO FinDAO = new FinalizarVendaDAO();
     
-    private FinalizarVendaDAO gravarVenda = new FinalizarVendaDAO();
     private String datadehoje;
     private double totalN, somaPag, totalVenda, pagTotal, dinheiro = 0, credito=0, debibo = 0, alimentacao = 0, desconto = 0;
     private ObservableList<itensVenda> nitens;
     private int idVendaAtual;
+    
     @FXML
     private Label troco;
     @FXML
@@ -119,17 +120,20 @@ public class FinalizarVendaController implements Initializable {
     @FXML
     private void cancelarPagamento(ActionEvent event) {
         limparValores();
-        Stage stage = (Stage) finalizarVenda.getScene().getWindow(); //Obtendo a janela atual
-        stage.close(); //Fechando o Stage
+        Stage stage = (Stage) finalizarVenda.getScene().getWindow();
+        stage.close();
     }
     
     @FXML
     private void finalizarPagamento(ActionEvent event) {
-        CaixaController.controleVenda.cxDAO.criarVenda(totalVenda, datadehoje);
-        int n = nitens.size();
-        CaixaController.controleVenda.cxDAO.gravarVenda((ArrayList<itensVenda>) nitens, idVendaAtual, n);
+        FinDAO.criarVenda(totalVenda, datadehoje);
         
-        Stage stage = (Stage) finalizarVenda.getScene().getWindow(); //Obtendo a janela atual
+        for(int i = 0;  i<nitens.size(); i++){
+            FinDAO.gravarVenda((itensVenda) nitens.get(i), idVendaAtual);
+        }
+        CaixaController.controleVenda.canelarVenda(event);
+        CaixaController.controleVenda.consultaUltimaVenda();
+        Stage stage = (Stage) finalizarVenda.getScene().getWindow();
         stage.close();
     }
     
@@ -176,5 +180,4 @@ public class FinalizarVendaController implements Initializable {
         SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy");  
         datadehoje = out.format(new Date());
     }
-
 }

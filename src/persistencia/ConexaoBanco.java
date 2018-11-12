@@ -10,10 +10,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- *
- * @author Thiago Dantas
- */
 public class ConexaoBanco {
     private static final String USUARIO = "admin";	
 	private static final String SENHA = "admin";
@@ -47,16 +43,16 @@ public class ConexaoBanco {
 "-- -----------------------------------------------------\n" +
 "CREATE TABLE IF NOT EXISTS itens (\n" +
 "  iditens SERIAL NOT NULL ,\n"+
-"  num_item_venda INT NULL,\n" +
+"  num_item INT NULL,\n" +
 "  vendas_idvendas INT NOT NULL,\n" +
-"  iddoproduto INT NOT NULL,\n" +
-"  nomeproduto VARCHAR(45) NOT NULL,\n" +
-"  undproduto VARCHAR(45) NOT NULL,\n" +
-"  precoproduto VARCHAR(45) NOT NULL,\n" +
-"  quantproduto INT NOT NULL,\n" +
-"  totaldoitem VARCHAR(45) NOT NULL,\n" +
+"  iddoproduto INT NULL,\n" +
+"  nomeproduto VARCHAR(45) NULL,\n" +
+"  undproduto VARCHAR(45) NULL,\n" +
+"  precoproduto VARCHAR(45) NULL,\n" +
+"  quantproduto INT NULL,\n" +
+"  totaldoitem VARCHAR(45) NULL,\n" +
 "  PRIMARY KEY (iditens),\n" +
-"  CONSTRAINT fk_itens_vendas1\n" +
+"  CONSTRAINT fk_itens_vendas\n" +
 "    FOREIGN KEY (vendas_idvendas)\n" +
 "    REFERENCES vendas (idvendas)\n" +
 "    ON DELETE NO ACTION\n" +

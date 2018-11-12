@@ -48,7 +48,7 @@ public class CaixaController implements Initializable {
     private ArrayList<Integer> codigo  = new ArrayList<>();
    
     private itensVenda item;
-    private int numeroItem = 0;
+    private int numeroItem = 1;
     int numeroVendaAtual;
     private int numeroVendaAnterior;
     double somaTotal;
@@ -148,7 +148,7 @@ public class CaixaController implements Initializable {
     }
     
     @FXML
-    private void canelarVenda(ActionEvent event) {
+    void canelarVenda(ActionEvent event) {
         itens.clear();
         numeroItem = 0;
         somaTotal = 0;
@@ -158,7 +158,7 @@ public class CaixaController implements Initializable {
 
     @FXML
     private void excluirItem(ActionEvent event) {
-     
+     itens.remove(tabelaVenda.getSelectionModel().getSelectedItem());
     }
     
     //metodos
@@ -181,7 +181,7 @@ public class CaixaController implements Initializable {
         totalVenda.setText(String.format("%.2f", somaTotal));
     }
 
-    private void consultaUltimaVenda() {
+    void consultaUltimaVenda() {
         numeroVendaAnterior = cxDAO.consultarUltimaVenda();
         if(numeroVendaAnterior > 0){
             numeroVendaAtual = numeroVendaAnterior+1;
