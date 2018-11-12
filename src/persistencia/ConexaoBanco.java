@@ -35,6 +35,8 @@ public class ConexaoBanco {
 "CREATE TABLE IF NOT EXISTS vendas (\n" +
 "  idvendas SERIAL NOT NULL ,\n" +
 "  total_venda DECIMAL NULL,\n"+
+"  valor_Pago DECIMAL NULL,\n"+
+"  valor_troco DECIMAL NULL,\n"+
 "  data_venda VARCHAR(10) NULL,\n" +
 "  PRIMARY KEY (idvendas));\n" +
 "\n" +

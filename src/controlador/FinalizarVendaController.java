@@ -37,6 +37,7 @@ public class FinalizarVendaController implements Initializable {
     private FinalizarVendaDAO FinDAO = new FinalizarVendaDAO();
     
     private String datadehoje;
+    private Venda v;
     private double totalN, somaPag, totalVenda, pagTotal, dinheiro = 0, credito=0, debibo = 0, alimentacao = 0, desconto = 0;
     private ObservableList<itensVenda> nitens;
     private int idVendaAtual;
@@ -126,7 +127,8 @@ public class FinalizarVendaController implements Initializable {
     
     @FXML
     private void finalizarPagamento(ActionEvent event) {
-        FinDAO.criarVenda(totalVenda, datadehoje);
+        v = new Venda(totalVenda, somaPag, pagTotal, datadehoje);
+        FinDAO.criarVenda(v);
         for(int i = 0;  i<nitens.size(); i++){
             FinDAO.gravarVenda((itensVenda) nitens.get(i), idVendaAtual);
         }
@@ -177,5 +179,6 @@ public class FinalizarVendaController implements Initializable {
     private void datadehoje() {
         SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy");  
         datadehoje = out.format(new Date());
+        System.out.println(datadehoje);
     }
 }

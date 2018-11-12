@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelos.Venda;
 import modelos.itensVenda;
 
 /**
@@ -20,18 +21,19 @@ import modelos.itensVenda;
 public class FinalizarVendaDAO {
     private ConexaoBanco con =  new ConexaoBanco();
     
-    private final String CRIARVENDA = "INSERT INTO VENDAS(TOTAL_VENDA, DATA_VENDA) VALUES (?,?)";
-    private final String GRAVARVENDA = "INSERT INTO ITENS(NUM_ITEM, VENDAS_IDVENDAS, IDDOPRODUTO, NOMEPRODUTO, UNDPRODUTO, PRECOPRODUTO, QUANTPRODUTO, TOTALDOITEM) VALUES (?,?,?,?,?,?,?,?)";
+    private final String CRIARVENDA = "INSERT INTO VENDAS(TOTAL_VENDA,VALOR_PAGO, VALOR_TROCO, DATA_VENDA) VALUES (?,?,?,?)";
+    private final String GRAVARVENDA = "INSERT INTO ITENS(NUM_ITEM, VENDAS_IDVENDAS, IDDOPRODUTO, NOMEPRODUTO, UNDPRODUTO, PRECOPRODUTO, QUANTPRODUTO, TOTALDOITEM) VALUES (?,?,?,?,?,?,?,?);";
         
-    public void criarVenda(double totalVenda, String datadehoje) {
+    public void criarVenda(Venda v) {
         try {
             con.conecta();
             PreparedStatement prepararInstrucao;
             prepararInstrucao = con.getConexao().prepareStatement(CRIARVENDA);
             
-            prepararInstrucao.setDouble(1, totalVenda);
-            prepararInstrucao.setString(2, datadehoje);
-            
+            prepararInstrucao.setDouble(1, v.getTotal_venda());
+            prepararInstrucao.setDouble(2, v.getValor_pago());
+            prepararInstrucao.setDouble(3, v.getValor_troco());
+            prepararInstrucao.setString(4, v.getData_venda());
             prepararInstrucao.execute();
             
             con.desconecta();
@@ -54,7 +56,7 @@ public class FinalizarVendaDAO {
                 prepararInstrucao.setString(4, itensDaVenda.getNome_produto());
                 prepararInstrucao.setString(5, itensDaVenda.getUnd_medida());
                 prepararInstrucao.setDouble(6, itensDaVenda.getPreco_produto());
-                prepararInstrucao.setInt(7, itensDaVenda.getQtd_produto());
+                prepararInstrucao.setInt(7, itensDaVenda.getQuantidade());
                 prepararInstrucao.setDouble(8, itensDaVenda.getTotal_item() );
 
                 prepararInstrucao.execute();

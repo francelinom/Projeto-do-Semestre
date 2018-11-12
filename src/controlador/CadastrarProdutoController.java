@@ -105,7 +105,7 @@ public class CadastrarProdutoController implements Initializable {
 
     @FXML
     private void cadastrarProduto() {
-        Produto a = new Produto(nomeProduto.getText(),Integer.parseInt(codBarras.getText()),Double.parseDouble(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText());
+        Produto a = new Produto(nomeProduto.getText().toUpperCase(),Integer.parseInt(codBarras.getText()),Double.parseDouble(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText().toUpperCase());
         //Produto a = new Produto("arroz", 1, 1, 1, "KG");
         p.cadastrarProduto(a);
         atualizarTabela();
@@ -148,22 +148,10 @@ public class CadastrarProdutoController implements Initializable {
         unidadeProduto.clear();
     }
 
-    private void buscarProdutos(KeyEvent event) {
-      
-    }
-
-//    @FXML
-//    private void buscarBotao(ActionEvent event) {
-//        itens.clear();
-//	itens.addAll(p.listarProdutosBusca(buscarProduto.getText()));
-//        tabelasProdutos.setItems(itens);
-//    }
-
-
     @FXML
     private void buscarBotao(KeyEvent event) {
         itens.clear();
-	itens.addAll(p.listarProdutosBusca(buscarProduto.getText()));
+	itens.addAll(p.listarProdutosBusca(buscarProduto.getText().toUpperCase()));
         tabelasProdutos.setItems(itens);
     }  
 }

@@ -81,14 +81,14 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnrelatorio1" alignment="BASELINE_LEFT" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#gerarRelatorio" text="SAIR">
+            <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#sair" text="SAIR">
                <font>
                   <Font size="14.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icones/notepad.png" />
+                        <Image url="@../icones/Logout-icon.png" />
                      </image>
                   </ImageView>
                </graphic>

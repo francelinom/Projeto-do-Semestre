@@ -22,6 +22,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import modelos.Produto;
 import persistencia.ConsultarPrecoDAO;
 
@@ -39,7 +40,6 @@ public class PrincipalController implements Initializable {
     private JFXButton iniciobtn;
     @FXML
     private JFXButton cadasbtn;
-    private AnchorPane panielPrinc;
     @FXML
     private BorderPane tela;
     @FXML
@@ -50,8 +50,6 @@ public class PrincipalController implements Initializable {
     private JFXButton caixabtn;
     @FXML
     private JFXButton btnrelatorio;
-    @FXML
-    private JFXButton btnrelatorio1;
 
 
     /**
@@ -113,6 +111,12 @@ public class PrincipalController implements Initializable {
             Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
        
+    }
+
+    @FXML
+    private void sair(ActionEvent event) {
+         Stage stage = (Stage) tela.getScene().getWindow();
+        stage.close();
     }
 
     
