@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.relatorioController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.relatorioController">
    <left>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="160.0" spacing="20.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="160.0" spacing="20.0" BorderPane.alignment="TOP_CENTER">
          <children>
             <JFXButton maxWidth="1.7976931348623157E308" style="-fx-background-color: #06c;" text="VENDA" textFill="WHITE" />
             <JFXButton maxWidth="1.7976931348623157E308" style="-fx-background-color: #06c;" text="CLIENTE" textFill="WHITE" />
@@ -16,8 +16,11 @@
             <JFXButton maxWidth="1.7976931348623157E308" style="-fx-background-color: #06c;" text="ESTOQUE" textFill="WHITE" />
          </children>
          <padding>
-            <Insets left="20.0" right="20.0" />
+            <Insets left="20.0" right="20.0" top="20.0" />
          </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </VBox>
    </left>
 </BorderPane>

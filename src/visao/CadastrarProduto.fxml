@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -14,11 +15,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="749.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CadastrarProdutoController">
    <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER_LEFT">
          <children>
             <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="258.0" prefWidth="672.0" spacing="20.0">
                <children>
@@ -62,13 +62,13 @@
                   <Insets top="10.0" />
                </HBox.margin>
             </Line>
-            <VBox alignment="CENTER" prefHeight="217.0" prefWidth="484.0" spacing="20.0">
+            <VBox alignment="CENTER" prefHeight="217.0" prefWidth="484.0" spacing="30.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="BUSCAR">
+                  <Label prefHeight="54.0" prefWidth="124.0" text="BUSCAR" textFill="#0064f1">
                      <font>
-                        <Font size="27.0" />
+                        <Font size="33.0" />
                      </font>
-                  </Text>
+                  </Label>
                   <JFXTextField fx:id="buscarProduto" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" onKeyPressed="#buscarBotao" prefHeight="26.0" prefWidth="256.0" promptText="DIGITE O NOME" />
                </children>
             </VBox>
@@ -76,17 +76,17 @@
       </HBox>
    </top>
    <center>
-      <TableView fx:id="tabelasProdutos" maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tabelasProdutos" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="495.0" prefWidth="1033.0" BorderPane.alignment="CENTER_LEFT">
         <columns>
           <TableColumn fx:id="idProdCol" prefWidth="31.0" text="ID" />
-          <TableColumn fx:id="nomeProdCol" prefWidth="581.0" text="NOME" />
-            <TableColumn fx:id="codBarrasCol" prefWidth="91.0" text="COD BARRAS" />
-            <TableColumn fx:id="precoProdCol" prefWidth="57.0" text="PREÇO" />
-            <TableColumn fx:id="quantProdCol" prefWidth="111.0" text="QUANTIDADE" />
-            <TableColumn fx:id="unidProdCol" prefWidth="114.0" text="UNID MEDEDIDA" />
+          <TableColumn fx:id="nomeProdCol" prefWidth="502.0" text="NOME" />
+            <TableColumn fx:id="codBarrasCol" prefWidth="111.0" text="COD BARRAS" />
+            <TableColumn fx:id="precoProdCol" prefWidth="85.0" text="PREÇO" />
+            <TableColumn fx:id="quantProdCol" prefWidth="93.0" text="QUANTIDADE" />
+            <TableColumn fx:id="unidProdCol" prefWidth="163.0" text="UNID MEDEDIDA" />
         </columns>
          <BorderPane.margin>
-            <Insets left="20.0" right="20.0" />
+            <Insets bottom="20.0" left="20.0" right="20.0" />
          </BorderPane.margin>
       </TableView>
    </center>

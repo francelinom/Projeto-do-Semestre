@@ -150,9 +150,9 @@ public class CaixaController implements Initializable {
    @FXML
     void cancelarVenda(ActionEvent event) {
         itens.clear();
-        numeroItem = 0;
+        numeroItem = 1;
         somaTotal = 0;
-        totalVenda.setText("0");
+        totalVenda.setText("0,00");
     }
 
     @FXML

@@ -50,6 +50,8 @@ public class PrincipalController implements Initializable {
     private JFXButton caixabtn;
     @FXML
     private JFXButton btnrelatorio;
+    @FXML
+    private JFXButton btnrelatorio1;
 
 
     /**
