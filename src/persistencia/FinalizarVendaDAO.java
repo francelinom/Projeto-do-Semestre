@@ -47,19 +47,19 @@ public class FinalizarVendaDAO {
         try {
             con.conecta();
             PreparedStatement prepararInstrucao;
-                prepararInstrucao = con.getConexao().prepareStatement(GRAVARVENDA);
-                System.out.println("Tá indo");
-                
-                prepararInstrucao.setInt(1, itensDaVenda.getItenN());
-                prepararInstrucao.setInt(2, idVendaAtual);
-                prepararInstrucao.setInt(3, itensDaVenda.getId_produto());
-                prepararInstrucao.setString(4, itensDaVenda.getNome_produto());
-                prepararInstrucao.setString(5, itensDaVenda.getUnd_medida());
-                prepararInstrucao.setDouble(6, itensDaVenda.getPreco_produto());
-                prepararInstrucao.setInt(7, itensDaVenda.getQuantidade());
-                prepararInstrucao.setDouble(8, itensDaVenda.getTotal_item() );
+            prepararInstrucao = con.getConexao().prepareStatement(GRAVARVENDA);
+            System.out.println("Tá indo");
 
-                prepararInstrucao.execute();
+            prepararInstrucao.setInt(1, itensDaVenda.getItenN());
+            prepararInstrucao.setInt(2, idVendaAtual);
+            prepararInstrucao.setInt(3, itensDaVenda.getId_produto());
+            prepararInstrucao.setString(4, itensDaVenda.getNome_produto());
+            prepararInstrucao.setString(5, itensDaVenda.getUnd_medida());
+            prepararInstrucao.setDouble(6, itensDaVenda.getPreco_produto());
+            prepararInstrucao.setInt(7, itensDaVenda.getQuantidade());
+            prepararInstrucao.setDouble(8, itensDaVenda.getTotal_item() );
+
+            prepararInstrucao.execute();
   
             con.desconecta();
         } catch (SQLException ex) {

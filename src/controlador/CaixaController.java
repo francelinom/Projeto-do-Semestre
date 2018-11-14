@@ -40,17 +40,14 @@ import persistencia.CaixaDAO;
  */
 public class CaixaController implements Initializable {
     static  CaixaController controleVenda;
+    CaixaDAO cxDAO = new CaixaDAO();
     
     private Venda venda;
-    
-    CaixaDAO cxDAO = new CaixaDAO();
-   
     private ArrayList<Integer> codigo  = new ArrayList<>();
-   
     private itensVenda item;
     private int numeroItem = 1;
-    int numeroVendaAtual = 1;
     private int numeroVendaAnterior;
+    int numeroVendaAtual = 1;
     double somaTotal;
         
     @FXML
@@ -68,8 +65,8 @@ public class CaixaController implements Initializable {
     @FXML
     private Label numVenda;
     @FXML
-    
     private Label totalVenda;
+    
     //tabela
     
     ObservableList<itensVenda> itens = FXCollections.observableArrayList();
@@ -108,11 +105,6 @@ public class CaixaController implements Initializable {
         itens.clear();
         codigo.addAll(cxDAO.listarProdutos());
         consultaUltimaVenda();
-        
-        
-        for(Integer codigo : codigo){
-            System.out.println(codigo);
-        }
     }    
     
     @FXML

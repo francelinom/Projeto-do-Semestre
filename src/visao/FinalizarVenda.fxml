@@ -85,23 +85,23 @@
                   <Font size="29.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="vDinheiro" alignment="CENTER" focusColor="#4960a4" onKeyPressed="#dinheiro" prefHeight="26.0" prefWidth="141.0" promptText="0,00" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <JFXTextField fx:id="vDinheiro" alignment="CENTER" focusColor="#4960a4" onKeyReleased="#dinheiro" prefHeight="26.0" prefWidth="141.0" promptText="0,00" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
                   <Font size="29.0" />
                </font></JFXTextField>
-            <JFXTextField fx:id="vCredito" alignment="CENTER" focusColor="#4960a4" onKeyPressed="#credito" prefHeight="26.0" prefWidth="133.0" promptText="0,00" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <JFXTextField fx:id="vCredito" alignment="CENTER" focusColor="#4960a4" onKeyReleased="#credito" prefHeight="26.0" prefWidth="133.0" promptText="0,00" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <font>
                   <Font size="29.0" />
                </font></JFXTextField>
-            <JFXTextField fx:id="vDebito" alignment="CENTER" focusColor="#4960a4" onKeyPressed="#debito" promptText="0,00" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <JFXTextField fx:id="vDebito" alignment="CENTER" focusColor="#4960a4" onKeyReleased="#debito" promptText="0,00" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <font>
                   <Font size="29.0" />
                </font></JFXTextField>
-            <JFXTextField fx:id="vAlimen" alignment="CENTER" focusColor="#4960a4" onKeyPressed="#alimentacao" promptText="0,00" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <JFXTextField fx:id="vAlimen" alignment="CENTER" focusColor="#4960a4" onKeyReleased="#alimentacao" promptText="0,00" unFocusColor="BLACK" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <font>
                   <Font size="29.0" />
                </font></JFXTextField>
-            <JFXTextField fx:id="vDesconto" alignment="CENTER" focusColor="#4960a4" onKeyPressed="#desconto" promptText="0,00" unFocusColor="BLACK" GridPane.columnIndex="3">
+            <JFXTextField fx:id="vDesconto" alignment="CENTER" focusColor="#4960a4" onKeyReleased="#desconto" promptText="0,00" unFocusColor="BLACK" GridPane.columnIndex="3">
                <font>
                   <Font size="29.0" />
                </font></JFXTextField>

@@ -17,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -70,59 +71,47 @@ public class FinalizarVendaController implements Initializable {
         iniciarTotal();
         datadehoje();
     }    
-   
+    //campos de leitura
     @FXML
     private void dinheiro(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER) {
-            dinheiro = converterVirgula(vDinheiro.getText());
-            somarFormasPg();
-        }
+        dinheiro = converterVirgula(vDinheiro.getText());
+        somarFormasPg();
     }
 
     @FXML
     private void credito(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER) {
-            credito = converterVirgula(vCredito.getText());
-            somarFormasPg();
-        }
+        credito = converterVirgula(vCredito.getText());
+        somarFormasPg();
     }
 
     @FXML
-    private void debito(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER) {
-            debibo = converterVirgula(vDebito.getText());
-            somarFormasPg();
-        }
+    private void debito(KeyEvent event){ 
+        debibo = converterVirgula(vDebito.getText());
+        somarFormasPg();
     }
 
     @FXML
     private void alimentacao(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER) {
-            alimentacao = converterVirgula(vAlimen.getText());
-            somarFormasPg();
-        }
+        alimentacao = converterVirgula(vAlimen.getText());
+        somarFormasPg();
     }
 
     @FXML
     private void desconto(KeyEvent event) {
-        
-        if (event.getCode() == KeyCode.ENTER) {
-            if(converterVirgula(vDesconto.getText())>0){
-                totalVenda = CaixaController.controleVenda.somaTotal;
-                desconto = totalVenda * (Double.parseDouble(vDesconto.getText())/100);
-                totalVenda = totalVenda - desconto;
-                recalcular();
-                somarFormasPg();
-               
-            }
+        if(converterVirgula(vDesconto.getText())>=0){
+            totalVenda = CaixaController.controleVenda.somaTotal;
+            desconto = totalVenda * (Double.parseDouble(vDesconto.getText())/100);
+            totalVenda = totalVenda - desconto;
+            recalcular();
+            somarFormasPg();
         }
     }
     //Botões
     @FXML
     private void cancelarPagamento(ActionEvent event) {
         limparValores();
-        Stage stage = (Stage) finalizarVenda.getScene().getWindow();
-        stage.close();
+        fecharJanela();
+        
     }
     
     @FXML
@@ -134,8 +123,8 @@ public class FinalizarVendaController implements Initializable {
         }
         CaixaController.controleVenda.cancelarVenda(event);
         CaixaController.controleVenda.consultaUltimaVenda();
-        Stage stage = (Stage) finalizarVenda.getScene().getWindow();
-        stage.close();
+        limparValores();
+        fecharJanela();
     }
     
     //metodos da classe
@@ -147,7 +136,6 @@ public class FinalizarVendaController implements Initializable {
     }
 
     private void calculaTroco() {
-        
         pagTotal = totalN + somaPag ;
         troco.setText(String.format("%.2f",pagTotal));
         if(pagTotal<0){
@@ -165,11 +153,10 @@ public class FinalizarVendaController implements Initializable {
     private void recalcular() {
         totalN = pagTotal = totalVenda;
         totalN = totalN * -1;
-        
     }
+    
     private double converterVirgula(String entrada){
-        double valor = Double.parseDouble(entrada.replace(',', '.'));
-        return valor;
+        return Double.parseDouble(entrada.replace(',', '.'));
     }
 
     private void limparValores() {
@@ -179,6 +166,10 @@ public class FinalizarVendaController implements Initializable {
     private void datadehoje() {
         SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy");  
         datadehoje = out.format(new Date());
-        System.out.println(datadehoje);
+    }
+
+    private void fecharJanela() {
+        Stage stage = (Stage) finalizarVenda.getScene().getWindow();
+        stage.close();
     }
 }

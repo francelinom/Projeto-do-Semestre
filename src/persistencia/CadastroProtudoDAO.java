@@ -13,15 +13,12 @@ import modelos.Produto;
 
 public class CadastroProtudoDAO {
     private ConexaoBanco con = new ConexaoBanco();
-    
-	
+   
     private final String CADASTRARPRODUTO = "INSERT INTO PRODUTOS (NOME_PRODUTO,COD_BARRAS,PRECO,QUANTIDADE,UND_MEDIDA) VALUES (?,?,?,?,?)";
     private final String ATUALIZARPRODUTO = "UPDATE PRODUTOS SET NOME_PRODUTO = ?, COD_BARRAS = ?, PRECO = ?, QUANTIDADE = ?, UND_MEDIDA = ? WHERE ID = ?";
     private final String DELETARPRODUTO = "DELETE FROM PRODUTOS WHERE ID = ?";
     private final String LISTPRODUTOS = "SELECT * FROM PRODUTOS";
-    private final String BUSCARPRODUTOS = "SELECT * FROM PRODUTOS WHERE NOME_PRODUTO = ?";
-    
-
+    private final String BUSCARPRODUTOS = "SELECT * FROM PRODUTOS WHERE NOME_PRODUTO = ?";    
     
     public void cadastrarProduto(Produto p){
                   
@@ -63,9 +60,6 @@ public class CadastroProtudoDAO {
         } catch (SQLException ex) {
             Logger.getLogger(CadastroProtudoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
-       
-
     }
     public void deletaProduto(Produto p){
         try {
@@ -126,7 +120,6 @@ public class CadastroProtudoDAO {
             Logger.getLogger(CadastroProtudoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return  lista;
-
     }
 }
 

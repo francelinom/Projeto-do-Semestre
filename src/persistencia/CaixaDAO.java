@@ -29,6 +29,7 @@ public class CaixaDAO {
     private final String CONSULTARPRODUTO = "SELECT ID, NOME_PRODUTO, PRECO, UND_MEDIDA FROM PRODUTOS WHERE COD_BARRAS = (?)";
     private final String CONSULTARCODIGO = "SELECT COD_BARRAS FROM PRODUTOS";
     private final String CONSULTARULTIMAVENDA = "SELECT MAX(IDVENDAS)FROM VENDAS;";
+    
     public Produto consultaProduto (int cod) {
         try {
             con.conecta();
@@ -41,12 +42,7 @@ public class CaixaDAO {
             
             if (rs.next()) {                
                 p = new Produto(rs.getInt("ID"),rs.getString("NOME_PRODUTO"), rs.getDouble("PRECO"), rs.getString("UND_MEDIDA"));
-                //item = new itensVenda(rs.getInt("QUANTPRODUTO"),rs.getDouble("TOTALDOITEN"), rs.getInt("IDDOPRODUTO"),rs.getString("NOME_PRODUTO"), rs.getDouble("PRECOPRODUTO"), rs.getString("UND_MEDIDA"));
-                //itensVenda n = new itensVenda(cod, cod, cod, CONSULTARPRODUTO, cod, CONSULTARPRODUTO);
-               
-                //Produto p = new Produto(0, LISTPRODUTOS, 0, 0, 0, LISTPRODUTOS);
             }
-            
         } catch (SQLException ex) {
             Logger.getLogger(CadastroProtudoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,7 +62,6 @@ public class CaixaDAO {
             while (rs.next()) {                
                 cod  = (rs.getInt("COD_BARRAS"));
                 lista.add(cod);
-                
             }
             
         } catch (SQLException ex) {
