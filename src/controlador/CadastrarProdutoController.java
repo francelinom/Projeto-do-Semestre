@@ -96,7 +96,7 @@ public class CadastrarProdutoController implements Initializable {
             mproduto = tabelasProdutos.getSelectionModel().getSelectedItem();
             idProduto.setText(Integer.toString(mproduto.getId_produto()));
             nomeProduto.setText(mproduto.getNome_produto());
-            codBarras.setText(Integer.toString(mproduto.getQtd_produto()));
+            codBarras.setText(Integer.toString(mproduto.getCod_barra_produto()));
             precoProduto.setText(Double.toString(mproduto.getPreco_produto()));
             quantProduto.setText(Integer.toString(mproduto.getQtd_produto()));
             unidadeProduto.setText(mproduto.getUnd_medida());
@@ -105,11 +105,13 @@ public class CadastrarProdutoController implements Initializable {
 
     @FXML
     private void cadastrarProduto() {
-        Produto a = new Produto(nomeProduto.getText().toUpperCase(),Integer.parseInt(codBarras.getText()),Double.parseDouble(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText().toUpperCase());
-        //Produto a = new Produto("arroz", 1, 1, 1, "KG");
-        p.cadastrarProduto(a);
-        atualizarTabela();
-        limparCampos();
+        
+        if(checkLetters(codBarras.getText(), precoProduto.getText(), quantProduto.getText())){
+            Produto a = new Produto(nomeProduto.getText().toUpperCase(),Integer.parseInt(codBarras.getText()),Double.parseDouble(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText().toUpperCase());
+            p.cadastrarProduto(a);
+            atualizarTabela();
+            limparCampos();
+        }
     }
 
     @FXML
@@ -154,4 +156,11 @@ public class CadastrarProdutoController implements Initializable {
 	itens.addAll(p.listarProdutosBusca(buscarProduto.getText().toUpperCase()));
         tabelasProdutos.setItems(itens);
     }  
+
+    private boolean checkLetters(String text, String text0, String text1) {
+        if(text.matches("[0-9]+") && text0.matches("[0-9]+") && text1.matches("[0-9]+") ){
+            return true;
+        }
+        return false;
+    }
 }

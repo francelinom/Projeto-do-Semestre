@@ -92,6 +92,7 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private void caixa(ActionEvent event) {
+        
         try {
             Parent caixa = FXMLLoader.load(getClass().getResource("/visao/Caixa.fxml"));
             tela.setCenter(caixa);

@@ -17,7 +17,7 @@
       <HBox prefHeight="27.0" prefWidth="764.0" BorderPane.alignment="CENTER" />
    </top>
    <left>
-      <VBox prefHeight="508.0" prefWidth="161.0" spacing="20.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="459.0" prefWidth="161.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
             <JFXButton fx:id="finalizarVenda" maxWidth="1.7976931348623157E308" onAction="#finalizarVenda" style="-fx-background-color: #06c;" text="FINALIZAR VENDA" textAlignment="CENTER" textFill="WHITE" />
             <JFXButton fx:id="canVenda" maxWidth="1.7976931348623157E308" onAction="#cancelarVenda" style="-fx-background-color: #06c;" text="CANCELAR VENDA" textFill="WHITE" />
@@ -32,47 +32,22 @@
                   <Font size="24.0" />
                </font>
             </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="145.0" text="Caixa" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="status" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="145.0" style="-fx-background-color: white;" textAlignment="CENTER" textFill="#d00606">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
          </children>
          <padding>
             <Insets left="20.0" right="20.0" />
          </padding>
       </VBox>
    </left>
-   <bottom>
-      <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="82.0" prefWidth="764.0" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
-         <children>
-            <Label prefHeight="38.0" prefWidth="113.0" text="Quantidade">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <TextField fx:id="quantP" prefHeight="40.0" prefWidth="46.0" text="1">
-               <font>
-                  <Font size="17.0" />
-               </font></TextField>
-            <TextField fx:id="campoLeitura" onKeyPressed="#listarProdutos" prefHeight="40.0" prefWidth="297.0" promptText="Código de barras " />
-            <Text fill="#0064f1" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL R$">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Text>
-            <Label fx:id="totalVenda" text="0,00" textFill="#0064f1">
-               <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="36.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </HBox.margin>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Label>
-         </children>
-         <BorderPane.margin>
-            <Insets left="60.0" />
-         </BorderPane.margin>
-      </HBox>
-   </bottom>
    <center>
       <TableView fx:id="tabelaVenda" maxWidth="-Infinity" prefHeight="520.0" prefWidth="643.0" BorderPane.alignment="CENTER_LEFT">
         <columns>
@@ -86,4 +61,52 @@
         </columns>
       </TableView>
    </center>
+   <bottom>
+      <VBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="861.0" BorderPane.alignment="CENTER_LEFT">
+         <children>
+            <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="82.0" prefWidth="743.0" spacing="10.0">
+               <children>
+                  <Label prefHeight="38.0" prefWidth="113.0" text="Quantidade">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="quantP" prefHeight="40.0" prefWidth="46.0" text="1">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="campoLeitura" onKeyPressed="#listarProdutos" prefHeight="40.0" prefWidth="199.0" promptText="Código de barras " />
+                  <Text fill="#0064f1" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL R$">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Text>
+                  <Label fx:id="totalVenda" contentDisplay="RIGHT" prefHeight="53.0" prefWidth="120.0" text="0,00" textAlignment="RIGHT" textFill="#0064f1">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="36.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </HBox>
+            <Label fx:id="situacaoP" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="21.0" prefWidth="184.0" textAlignment="CENTER">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="230.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+   </bottom>
 </BorderPane>

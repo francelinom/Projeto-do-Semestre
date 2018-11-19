@@ -66,7 +66,8 @@ public class CaixaController implements Initializable {
     private Label numVenda;
     @FXML
     private Label totalVenda;
-    
+    @FXML
+    private Label status;
     //tabela
     
     ObservableList<itensVenda> itens = FXCollections.observableArrayList();
@@ -87,7 +88,8 @@ public class CaixaController implements Initializable {
     private TableColumn<itensVenda, String> und;
     @FXML
     private TableColumn<itensVenda, Double> totalItem;
-  
+    @FXML
+    private Label situacaoP;
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -105,24 +107,27 @@ public class CaixaController implements Initializable {
         itens.clear();
         codigo.addAll(cxDAO.listarProdutos());
         consultaUltimaVenda();
+        situacaoCaixa();
     }    
     
     @FXML
     private void finalizarVenda(ActionEvent event) throws IOException {
-              
-        Parent root = FXMLLoader.load(getClass().getResource("/visao/FinalizarVenda.fxml"));
-        Scene janela = new Scene(root);
-        
-        Stage stage = new Stage();
-        stage.setScene(janela);
-        stage.show();
-        stage.setTitle("Finalizar Venda");
-        
+        reorganizarLista();
+        if(itens.size()>0)      {
+            Parent root = FXMLLoader.load(getClass().getResource("/visao/FinalizarVenda.fxml"));
+            Scene janela = new Scene(root);
+
+            Stage stage = new Stage();
+            stage.setScene(janela);
+            stage.show();
+            stage.setTitle("Finalizar Venda");
+        }        
     }
+    
      @FXML
     private void listarProdutos(KeyEvent event) {
         
-        if (event.getCode() == KeyCode.ENTER) {
+        if (event.getCode() == KeyCode.ENTER && checkLetters(campoLeitura.getText())) {
             
             int c = Integer.parseInt(campoLeitura.getText());
             if(codigo. contains(c)){
@@ -131,9 +136,11 @@ public class CaixaController implements Initializable {
                 atualizarTabela();
                 limparCampos();
                 somarTotalvenda(item);
+                situacaoCaixa();
+                situacaoP.setText("...");
                 numeroItem++;
             }else {
-                System.out.println("codigo não cadastrado");
+                situacaoP.setText("Codigo não cadastrado");
                 limparCampos();
             }
         }
@@ -145,6 +152,7 @@ public class CaixaController implements Initializable {
         numeroItem = 1;
         somaTotal = 0;
         totalVenda.setText("0,00");
+        situacaoCaixa();
     }
 
     @FXML
@@ -180,5 +188,24 @@ public class CaixaController implements Initializable {
         }else{
             numVenda.setText(Integer.toString(numeroVendaAtual));
         }
+        itens.clear();
+        situacaoCaixa();
+    }
+
+    private void situacaoCaixa() {
+        if(itens.size()>=1){
+            status.setText("Em Venda");
+        }else{
+            status.setText("Livre");
+        }
+    }
+
+    private void reorganizarLista() {
+        for (int i = 0; i < itens.size(); i++) {
+            itens.get(i).setItenN(i+1);
+        }
+    }
+    private boolean checkLetters(String str){
+        return str.matches("[0-9]+");
     }
 }

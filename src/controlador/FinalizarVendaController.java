@@ -119,6 +119,7 @@ public class FinalizarVendaController implements Initializable {
         v = new Venda(totalVenda, somaPag, pagTotal, datadehoje);
         FinDAO.criarVenda(v);
         for(int i = 0;  i<nitens.size(); i++){
+            FinDAO.alterarQuant(nitens.get(i));
             FinDAO.gravarVenda((itensVenda) nitens.get(i), idVendaAtual);
         }
         CaixaController.controleVenda.cancelarVenda(event);
