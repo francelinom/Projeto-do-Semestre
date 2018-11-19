@@ -102,6 +102,7 @@ public class FinalizarVendaController implements Initializable {
             totalVenda = CaixaController.controleVenda.somaTotal;
             desconto = totalVenda * (Double.parseDouble(vDesconto.getText())/100);
             totalVenda = totalVenda - desconto;
+            iniciarTotal();
             recalcular();
             somarFormasPg();
         }

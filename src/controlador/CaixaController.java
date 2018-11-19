@@ -157,7 +157,8 @@ public class CaixaController implements Initializable {
 
     @FXML
     private void excluirItem(ActionEvent event) {
-     itens.remove(tabelaVenda.getSelectionModel().getSelectedItem());
+        somarTotalExcluir(tabelaVenda.getSelectionModel().getSelectedItem());
+        itens.remove(tabelaVenda.getSelectionModel().getSelectedItem());
     }
     
     //metodos
@@ -177,6 +178,10 @@ public class CaixaController implements Initializable {
 
     private void somarTotalvenda(itensVenda item) {
         somaTotal = somaTotal + item.getTotal_item();
+        totalVenda.setText(String.format("%.2f", somaTotal));
+    }
+    private void somarTotalExcluir(itensVenda item) {
+        somaTotal = somaTotal - item.getTotal_item();
         totalVenda.setText(String.format("%.2f", somaTotal));
     }
 
