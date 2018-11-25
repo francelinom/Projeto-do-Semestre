@@ -27,7 +27,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import modelos.Venda;
 import modelos.itensVenda;
-import persistencia.FinalizarVendaDAO;
+import persistencia.VendasDAO;
+import persistencia.ProdutoDAO;
 
 /**
  * FXML Controller class
@@ -35,7 +36,8 @@ import persistencia.FinalizarVendaDAO;
  * @author Thiago
  */
 public class FinalizarVendaController implements Initializable {
-    private FinalizarVendaDAO FinDAO = new FinalizarVendaDAO();
+    private VendasDAO FinDAO = new VendasDAO();
+    private ProdutoDAO produto = new ProdutoDAO();
     
     private String datadehoje;
     private Venda v;
@@ -120,7 +122,7 @@ public class FinalizarVendaController implements Initializable {
         v = new Venda(totalVenda, somaPag, pagTotal, datadehoje);
         FinDAO.criarVenda(v);
         for(int i = 0;  i<nitens.size(); i++){
-            FinDAO.alterarQuant(nitens.get(i));
+            produto.alterarQuant(nitens.get(i));
             FinDAO.gravarVenda((itensVenda) nitens.get(i), idVendaAtual);
         }
         CaixaController.controleVenda.cancelarVenda(event);

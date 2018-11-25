@@ -10,15 +10,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.spi.DirStateFactory;
 import modelos.Produto;
+import modelos.itensVenda;
 
-public class CadastroProtudoDAO {
+public class ProdutoDAO {
     private ConexaoBanco con = new ConexaoBanco();
+    private Produto produto;
    
     private final String CADASTRARPRODUTO = "INSERT INTO PRODUTOS (NOME_PRODUTO,COD_BARRAS,PRECO,QUANTIDADE,UND_MEDIDA) VALUES (?,?,?,?,?)";
     private final String ATUALIZARPRODUTO = "UPDATE PRODUTOS SET NOME_PRODUTO = ?, COD_BARRAS = ?, PRECO = ?, QUANTIDADE = ?, UND_MEDIDA = ? WHERE ID = ?";
     private final String DELETARPRODUTO = "DELETE FROM PRODUTOS WHERE ID = ?";
-    private final String LISTPRODUTOS = "SELECT * FROM PRODUTOS";
-    private final String BUSCARPRODUTOS = "SELECT * FROM PRODUTOS WHERE NOME_PRODUTO = ?";    
+    private final String LISTARPRODUTOS = "SELECT * FROM PRODUTOS";
+    private final String BUSCARPRODUTOS = "SELECT * FROM PRODUTOS WHERE NOME_PRODUTO = ?";
+    private final String CONSULTARPRECO = "SELECT NOME_PRODUTO, PRECO FROM PRODUTOS WHERE COD_BARRAS = (?)";
+    private final String CONSULTARPRODUTO = "SELECT ID, NOME_PRODUTO, PRECO, UND_MEDIDA FROM PRODUTOS WHERE COD_BARRAS = (?)";
+    private final String CONSULTARCODIGO = "SELECT COD_BARRAS FROM PRODUTOS";
+    private final String ALTERAQUANTIDADE = "UPDATE PRODUTOS SET QUANTIDADE = QUANTIDADE - (?) WHERE ID = (?);";    
     
     public void cadastrarProduto(Produto p){
                   
@@ -37,7 +43,7 @@ public class CadastroProtudoDAO {
             
             con.desconecta();
         } catch (SQLException ex) {
-            Logger.getLogger(CadastroProtudoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         }
 
@@ -58,7 +64,7 @@ public class CadastroProtudoDAO {
             
         con.desconecta();
         } catch (SQLException ex) {
-            Logger.getLogger(CadastroProtudoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     public void deletaProduto(Produto p){
@@ -73,7 +79,7 @@ public class CadastroProtudoDAO {
             
         con.desconecta();
         } catch (SQLException ex) {
-            Logger.getLogger(CadastroProtudoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -83,18 +89,18 @@ public class CadastroProtudoDAO {
         try {
             con.conecta();
             PreparedStatement prepararInstrucao;
-            prepararInstrucao = con.getConexao().prepareStatement(LISTPRODUTOS);
+            prepararInstrucao = con.getConexao().prepareStatement(LISTARPRODUTOS);
             
             ResultSet rs = prepararInstrucao.executeQuery();
             
             while (rs.next()) {                
-                Produto p = new Produto(rs.getInt("ID"),rs.getString("NOME_PRODUTO"), rs.getInt("COD_BARRAS"),rs.getDouble("PRECO"), rs.getInt("QUANTIDADE"), rs.getString("UND_MEDIDA"));
-                lista.add(p);
+                Produto produto = new Produto(rs.getInt("ID"),rs.getString("NOME_PRODUTO"), rs.getInt("COD_BARRAS"),rs.getDouble("PRECO"), rs.getInt("QUANTIDADE"), rs.getString("UND_MEDIDA"));
+                lista.add(produto);
                 //Produto p = new Produto(0, LISTPRODUTOS, 0, 0, 0, LISTPRODUTOS);
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(CadastroProtudoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return  lista;
     }
@@ -117,9 +123,81 @@ public class CadastroProtudoDAO {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(CadastroProtudoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return  lista;
+    }
+    
+    public Produto consultaPreco (int cod) {
+        try {
+            con.conecta();
+            PreparedStatement prepararInstrucao;
+            prepararInstrucao = con.getConexao().prepareStatement(CONSULTARPRECO);
+            
+            prepararInstrucao.setInt(1, cod);
+            ResultSet rs = prepararInstrucao.executeQuery();
+            
+            if (rs.next()) {                
+                produto = new Produto(rs.getString("NOME_PRODUTO"), rs.getDouble("PRECO"));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return produto;
+    }
+     public Produto consultaProduto (int cod) {
+        try {
+            con.conecta();
+            PreparedStatement prepararInstrucao;
+            prepararInstrucao = con.getConexao().prepareStatement(CONSULTARPRODUTO);
+            
+            prepararInstrucao.setInt(1, cod);
+            
+            ResultSet rs = prepararInstrucao.executeQuery();
+            
+            if (rs.next()) {                
+                produto = new Produto(rs.getInt("ID"),rs.getString("NOME_PRODUTO"), rs.getDouble("PRECO"), rs.getString("UND_MEDIDA"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return produto;
+    }
+     public ArrayList<Integer> listarCodigo() {
+        ArrayList<Integer> lista = new ArrayList<>();
+        int cod;
+         try {
+            con.conecta();
+            PreparedStatement prepararInstrucao;
+            prepararInstrucao = con.getConexao().prepareStatement(CONSULTARCODIGO);
+                    
+            ResultSet rs = prepararInstrucao.executeQuery();
+            
+            while (rs.next()) {                
+                cod  = (rs.getInt("COD_BARRAS"));
+                lista.add(cod);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
+    }
+       public void alterarQuant(itensVenda itensDaVenda) {
+        try {
+            con.conecta();
+            PreparedStatement prepararInstrucao;
+            prepararInstrucao = con.getConexao().prepareStatement(ALTERAQUANTIDADE);
+            prepararInstrucao.setInt(1, itensDaVenda.getQuantidade());
+            prepararInstrucao.setInt(2, itensDaVenda.getId_produto());
+
+            prepararInstrucao.execute();
+  
+            con.desconecta();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
 

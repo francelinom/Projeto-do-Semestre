@@ -32,7 +32,8 @@ import main.Principal;
 import modelos.Produto;
 import modelos.Venda;
 import modelos.itensVenda;
-import persistencia.CaixaDAO;
+import persistencia.ProdutoDAO;
+import persistencia.VendasDAO;
 /**
  * FXML Controller class
  *
@@ -40,7 +41,8 @@ import persistencia.CaixaDAO;
  */
 public class CaixaController implements Initializable {
     static  CaixaController controleVenda;
-    CaixaDAO cxDAO = new CaixaDAO();
+    private ProdutoDAO produtos = new ProdutoDAO();
+    private VendasDAO vendaConsulta = new VendasDAO();
     
     private Venda venda;
     private ArrayList<Integer> codigo  = new ArrayList<>();
@@ -105,7 +107,7 @@ public class CaixaController implements Initializable {
         
         atualizarTabela();
         itens.clear();
-        codigo.addAll(cxDAO.listarProdutos());
+        codigo.addAll(produtos.listarCodigo());
         consultaUltimaVenda();
         situacaoCaixa();
     }    
@@ -131,7 +133,7 @@ public class CaixaController implements Initializable {
             
             int c = Integer.parseInt(campoLeitura.getText());
             if(codigo. contains(c)){
-                Produto po = cxDAO.consultaProduto(Integer.parseInt(campoLeitura.getText()));
+                Produto po = produtos.consultaProduto(Integer.parseInt(campoLeitura.getText()));
                 item = new itensVenda(numeroItem, Integer.parseInt(quantP.getText()),calcTotalItens(Integer.parseInt(quantP.getText()), po.getPreco_produto()), po.getId_produto(), po.getNome_produto(), po.getPreco_produto(), po.getUnd_medida());
                 atualizarTabela();
                 limparCampos();
@@ -159,6 +161,8 @@ public class CaixaController implements Initializable {
     private void excluirItem(ActionEvent event) {
         somarTotalExcluir(tabelaVenda.getSelectionModel().getSelectedItem());
         itens.remove(tabelaVenda.getSelectionModel().getSelectedItem());
+       
+        
     }
     
     //metodos
@@ -186,7 +190,7 @@ public class CaixaController implements Initializable {
     }
 
     void consultaUltimaVenda() {
-        numeroVendaAnterior = cxDAO.consultarUltimaVenda();
+        numeroVendaAnterior = vendaConsulta.consultarUltimaVenda();
         if(numeroVendaAnterior > 0){
             numeroVendaAtual = numeroVendaAnterior+1;
             numVenda.setText(Integer.toString(numeroVendaAtual));

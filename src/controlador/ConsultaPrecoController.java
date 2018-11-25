@@ -16,14 +16,13 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import modelos.Produto;
-import persistencia.CaixaDAO;
-import persistencia.ConsultarPrecoDAO;
+import persistencia.ProdutoDAO;
 
 public class ConsultaPrecoController implements Initializable {
-    private ConsultarPrecoDAO c = new ConsultarPrecoDAO();
-    private Produto p;
+    private ProdutoDAO c = new ProdutoDAO();
+    private Produto produto;
     private ArrayList<Integer> codigo  = new ArrayList<>();
-    private CaixaDAO li = new CaixaDAO();
+    private ProdutoDAO listaCodigos = new ProdutoDAO();
     @FXML
     private BorderPane tela;
     @FXML
@@ -39,7 +38,7 @@ public class ConsultaPrecoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        codigo.addAll(li.listarProdutos());
+        codigo.addAll(listaCodigos.listarCodigo());
     }    
 
     @FXML
@@ -48,9 +47,9 @@ public class ConsultaPrecoController implements Initializable {
        if (event.getCode() == KeyCode.ENTER) {
            int i = Integer.parseInt(consultaPreco.getText());
            if(codigo.contains(i)){
-                p = c.consultaPreco(Integer.parseInt(consultaPreco.getText()));
-                mostrarNome.setText(p.getNome_produto());
-                mostraPreco.setText(String.format("R$ "+"%.2f", p.getPreco_produto()));
+                produto = c.consultaPreco(Integer.parseInt(consultaPreco.getText()));
+                mostrarNome.setText(produto.getNome_produto());
+                mostraPreco.setText(String.format("R$ "+"%.2f", produto.getPreco_produto()));
                 consultaPreco.clear();
            }else{
                mostrarNome.setText("Não encontrado");

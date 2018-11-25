@@ -24,7 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import modelos.Produto;
-import persistencia.ConsultarPrecoDAO;
+
 
 /**
  * FXML Controller class
@@ -32,9 +32,6 @@ import persistencia.ConsultarPrecoDAO;
  * @author thiago
  */
 public class PrincipalController implements Initializable {
-        
-    private ConsultarPrecoDAO c = new ConsultarPrecoDAO();
-    //private Produto p;
     
     @FXML
     private JFXButton iniciobtn;
@@ -82,7 +79,7 @@ public class PrincipalController implements Initializable {
     @FXML
     private void cadastrarProdutos(ActionEvent event) {
         try {
-            Parent cadastrarProdutos = FXMLLoader.load(getClass().getResource("/visao/CadastrarProduto.fxml"));
+            Parent cadastrarProdutos = FXMLLoader.load(getClass().getResource("/visao/Produto.fxml"));
             tela.setCenter(cadastrarProdutos);
             titulo.setText("CADASTRAR");
             
@@ -119,6 +116,4 @@ public class PrincipalController implements Initializable {
          Stage stage = (Stage) tela.getScene().getWindow();
         stage.close();
     }
-
-    
 }

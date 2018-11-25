@@ -18,12 +18,12 @@ import modelos.itensVenda;
  *
  * @author Thiago Dantas
  */
-public class FinalizarVendaDAO {
+public class VendasDAO {
     private ConexaoBanco con =  new ConexaoBanco();
     
     private final String CRIARVENDA = "INSERT INTO VENDAS(TOTAL_VENDA,VALOR_PAGO, VALOR_TROCO, DATA_VENDA) VALUES (?,?,?,?)";
     private final String GRAVARVENDA = "INSERT INTO ITENS(NUM_ITEM, VENDAS_IDVENDAS, IDDOPRODUTO, NOMEPRODUTO, UNDPRODUTO, PRECOPRODUTO, QUANTPRODUTO, TOTALDOITEM) VALUES (?,?,?,?,?,?,?,?);";
-    private final String ALTERAQUANTIDADE = "UPDATE PRODUTOS SET QUANTIDADE = QUANTIDADE - (?) WHERE ID = (?);";
+    private final String CONSULTARULTIMAVENDA = "SELECT MAX(IDVENDAS)FROM VENDAS;";
         
     public void criarVenda(Venda v) {
         try {
@@ -39,7 +39,7 @@ public class FinalizarVendaDAO {
             
             con.desconecta();
         } catch (SQLException ex) {
-            Logger.getLogger(CadastroProtudoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
    
@@ -49,7 +49,6 @@ public class FinalizarVendaDAO {
             con.conecta();
             PreparedStatement prepararInstrucao;
             prepararInstrucao = con.getConexao().prepareStatement(GRAVARVENDA);
-            System.out.println("Tá indo");
 
             prepararInstrucao.setInt(1, itensDaVenda.getItenN());
             prepararInstrucao.setInt(2, idVendaAtual);
@@ -64,24 +63,24 @@ public class FinalizarVendaDAO {
   
             con.desconecta();
         } catch (SQLException ex) {
-            Logger.getLogger(CadastroProtudoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    public void alterarQuant(itensVenda itensDaVenda) {
-        try {
+    public int consultarUltimaVenda() {
+        int cod = 0;
+         try {
             con.conecta();
             PreparedStatement prepararInstrucao;
-            prepararInstrucao = con.getConexao().prepareStatement(ALTERAQUANTIDADE);
-            prepararInstrucao.setInt(1, itensDaVenda.getQuantidade());
-            prepararInstrucao.setInt(2, itensDaVenda.getId_produto());
-
-            prepararInstrucao.execute();
-  
-            con.desconecta();
+            prepararInstrucao = con.getConexao().prepareStatement(CONSULTARULTIMAVENDA);
+                    
+            ResultSet rs = prepararInstrucao.executeQuery();
+            
+            while (rs.next()) {                
+                cod  = (rs.getInt("MAX(IDVENDAS)"));          
+            }
         } catch (SQLException ex) {
-            Logger.getLogger(CadastroProtudoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return cod;
     }
-    
 }

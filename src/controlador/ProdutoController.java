@@ -24,18 +24,18 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import modelos.Produto;
-import persistencia.CadastroProtudoDAO;
+import persistencia.ProdutoDAO;
 
 /**
  * FXML Controller class
  *
  * @author Thiago Dantas
  */
-public class CadastrarProdutoController implements Initializable {
+public class ProdutoController implements Initializable {
     //OBJETO PRODUTO
     private Produto mproduto = new Produto();
     private ObservableList<Produto> itens = FXCollections.observableArrayList();
-    private CadastroProtudoDAO p = new CadastroProtudoDAO();
+    private ProdutoDAO p = new ProdutoDAO();
     
     @FXML
     private JFXTextField codBarras;
