@@ -7,8 +7,8 @@ package controlador;
 
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -83,7 +83,10 @@ public class RelatorioVendaController implements Initializable {
 
     @FXML
     private void gerarData(ActionEvent event) {
-        
+        Date d = Date.valueOf(campoCalendario.getValue());
+        SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy");  
+        data = out.format(d);
+        System.out.println(data);
     }
     
 }

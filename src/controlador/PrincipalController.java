@@ -102,7 +102,7 @@ public class PrincipalController implements Initializable {
     private void gerarRelatorio(ActionEvent event) {
         Parent relatorio;
         try {
-            relatorio = FXMLLoader.load(getClass().getResource("/visao/Relatorio.fxml"));
+            relatorio = FXMLLoader.load(getClass().getResource("/visao/RelatorioVenda.fxml"));
             tela.setCenter(relatorio);
             titulo.setText("RELATÓRIOS");
         } catch (IOException ex) {

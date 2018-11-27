@@ -105,7 +105,8 @@ public class ProdutoController implements Initializable {
 
     @FXML
     private void cadastrarProduto() {
-            Produto a = new Produto(nomeProduto.getText().toUpperCase(),Integer.parseInt(codBarras.getText()),Double.parseDouble(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText().toUpperCase());
+            
+            Produto a = new Produto(nomeProduto.getText().toUpperCase(),Integer.parseInt(codBarras.getText()),converterVirgula(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText().toUpperCase());
             p.cadastrarProduto(a);
             atualizarTabela();
             limparCampos();
@@ -159,5 +160,8 @@ public class ProdutoController implements Initializable {
             return true;
         }
         return false;
+    }
+    private double converterVirgula(String entrada){
+        return Double.parseDouble(entrada.replace(',', '.'));
     }
 }
