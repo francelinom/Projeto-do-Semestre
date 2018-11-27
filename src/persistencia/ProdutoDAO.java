@@ -20,7 +20,9 @@ public class ProdutoDAO {
     private final String ATUALIZARPRODUTO = "UPDATE PRODUTOS SET NOME_PRODUTO = ?, COD_BARRAS = ?, PRECO = ?, QUANTIDADE = ?, UND_MEDIDA = ? WHERE ID = ?";
     private final String DELETARPRODUTO = "DELETE FROM PRODUTOS WHERE ID = ?";
     private final String LISTARPRODUTOS = "SELECT * FROM PRODUTOS";
-    private final String BUSCARPRODUTOS = "SELECT * FROM PRODUTOS WHERE NOME_PRODUTO = ?";
+//    private final String BUSCARPRODUTOS = "SELECT * FROM PRODUTOS WHERE NOME_PRODUTO = ?";
+    private final String BUSCARPRODUTOS = "SELECT * FROM PRODUTOS WHERE UPPER(NOME_PRODUTO) LIKE "
+            + "'%' || '"+"?"+"' || '%'";
     private final String CONSULTARPRECO = "SELECT NOME_PRODUTO, PRECO FROM PRODUTOS WHERE COD_BARRAS = (?)";
     private final String CONSULTARPRODUTO = "SELECT ID, NOME_PRODUTO, PRECO, UND_MEDIDA FROM PRODUTOS WHERE COD_BARRAS = (?)";
     private final String CONSULTARCODIGO = "SELECT COD_BARRAS FROM PRODUTOS";
@@ -111,10 +113,10 @@ public class ProdutoDAO {
         try {
             con.conecta();
             PreparedStatement prepararInstrucao;
-            prepararInstrucao = con.getConexao().prepareStatement(BUSCARPRODUTOS);
             
-            prepararInstrucao.setString(1, buscarProduto);
-            //prepararInstrucao.setString(1, buscarProduto);
+            String BUSCARPRODUTOS_NOVO = "SELECT * FROM PRODUTOS WHERE UPPER(NOME_PRODUTO) LIKE "
+            + "'%' || '"+buscarProduto+"' || '%'";
+            prepararInstrucao = con.getConexao().prepareStatement(BUSCARPRODUTOS_NOVO);
             
             ResultSet rs = prepararInstrucao.executeQuery();
             while (rs.next()) {                

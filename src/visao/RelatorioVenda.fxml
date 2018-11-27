@@ -1,24 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RelatorioVendaController">
    <top>
-      <HBox prefHeight="34.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+      <HBox prefHeight="28.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <DatePicker fx:id="campoCalendario" onAction="#gerarData" />
+            <JFXButton onAction="#aplicarDate" ripplerFill="#6f6f6f" style="-fx-background-color: #00FF7F;" text="APLICAR" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <TextField fx:id="campoBusca" promptText="CLIENTE" />
+            <JFXButton fx:id="buscarCliente" ripplerFill="#6f6f6f" style="-fx-background-color: #00FF7F;" text="BUSCAR" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+         </children></HBox>
    </top>
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tabelaRelatorioVenda" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="82.0" text="Nº da Venda" />
-          <TableColumn prefWidth="101.0" text="Data" />
-            <TableColumn prefWidth="111.0" text="Valor da Venda" />
-            <TableColumn prefWidth="53.0" text="Qtde" />
-            <TableColumn prefWidth="117.0" text="Valor Total" />
-            <TableColumn prefWidth="135.0" text="Forma de Pagamento" />
+          <TableColumn fx:id="nVenda" prefWidth="102.0" text="Nº da Venda" />
+          <TableColumn fx:id="dataVenda" prefWidth="186.0" text="Data" />
+            <TableColumn fx:id="valorVenda" prefWidth="124.0" text="Valor da Venda" />
+            <TableColumn fx:id="valorPago" prefWidth="97.0" text="Valor pago" />
+            <TableColumn fx:id="troco" prefWidth="90.0" text="Troco" />
         </columns>
       </TableView>
    </center>

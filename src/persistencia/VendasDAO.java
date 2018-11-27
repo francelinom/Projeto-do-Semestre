@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelos.Produto;
 import modelos.Venda;
 import modelos.itensVenda;
 
@@ -24,6 +25,8 @@ public class VendasDAO {
     private final String CRIARVENDA = "INSERT INTO VENDAS(TOTAL_VENDA,VALOR_PAGO, VALOR_TROCO, DATA_VENDA) VALUES (?,?,?,?)";
     private final String GRAVARVENDA = "INSERT INTO ITENS(NUM_ITEM, VENDAS_IDVENDAS, IDDOPRODUTO, NOMEPRODUTO, UNDPRODUTO, PRECOPRODUTO, QUANTPRODUTO, TOTALDOITEM) VALUES (?,?,?,?,?,?,?,?);";
     private final String CONSULTARULTIMAVENDA = "SELECT MAX(IDVENDAS)FROM VENDAS;";
+    private final String BUSCARVENDAS = "SELECT * FROM VENDAS WHERE DATA_VENDA = (?)";
+    
         
     public void criarVenda(Venda v) {
         try {
@@ -82,5 +85,27 @@ public class VendasDAO {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return cod;
+    }
+
+    public ArrayList<Venda> buscarVendas(String data) {
+         ArrayList<Venda> lista = new ArrayList<>();
+        
+        try {
+            con.conecta();
+            PreparedStatement prepararInstrucao;
+            prepararInstrucao = con.getConexao().prepareStatement(BUSCARVENDAS);
+            prepararInstrucao.setString(1, data);
+            ResultSet rs = prepararInstrucao.executeQuery();
+            
+//            while (rs.next()) {                
+//                Produto produto = new Produto(rs.getInt("ID"),rs.getString("NOME_PRODUTO"), rs.getInt("COD_BARRAS"),rs.getDouble("PRECO"), rs.getInt("QUANTIDADE"), rs.getString("UND_MEDIDA"));
+//                lista.add(produto);
+//                //Produto p = new Produto(0, LISTPRODUTOS, 0, 0, 0, LISTPRODUTOS);
+//            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return  lista;
     }
 }

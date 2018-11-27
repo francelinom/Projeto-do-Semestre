@@ -105,13 +105,10 @@ public class ProdutoController implements Initializable {
 
     @FXML
     private void cadastrarProduto() {
-        
-        if(checkLetters(codBarras.getText(), precoProduto.getText(), quantProduto.getText())){
             Produto a = new Produto(nomeProduto.getText().toUpperCase(),Integer.parseInt(codBarras.getText()),Double.parseDouble(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText().toUpperCase());
             p.cadastrarProduto(a);
             atualizarTabela();
             limparCampos();
-        }
     }
 
     @FXML
