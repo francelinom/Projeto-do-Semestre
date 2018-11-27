@@ -42,10 +42,15 @@ public class Venda {
     public Venda(double somaTotal) {
         somaTotal = this.total_venda;
     }
+
+    public int getId_venda() {
+        return id_venda;
+    }
   
     public void setId_venda(int id_venda) {
         this.id_venda = id_venda;
     }
+    
 
     public double getTotal_venda() {
         return total_venda;
