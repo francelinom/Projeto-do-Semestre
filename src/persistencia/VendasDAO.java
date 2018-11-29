@@ -119,7 +119,7 @@ public class VendasDAO {
             con.conecta();
             PreparedStatement prepararInstrucao;
             prepararInstrucao = con.getConexao().prepareStatement(BUSCARITENS);
-            
+            System.out.println("buscando itens");
             
             prepararInstrucao.setInt(1, id_venda);
             ResultSet rs = prepararInstrucao.executeQuery();

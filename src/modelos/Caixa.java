@@ -48,6 +48,5 @@ public class Caixa {
     public void setData_compra(Date data_compra) {
         this.data_compra = data_compra;
     }
-    
-    
+   
 }

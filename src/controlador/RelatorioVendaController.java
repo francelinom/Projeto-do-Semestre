@@ -40,11 +40,12 @@ import persistencia.VendasDAO;
  */
 public class RelatorioVendaController implements Initializable {
     static  RelatorioVendaController controleRelatorio;
-    ArrayList<itensVenda> itensVenda = new ArrayList();
+    
     private VendasDAO v = new VendasDAO();
     private Venda iVenda;
     private String data;
     private double soma;
+    public static int id;
     
     @FXML
     private DatePicker campoCalendario;
@@ -82,15 +83,10 @@ public class RelatorioVendaController implements Initializable {
         valorPago.setCellValueFactory(new PropertyValueFactory<Venda,Double>("valor_pago"));
         troco.setCellValueFactory(new PropertyValueFactory<Venda,Double>("valor_troco"));
         
+        
         atualizarTabela();
         
     }    
-
-    private void atualizarTabela() {
-        itens.clear();
-        itens.addAll(v.buscarVendas(data));
-        tabelaRelatorioVenda.setItems(itens);
-    }
 
     @FXML
     private void aplicarDate(ActionEvent event) {
@@ -103,7 +99,6 @@ public class RelatorioVendaController implements Initializable {
         Date d = Date.valueOf(campoCalendario.getValue());
         SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy");  
         data = out.format(d);
-        System.out.println(data);
     }
 
     private void somarTotal() {
@@ -117,9 +112,9 @@ public class RelatorioVendaController implements Initializable {
 
     @FXML
     private void visualizarItens(ActionEvent event) {
-       iVenda = (tabelaRelatorioVenda.getSelectionModel().getSelectedItem());
-       itensVenda = v.listarItensVenda(iVenda.getId_venda());
-       
+        iVenda = (tabelaRelatorioVenda.getSelectionModel().getSelectedItem());
+        id = iVenda.getId_venda();
+              
         try {
             Parent root;
             root = FXMLLoader.load(getClass().getResource("/visao/ItensRelatorio.fxml"));
@@ -132,7 +127,13 @@ public class RelatorioVendaController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(RelatorioVendaController.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+        
+    }
+
+    private void atualizarTabela() {
+        itens.clear();
+        itens.addAll(v.buscarVendas(data));
+        tabelaRelatorioVenda.setItems(itens);
     }
     
 }

@@ -16,6 +16,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TreeTableColumn;
@@ -105,20 +107,37 @@ public class ProdutoController implements Initializable {
 
     @FXML
     private void cadastrarProduto() {
-            
+        if(checkLetters(codBarras.getText(), precoProduto.getText(), quantProduto.getText())){
             Produto a = new Produto(nomeProduto.getText().toUpperCase(),Integer.parseInt(codBarras.getText()),converterVirgula(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText().toUpperCase());
             p.cadastrarProduto(a);
             atualizarTabela();
             limparCampos();
+            
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Cadastro");
+            alert.setHeaderText(null);
+            alert.setContentText("Produto Cadastrado");
+            alert.showAndWait();
+            
+        }else{
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Atenção");
+            alert.setHeaderText("Campos com Valores invalidos");
+            alert.setContentText("Os campos Código de Barras, Preço e Quantidade\n"
+                    + "são campos numericos");
+
+            alert.showAndWait();
+        }
     }
 
     @FXML
     private void atualizarProduto(ActionEvent event) {
-        Produto a = new Produto(Integer.parseInt(idProduto.getText()), nomeProduto.getText(),Integer.parseInt(codBarras.getText()),Double.parseDouble(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText());
+        Produto a = new Produto(Integer.parseInt(idProduto.getText()), nomeProduto.getText(),Integer.parseInt(codBarras.getText()),converterVirgula(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText());
         p.atulizarProduto(a);
        //p.atulizarProduto(tabelasProdutos.getSelectionModel().getSelectedItem());
         atualizarTabela();
         limparCampos();
+        
     }
 
     @FXML
@@ -156,7 +175,7 @@ public class ProdutoController implements Initializable {
     }  
 
     private boolean checkLetters(String text, String text0, String text1) {
-        if(text.matches("[0-9]+") && text0.matches("[0-9]+") && text1.matches("[0-9]+") ){
+        if(text.matches("[0-9,',']+") && text0.matches("[0-9,',']+") && text1.matches("[0-9,',']+") ){
             return true;
         }
         return false;

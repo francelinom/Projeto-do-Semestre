@@ -16,6 +16,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import modelos.itensVenda;
 import persistencia.VendasDAO;
+import controlador.RelatorioVendaController;
+import modelos.Venda;
 
 /**
  * FXML Controller class
@@ -24,8 +26,11 @@ import persistencia.VendasDAO;
  */
 public class ItensRelatorioController implements Initializable {
     
-    VendasDAO v = new VendasDAO();
-    ObservableList<itensVenda> itens = FXCollections.observableArrayList();
+    private VendasDAO v = new VendasDAO();
+    private ObservableList<itensVenda> itens = FXCollections.observableArrayList();
+    private int idv ;
+    private RelatorioVendaController i = new RelatorioVendaController();
+    
     
     @FXML
     private TableView<itensVenda> tabelaItens;
@@ -57,13 +62,14 @@ public class ItensRelatorioController implements Initializable {
         quantProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,Integer>("quantidade"));
         totalItem.setCellValueFactory(new PropertyValueFactory<itensVenda,Double>("total_item"));
         
+        idv = i.id;
+        System.out.println(idv);
         atualizarTabela();
-        
     }    
 
     private void atualizarTabela() {
         itens.clear();
-        itens.addAll(RelatorioVendaController.controleRelatorio.itensVenda);
+        itens.addAll(v.listarItensVenda(idv));
         tabelaItens.setItems(itens);
     }
     
