@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import modelos.Produto;
 import modelos.Venda;
 import modelos.itensVenda;
@@ -26,6 +27,7 @@ public class VendasDAO {
     private final String GRAVARVENDA = "INSERT INTO ITENS(NUM_ITEM, VENDAS_IDVENDAS, IDDOPRODUTO, NOMEPRODUTO, UNDPRODUTO, PRECOPRODUTO, QUANTPRODUTO, TOTALDOITEM) VALUES (?,?,?,?,?,?,?,?);";
     private final String CONSULTARULTIMAVENDA = "SELECT MAX(IDVENDAS)FROM VENDAS;";
     private final String BUSCARVENDAS = "SELECT * FROM VENDAS WHERE DATA_VENDA = ? ";
+    private final String BUSCARITENS = "SELECT * FROM ITENS WHERE VENDAS_IDVENDAS = ?";
     
         
     public void criarVenda(Venda v) {
@@ -109,5 +111,28 @@ public class VendasDAO {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return  lista;
+    }
+
+    public ArrayList<itensVenda> listarItensVenda(int id_venda) {
+        ArrayList<itensVenda> lista = new ArrayList<>();
+        try {
+            con.conecta();
+            PreparedStatement prepararInstrucao;
+            prepararInstrucao = con.getConexao().prepareStatement(BUSCARITENS);
+            
+            
+            prepararInstrucao.setInt(1, id_venda);
+            ResultSet rs = prepararInstrucao.executeQuery();
+            
+            while (rs.next()) {                
+                itensVenda v = new itensVenda(rs.getInt("num_item"),rs.getInt("quantproduto"), rs.getDouble("totaldoitem"),rs.getInt("iditens"), rs.getInt("iddoproduto"), rs.getString("nomeproduto"),rs.getDouble("precoproduto"), rs.getString("undproduto"));
+                lista.add(v);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return  lista;
+        
     }
 }
