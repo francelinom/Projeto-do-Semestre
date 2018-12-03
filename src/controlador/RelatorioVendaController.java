@@ -84,7 +84,7 @@ public class RelatorioVendaController implements Initializable {
         troco.setCellValueFactory(new PropertyValueFactory<Venda,Double>("valor_troco"));
         
         
-        atualizarTabela();
+        //atualizarTabela();
         
     }    
 

@@ -8,6 +8,7 @@ package controlador;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Observer;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -25,19 +26,16 @@ import javafx.scene.control.TreeTableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import modelos.Produto;
 import persistencia.ProdutoDAO;
 
-/**
- * FXML Controller class
- *
- * @author Thiago Dantas
- */
 public class ProdutoController implements Initializable {
     //OBJETO PRODUTO
     private Produto mproduto = new Produto();
     private ObservableList<Produto> itens = FXCollections.observableArrayList();
-    private ProdutoDAO p = new ProdutoDAO();
+    private ProdutoDAO produto = new ProdutoDAO();
+    private ArrayList<Integer> codigo  = new ArrayList<>();
     
     @FXML
     private JFXTextField codBarras;
@@ -78,20 +76,16 @@ public class ProdutoController implements Initializable {
     @FXML
     private TableColumn<Produto, String> unidProdCol;
   
-   
-
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         idProdCol.setCellValueFactory(new PropertyValueFactory<Produto,Integer>("id_produto"));
         nomeProdCol.setCellValueFactory(new PropertyValueFactory<Produto, String>("nome_produto"));
         codBarrasCol.setCellValueFactory(new PropertyValueFactory<Produto, Double>("cod_barra_produto"));
-        precoProdCol.setCellValueFactory(new PropertyValueFactory<Produto, Double>("preco_produto"));
+        precoProdCol.setCellValueFactory(new PropertyValueFactory<Produto, Double>("preco_produto")); 
         quantProdCol.setCellValueFactory(new PropertyValueFactory<Produto, Integer>("qtd_produto"));
         unidProdCol.setCellValueFactory(new PropertyValueFactory<Produto, String>("und_medida"));
         
+        codigo.addAll(produto.listarCodigo());
         atualizarTabela();
         
         tabelasProdutos.setOnMouseClicked(event -> {
@@ -107,33 +101,42 @@ public class ProdutoController implements Initializable {
 
     @FXML
     private void cadastrarProduto() {
-        if(checkLetters(codBarras.getText(), precoProduto.getText(), quantProduto.getText())){
-            Produto a = new Produto(nomeProduto.getText().toUpperCase(),Integer.parseInt(codBarras.getText()),converterVirgula(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText().toUpperCase());
-            p.cadastrarProduto(a);
-            atualizarTabela();
-            limparCampos();
-            
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Cadastro");
-            alert.setHeaderText(null);
-            alert.setContentText("Produto Cadastrado");
-            alert.showAndWait();
-            
+        
+        if(codigo.contains(Integer.parseInt(codBarras.getText()))){
+             Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Cadastro");
+                alert.setHeaderText(null);
+                alert.setContentText("Código de barras já cadastrado");
+                alert.showAndWait();
         }else{
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Atenção");
-            alert.setHeaderText("Campos com Valores invalidos");
-            alert.setContentText("Os campos Código de Barras, Preço e Quantidade\n"
-                    + "são campos numericos");
+           if(checkLetters(codBarras.getText(), precoProduto.getText(), quantProduto.getText())){
+                Produto a = new Produto(nomeProduto.getText().toUpperCase(),Integer.parseInt(codBarras.getText()),converterVirgula(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText().toUpperCase());
+                produto.cadastrarProduto(a);
+                atualizarTabela();
+                limparCampos();
 
-            alert.showAndWait();
-        }
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Cadastro");
+                alert.setHeaderText(null);
+                alert.setContentText("Produto Cadastrado");
+                alert.showAndWait();
+
+            }else{
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Atenção");
+                alert.setHeaderText("Campos com Valores invalidos");
+                alert.setContentText("Os campos Código de Barras, Preço e Quantidade\n"
+                        + "são campos numericos");
+
+                alert.showAndWait();
+            } 
+        }       
     }
 
     @FXML
     private void atualizarProduto(ActionEvent event) {
         Produto a = new Produto(Integer.parseInt(idProduto.getText()), nomeProduto.getText(),Integer.parseInt(codBarras.getText()),converterVirgula(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText());
-        p.atulizarProduto(a);
+        produto.atulizarProduto(a);
        //p.atulizarProduto(tabelasProdutos.getSelectionModel().getSelectedItem());
         atualizarTabela();
         limparCampos();
@@ -143,7 +146,7 @@ public class ProdutoController implements Initializable {
     @FXML
     private void ExcluirCadastro(ActionEvent event) {
         // Produto a = new Produto(Integer.parseInt(idProduto.getText()));
-        p.deletaProduto(tabelasProdutos.getSelectionModel().getSelectedItem());
+        produto.deletaProduto(tabelasProdutos.getSelectionModel().getSelectedItem());
         atualizarTabela();
         limparCampos();
     }
@@ -155,7 +158,7 @@ public class ProdutoController implements Initializable {
 
     private void atualizarTabela() {
         itens.clear();
-	itens.addAll(p.listarProdutos());
+	itens.addAll(produto.listarProdutos());
         tabelasProdutos.setItems(itens);
     }
     private void limparCampos() {
@@ -170,7 +173,7 @@ public class ProdutoController implements Initializable {
     @FXML
     private void buscarBotao(KeyEvent event) {
         itens.clear();
-	itens.addAll(p.listarProdutosBusca(buscarProduto.getText().toUpperCase()));
+	itens.addAll(produto.listarProdutosBusca(buscarProduto.getText().toUpperCase()));
         tabelasProdutos.setItems(itens);
     }  
 
