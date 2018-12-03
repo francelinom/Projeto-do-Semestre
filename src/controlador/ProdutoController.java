@@ -135,7 +135,7 @@ public class ProdutoController implements Initializable {
 
     @FXML
     private void atualizarProduto(ActionEvent event) {
-        Produto a = new Produto(Integer.parseInt(idProduto.getText()), nomeProduto.getText(),Integer.parseInt(codBarras.getText()),converterVirgula(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText());
+        Produto a = new Produto(Integer.parseInt(idProduto.getText()), nomeProduto.getText().toUpperCase(),Integer.parseInt(codBarras.getText()),converterVirgula(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText().toUpperCase());
         produto.atulizarProduto(a);
        //p.atulizarProduto(tabelasProdutos.getSelectionModel().getSelectedItem());
         atualizarTabela();
