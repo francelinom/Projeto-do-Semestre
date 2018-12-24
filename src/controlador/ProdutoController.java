@@ -35,7 +35,7 @@ public class ProdutoController implements Initializable {
     private Produto mproduto = new Produto();
     private ObservableList<Produto> itens = FXCollections.observableArrayList();
     private ProdutoDAO produto = new ProdutoDAO();
-    private ArrayList<Integer> codigo  = new ArrayList<>();
+    private ArrayList<String> codigo  = new ArrayList<>();
     
     @FXML
     private JFXTextField codBarras;
@@ -68,7 +68,7 @@ public class ProdutoController implements Initializable {
     @FXML
     private TableColumn<Produto, String> nomeProdCol;
     @FXML
-    private TableColumn<Produto, Double> codBarrasCol;
+    private TableColumn<Produto, String> codBarrasCol;
     @FXML
     private TableColumn<Produto, Double> precoProdCol;
     @FXML
@@ -80,7 +80,7 @@ public class ProdutoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         idProdCol.setCellValueFactory(new PropertyValueFactory<Produto,Integer>("id_produto"));
         nomeProdCol.setCellValueFactory(new PropertyValueFactory<Produto, String>("nome_produto"));
-        codBarrasCol.setCellValueFactory(new PropertyValueFactory<Produto, Double>("cod_barra_produto"));
+        codBarrasCol.setCellValueFactory(new PropertyValueFactory<Produto, String>("cod_barra_produto"));
         precoProdCol.setCellValueFactory(new PropertyValueFactory<Produto, Double>("preco_produto")); 
         quantProdCol.setCellValueFactory(new PropertyValueFactory<Produto, Integer>("qtd_produto"));
         unidProdCol.setCellValueFactory(new PropertyValueFactory<Produto, String>("und_medida"));
@@ -92,7 +92,7 @@ public class ProdutoController implements Initializable {
             mproduto = tabelasProdutos.getSelectionModel().getSelectedItem();
             idProduto.setText(Integer.toString(mproduto.getId_produto()));
             nomeProduto.setText(mproduto.getNome_produto());
-            codBarras.setText(Integer.toString(mproduto.getCod_barra_produto()));
+            codBarras.setText(mproduto.getCod_barra_produto());
             precoProduto.setText(Double.toString(mproduto.getPreco_produto()));
             quantProduto.setText(Integer.toString(mproduto.getQtd_produto()));
             unidadeProduto.setText(mproduto.getUnd_medida());
@@ -102,7 +102,7 @@ public class ProdutoController implements Initializable {
     @FXML
     private void cadastrarProduto() {
         
-        if(codigo.contains(Integer.parseInt(codBarras.getText()))){
+        if(codigo.contains(codBarras.getText())){
              Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Cadastro");
                 alert.setHeaderText(null);
@@ -110,7 +110,7 @@ public class ProdutoController implements Initializable {
                 alert.showAndWait();
         }else{
            if(checkLetters(codBarras.getText(), precoProduto.getText(), quantProduto.getText())){
-                Produto a = new Produto(nomeProduto.getText().toUpperCase(),Integer.parseInt(codBarras.getText()),converterVirgula(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText().toUpperCase());
+                Produto a = new Produto(nomeProduto.getText().toUpperCase(),codBarras.getText(),converterVirgula(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText().toUpperCase());
                 produto.cadastrarProduto(a);
                 atualizarTabela();
                 limparCampos();
@@ -135,7 +135,7 @@ public class ProdutoController implements Initializable {
 
     @FXML
     private void atualizarProduto(ActionEvent event) {
-        Produto a = new Produto(Integer.parseInt(idProduto.getText()), nomeProduto.getText().toUpperCase(),Integer.parseInt(codBarras.getText()),converterVirgula(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText().toUpperCase());
+        Produto a = new Produto(Integer.parseInt(idProduto.getText()), nomeProduto.getText().toUpperCase(), codBarras.getText(),converterVirgula(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText().toUpperCase());
         produto.atulizarProduto(a);
        //p.atulizarProduto(tabelasProdutos.getSelectionModel().getSelectedItem());
         atualizarTabela();

@@ -47,7 +47,7 @@ public class CaixaController implements Initializable {
     private VendasDAO vendaConsulta = new VendasDAO();
     
     private Venda venda;
-    private ArrayList<Integer> codigo  = new ArrayList<>();
+    private ArrayList<String> codigo  = new ArrayList<>();
     private itensVenda item;
     private int numeroItem = 1;
     private int numeroVendaAnterior;
@@ -133,9 +133,9 @@ public class CaixaController implements Initializable {
         
         if (event.getCode() == KeyCode.ENTER && checkLetters(campoLeitura.getText())) {
             
-            int c = Integer.parseInt(campoLeitura.getText());
+            String c = campoLeitura.getText();
             if(codigo. contains(c)){
-                Produto po = produtos.consultaProduto(Integer.parseInt(campoLeitura.getText()));
+                Produto po = produtos.consultaProduto(campoLeitura.getText());
                 item = new itensVenda(numeroItem, Integer.parseInt(quantP.getText()),calcTotalItens(Integer.parseInt(quantP.getText()), po.getPreco_produto()), po.getId_produto(), po.getNome_produto(), po.getPreco_produto(), po.getUnd_medida());
                 atualizarTabela();
                 limparCampos();

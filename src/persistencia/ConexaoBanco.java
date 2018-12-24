@@ -23,7 +23,7 @@ public class ConexaoBanco {
 "CREATE TABLE IF NOT EXISTS produtos (\n" +
 "  	id SERIAL NOT NULL,\n" +
 "  	nome_produto VARCHAR(45) NULL,\n" +
-"  	cod_barras NUMERIC NULL,\n" +
+"  	cod_barras CHAR(14) NULL,\n" +
 "  	preco DECIMAL NULL,\n" +
 "       quantidade INT NULL,\n" +
 "  und_medida VARCHAR(10) NULL,\n" +

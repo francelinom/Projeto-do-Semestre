@@ -21,7 +21,7 @@ import persistencia.ProdutoDAO;
 public class ConsultaPrecoController implements Initializable {
     private ProdutoDAO c = new ProdutoDAO();
     private Produto produto;
-    private ArrayList<Integer> codigo  = new ArrayList<>();
+    private ArrayList<String> codigo  = new ArrayList<>();
     private ProdutoDAO listaCodigos = new ProdutoDAO();
     @FXML
     private BorderPane tela;
@@ -45,9 +45,9 @@ public class ConsultaPrecoController implements Initializable {
     private void consPreco(KeyEvent event) {
         
        if (event.getCode() == KeyCode.ENTER) {
-           int i = Integer.parseInt(consultaPreco.getText());
+           String i = consultaPreco.getText();
            if(codigo.contains(i)){
-                produto = c.consultaPreco(Integer.parseInt(consultaPreco.getText()));
+               produto = c.consultaPreco(consultaPreco.getText());
                 mostrarNome.setText(produto.getNome_produto());
                 mostraPreco.setText(String.format("R$ "+"%.2f", produto.getPreco_produto()));
                 consultaPreco.clear();

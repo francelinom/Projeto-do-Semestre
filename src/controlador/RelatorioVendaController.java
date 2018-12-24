@@ -84,7 +84,7 @@ public class RelatorioVendaController implements Initializable {
         troco.setCellValueFactory(new PropertyValueFactory<Venda,Double>("valor_troco"));
         
         
-        //atualizarTabela();
+        inicializarTabela();
         
     }    
 
@@ -134,6 +134,13 @@ public class RelatorioVendaController implements Initializable {
         itens.clear();
         itens.addAll(v.buscarVendas(data));
         tabelaRelatorioVenda.setItems(itens);
+    }
+
+    private void inicializarTabela() {
+        itens.clear();
+        itens.addAll(v.listarTodasVendas());
+        tabelaRelatorioVenda.setItems(itens);
+
     }
     
 }

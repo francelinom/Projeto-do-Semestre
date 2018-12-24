@@ -27,6 +27,7 @@ public class VendasDAO {
     private final String GRAVARVENDA = "INSERT INTO ITENS(NUM_ITEM, VENDAS_IDVENDAS, IDDOPRODUTO, NOMEPRODUTO, UNDPRODUTO, PRECOPRODUTO, QUANTPRODUTO, TOTALDOITEM) VALUES (?,?,?,?,?,?,?,?);";
     private final String CONSULTARULTIMAVENDA = "SELECT MAX(IDVENDAS)FROM VENDAS;";
     private final String BUSCARVENDAS = "SELECT * FROM VENDAS WHERE DATA_VENDA = ? ";
+    private final String LISTARVENDAS = "SELECT * FROM VENDAS";
     private final String BUSCARITENS = "SELECT * FROM ITENS WHERE VENDAS_IDVENDAS = ?";
     
         
@@ -134,5 +135,25 @@ public class VendasDAO {
         }
         return  lista;
         
+    }
+    public ArrayList<Venda> listarTodasVendas() {
+         ArrayList<Venda> lista = new ArrayList<>();
+        
+        try {
+            con.conecta();
+            PreparedStatement prepararInstrucao;
+            prepararInstrucao = con.getConexao().prepareStatement(LISTARVENDAS);
+            
+            ResultSet rs = prepararInstrucao.executeQuery();
+            
+            while (rs.next()) {                
+                Venda v = new Venda(rs.getInt("idvendas"),rs.getDouble("total_venda"), rs.getDouble("valor_Pago"),rs.getDouble("valor_troco"), rs.getString("data_venda"));
+                lista.add(v);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return  lista;
     }
 }

@@ -36,7 +36,7 @@ public class ProdutoDAO {
             prepararInstrucao = con.getConexao().prepareStatement(CADASTRARPRODUTO);
             
             prepararInstrucao.setString(1, p.getNome_produto());
-            prepararInstrucao.setInt(2, p.getCod_barra_produto());
+            prepararInstrucao.setString(2, p.getCod_barra_produto());
             prepararInstrucao.setDouble(3, p.getPreco_produto());
             prepararInstrucao.setInt(4, p.getQtd_produto());
             prepararInstrucao.setString(5, p.getUnd_medida());
@@ -57,7 +57,7 @@ public class ProdutoDAO {
             prepararInstrucao = con.getConexao().prepareStatement(ATUALIZARPRODUTO);
             
             prepararInstrucao.setString(1, p.getNome_produto());
-            prepararInstrucao.setInt(2, p.getCod_barra_produto());
+            prepararInstrucao.setString(2, p.getCod_barra_produto());
             prepararInstrucao.setDouble(3, p.getPreco_produto());
             prepararInstrucao.setInt(4, p.getQtd_produto());
             prepararInstrucao.setString(5, p.getUnd_medida());
@@ -96,7 +96,7 @@ public class ProdutoDAO {
             ResultSet rs = prepararInstrucao.executeQuery();
             
             while (rs.next()) {                
-                Produto produto = new Produto(rs.getInt("ID"),rs.getString("NOME_PRODUTO"), rs.getInt("COD_BARRAS"),rs.getDouble("PRECO"), rs.getInt("QUANTIDADE"), rs.getString("UND_MEDIDA"));
+                Produto produto = new Produto(rs.getInt("ID"),rs.getString("NOME_PRODUTO"), rs.getString("COD_BARRAS"),rs.getDouble("PRECO"), rs.getInt("QUANTIDADE"), rs.getString("UND_MEDIDA"));
                 lista.add(produto);
                 //Produto p = new Produto(0, LISTPRODUTOS, 0, 0, 0, LISTPRODUTOS);
             }
@@ -120,7 +120,7 @@ public class ProdutoDAO {
             
             ResultSet rs = prepararInstrucao.executeQuery();
             while (rs.next()) {                
-                Produto p = new Produto(rs.getInt("ID"),rs.getString("NOME_PRODUTO"), rs.getInt("COD_BARRAS"),rs.getDouble("PRECO"), rs.getInt("QUANTIDADE"), rs.getString("UND_MEDIDA"));
+                Produto p = new Produto(rs.getInt("ID"),rs.getString("NOME_PRODUTO"), rs.getString("COD_BARRAS"),rs.getDouble("PRECO"), rs.getInt("QUANTIDADE"), rs.getString("UND_MEDIDA"));
                 lista.add(p);
             }
             
@@ -130,13 +130,13 @@ public class ProdutoDAO {
         return  lista;
     }
     
-    public Produto consultaPreco (int cod) {
+    public Produto consultaPreco (String cod) {
         try {
             con.conecta();
             PreparedStatement prepararInstrucao;
             prepararInstrucao = con.getConexao().prepareStatement(CONSULTARPRECO);
             
-            prepararInstrucao.setInt(1, cod);
+            prepararInstrucao.setString(1, cod);
             ResultSet rs = prepararInstrucao.executeQuery();
             
             if (rs.next()) {                
@@ -148,13 +148,13 @@ public class ProdutoDAO {
         }
         return produto;
     }
-     public Produto consultaProduto (int cod) {
+     public Produto consultaProduto (String cod) {
         try {
             con.conecta();
             PreparedStatement prepararInstrucao;
             prepararInstrucao = con.getConexao().prepareStatement(CONSULTARPRODUTO);
             
-            prepararInstrucao.setInt(1, cod);
+            prepararInstrucao.setString(1, cod);
             
             ResultSet rs = prepararInstrucao.executeQuery();
             
@@ -166,9 +166,9 @@ public class ProdutoDAO {
         }
         return produto;
     }
-     public ArrayList<Integer> listarCodigo() {
-        ArrayList<Integer> lista = new ArrayList<>();
-        int cod;
+     public ArrayList<String> listarCodigo() {
+        ArrayList<String> lista = new ArrayList<>();
+        String cod;
          try {
             con.conecta();
             PreparedStatement prepararInstrucao;
@@ -177,7 +177,7 @@ public class ProdutoDAO {
             ResultSet rs = prepararInstrucao.executeQuery();
             
             while (rs.next()) {                
-                cod  = (rs.getInt("COD_BARRAS"));
+                cod  = (rs.getString("COD_BARRAS"));
                 lista.add(cod);
             }
             
