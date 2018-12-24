@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="telaInserir" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#inserirQuantidade" prefHeight="161.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.InserirQuant">
+   <top>
+      <Label text="INSIRA A QUANTIDADE" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <JFXTextField fx:id="quantInserir" alignment="CENTER" labelFloat="true" prefHeight="25.0" prefWidth="285.0" promptText="QUANTIDADE" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="60.0" right="60.0" />
+         </BorderPane.margin>
+         <font>
+            <Font size="23.0" />
+         </font>
+      </JFXTextField>
+   </center>
+</BorderPane>

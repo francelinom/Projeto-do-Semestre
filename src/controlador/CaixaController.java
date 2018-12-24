@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -111,7 +112,7 @@ public class CaixaController implements Initializable {
         itens.clear();
         codigo.addAll(produtos.listarCodigo());
         consultaUltimaVenda();
-        situacaoCaixa();
+        situacaoCaixa(); 
     }    
     
     @FXML
@@ -125,14 +126,16 @@ public class CaixaController implements Initializable {
             stage.setScene(janela);
             stage.show();
             stage.setTitle("Finalizar Venda");
-        }        
+        }else{
+            
+        }       
     }
     
      @FXML
     private void listarProdutos(KeyEvent event) {
-        
+ 
         if (event.getCode() == KeyCode.ENTER && checkLetters(campoLeitura.getText())) {
-            
+           
             String c = campoLeitura.getText();
             if(codigo. contains(c)){
                 Produto po = produtos.consultaProduto(campoLeitura.getText());
@@ -168,13 +171,11 @@ public class CaixaController implements Initializable {
     @FXML
     private void excluirItem(ActionEvent event) {
         somarTotalExcluir(tabelaVenda.getSelectionModel().getSelectedItem());
-        itens.remove(tabelaVenda.getSelectionModel().getSelectedItem());
-       
-        
+        itens.remove(tabelaVenda.getSelectionModel().getSelectedItem());        
     }
     
     //metodos
-      private void atualizarTabela() {
+    private void atualizarTabela() {
 	itens.add(item);
         tabelaVenda.setItems(itens);
     }
@@ -224,5 +225,5 @@ public class CaixaController implements Initializable {
     }
     private boolean checkLetters(String str){
         return str.matches("[0-9]+");
-    }
+    } 
 }
