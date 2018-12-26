@@ -209,7 +209,6 @@ public class CaixaController implements Initializable {
         itens.clear();
         situacaoCaixa();
     }
-
     private void situacaoCaixa() {
         if(itens.size()>=1){
             status.setText("Em Venda");
@@ -217,7 +216,6 @@ public class CaixaController implements Initializable {
             status.setText("Livre");
         }
     }
-
     private void reorganizarLista() {
         for (int i = 0; i < itens.size(); i++) {
             itens.get(i).setItenN(i+1);

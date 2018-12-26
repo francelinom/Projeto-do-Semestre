@@ -127,7 +127,6 @@ public class ProdutoController implements Initializable {
                 alert.setHeaderText("Campos com Valores invalidos");
                 alert.setContentText("Os campos Código de Barras, Preço e Quantidade\n"
                         + "são campos numericos");
-
                 alert.showAndWait();
             } 
         }       
