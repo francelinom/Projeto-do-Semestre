@@ -15,7 +15,7 @@
    <top>
       <HBox prefHeight="28.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <DatePicker fx:id="campoCalendario" onAction="#gerarData" />
+            <DatePicker fx:id="campoCalendario" onAction="#gerarData" promptText="Escolha uma data" />
             <JFXButton onAction="#aplicarDate" ripplerFill="#6f6f6f" style="-fx-background-color: #00FF7F;" text="APLICAR" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="12.0" />

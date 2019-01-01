@@ -95,11 +95,12 @@ public class CaixaController implements Initializable {
     private TableColumn<itensVenda, Double> totalItem;
     @FXML
     private Label situacaoP;
+    @FXML
+    private JFXButton consultarPreco;
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controleVenda = this;
-        // TODO
         itemNum.setCellValueFactory(new PropertyValueFactory<itensVenda,Integer>("itenN"));
         idProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,Integer>("id_produto"));
         nomeProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,String>("nome_produto"));
@@ -127,13 +128,16 @@ public class CaixaController implements Initializable {
             stage.show();
             stage.setTitle("Finalizar Venda");
         }else{
-            
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("CAIXA");
+            alert.setHeaderText("Venda sem itens");
+            alert.setContentText("Insira no minimo um produto para finalizar a venda");
+            alert.showAndWait();
         }       
     }
     
      @FXML
     private void listarProdutos(KeyEvent event) {
- 
         if (event.getCode() == KeyCode.ENTER && checkLetters(campoLeitura.getText())) {
            
             String c = campoLeitura.getText();
@@ -151,8 +155,8 @@ public class CaixaController implements Initializable {
                 alert.setTitle("Informação");
                 alert.setHeaderText(null);
                 alert.setContentText("Produto não encontrado");
-
                 alert.showAndWait();
+                
                 situacaoP.setText("Código não cadastrado");
                 limparCampos();
             }
@@ -172,6 +176,19 @@ public class CaixaController implements Initializable {
     private void excluirItem(ActionEvent event) {
         somarTotalExcluir(tabelaVenda.getSelectionModel().getSelectedItem());
         itens.remove(tabelaVenda.getSelectionModel().getSelectedItem());        
+    }
+    @FXML
+    private void consultarPreco(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/visao/ConsultarPreco.fxml"));
+            Scene janela = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(janela);
+            stage.show();
+            stage.setTitle("Consulta de Preço");
+        } catch (IOException ex) {
+            Logger.getLogger(CaixaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     //metodos
@@ -224,4 +241,6 @@ public class CaixaController implements Initializable {
     private boolean checkLetters(String str){
         return str.matches("[0-9]+");
     } 
+
+    
 }

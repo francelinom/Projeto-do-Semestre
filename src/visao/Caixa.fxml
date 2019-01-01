@@ -20,8 +20,9 @@
       <VBox prefHeight="459.0" prefWidth="161.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
             <JFXButton fx:id="finalizarVenda" maxWidth="1.7976931348623157E308" onAction="#finalizarVenda" style="-fx-background-color: #06c;" text="FINALIZAR VENDA" textAlignment="CENTER" textFill="WHITE" />
-            <JFXButton fx:id="canVenda" maxWidth="1.7976931348623157E308" onAction="#cancelarVenda" style="-fx-background-color: #06c;" text="CANCELAR VENDA" textFill="WHITE" />
-            <JFXButton fx:id="excluirItem" maxWidth="1.7976931348623157E308" onAction="#excluirItem" style="-fx-background-color: #06c;" text="EXCLUIR ITEM" textFill="WHITE" />
+            <JFXButton fx:id="canVenda" maxWidth="1.7976931348623157E308" onAction="#cancelarVenda" style="-fx-background-color: #9932CC;" text="CANCELAR VENDA" textFill="WHITE" />
+            <JFXButton fx:id="excluirItem" maxWidth="1.7976931348623157E308" onAction="#excluirItem" style="-fx-background-color: #c00;" text="EXCLUIR ITEM" textFill="WHITE" />
+            <JFXButton fx:id="consultarPreco" maxWidth="1.7976931348623157E308" onAction="#consultarPreco" prefWidth="121.0" style="-fx-background-color: #090;" text="CONSULTAR PREÇO" textFill="WHITE" />
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="145.0" text="Venda:" textAlignment="CENTER">
                <font>
                   <Font size="24.0" />
@@ -64,7 +65,7 @@
    <bottom>
       <VBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="861.0" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="82.0" prefWidth="743.0" spacing="10.0">
+            <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="73.0" prefWidth="743.0" spacing="10.0">
                <children>
                   <Label prefHeight="38.0" prefWidth="113.0" text="Quantidade">
                      <font>
@@ -85,7 +86,7 @@
                         <Insets />
                      </HBox.margin>
                   </Text>
-                  <Label fx:id="totalVenda" contentDisplay="RIGHT" prefHeight="53.0" prefWidth="120.0" text="0,00" textAlignment="RIGHT" textFill="#0064f1">
+                  <Label fx:id="totalVenda" contentDisplay="RIGHT" prefHeight="62.0" prefWidth="120.0" text="0,00" textAlignment="RIGHT" textFill="#0064f1">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="36.0" />
                      </font>
@@ -93,7 +94,7 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                      <opaqueInsets>
-                        <Insets />
+                        <Insets bottom="10.0" />
                      </opaqueInsets>
                   </Label>
                </children>
