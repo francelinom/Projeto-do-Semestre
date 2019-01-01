@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -20,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -104,7 +106,22 @@ public class CaixaController implements Initializable {
         itemNum.setCellValueFactory(new PropertyValueFactory<itensVenda,Integer>("itenN"));
         idProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,Integer>("id_produto"));
         nomeProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,String>("nome_produto"));
-        precoProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,Double>("preco_produto"));
+        //precoProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,Double>("preco_produto"));
+        DecimalFormat formato = new DecimalFormat("#.##");
+        precoProduto.setCellFactory(coluna -> {
+            return new TableCell() {
+                protected void updateItem(Double item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (item == null || empty) {
+                    setText(null);
+                } else {
+                    setText(formato.format(item));
+                }
+                }
+            };
+        });
+        
         und.setCellValueFactory(new PropertyValueFactory<itensVenda,String>("und_medida"));
         quantProduto.setCellValueFactory(new PropertyValueFactory<itensVenda,Integer>("quantidade"));
         totalItem.setCellValueFactory(new PropertyValueFactory<itensVenda,Double>("total_item"));

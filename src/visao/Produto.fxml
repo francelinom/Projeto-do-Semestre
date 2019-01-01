@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
@@ -38,7 +39,7 @@
                         <JFXTextField fx:id="nomeProduto" labelFloat="true" promptText="NOME DO PRODUTO" GridPane.columnIndex="1" />
                         <JFXTextField fx:id="precoProduto" labelFloat="true" promptText="PREÇO" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <JFXTextField fx:id="quantProduto" labelFloat="true" promptText="QUANTIDADE" GridPane.rowIndex="2" />
-                        <JFXTextField fx:id="unidadeProduto" labelFloat="true" promptText="UNIDADE DE MEDIDA" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <JFXComboBox fx:id="caixaDeSelecao" prefHeight="25.0" prefWidth="259.0" promptText="Escolha uma opção" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                      <VBox.margin>
                         <Insets left="50.0" right="50.0" />

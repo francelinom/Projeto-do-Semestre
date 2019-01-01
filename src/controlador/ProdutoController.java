@@ -6,12 +6,18 @@
 package controlador;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Observer;
 import java.util.Properties;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +25,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TreeTableColumn;
@@ -26,9 +33,12 @@ import javafx.scene.control.TreeTableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.util.Callback;
 import modelos.Produto;
 import persistencia.ProdutoDAO;
+import javafx.util.Callback;
 
 public class ProdutoController implements Initializable {
     //OBJETO PRODUTO
@@ -36,6 +46,7 @@ public class ProdutoController implements Initializable {
     private ObservableList<Produto> itens = FXCollections.observableArrayList();
     private ProdutoDAO produto = new ProdutoDAO();
     private ArrayList<String> codigo  = new ArrayList<>();
+    private ObservableList<String> uMed  = FXCollections.observableArrayList();
     
     @FXML
     private JFXTextField codBarras;
@@ -43,7 +54,6 @@ public class ProdutoController implements Initializable {
     private JFXTextField nomeProduto;
     @FXML
     private JFXTextField precoProduto;
-    @FXML
     private JFXTextField unidadeProduto;
     @FXML
     private JFXTextField quantProduto;
@@ -59,8 +69,10 @@ public class ProdutoController implements Initializable {
     private JFXButton excluirProd;
     @FXML
     private JFXTextField buscarProduto;
+    @FXML
+    private JFXComboBox<String> caixaDeSelecao;
     
-    //TABELA
+//TABELA
     @FXML
     private TableView<Produto> tabelasProdutos;
     @FXML
@@ -76,26 +88,28 @@ public class ProdutoController implements Initializable {
     @FXML
     private TableColumn<Produto, String> unidProdCol;
   
+  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         idProdCol.setCellValueFactory(new PropertyValueFactory<Produto,Integer>("id_produto"));
         nomeProdCol.setCellValueFactory(new PropertyValueFactory<Produto, String>("nome_produto"));
         codBarrasCol.setCellValueFactory(new PropertyValueFactory<Produto, String>("cod_barra_produto"));
-        precoProdCol.setCellValueFactory(new PropertyValueFactory<Produto, Double>("preco_produto")); 
+        precoProdCol.setCellValueFactory(new PropertyValueFactory<Produto, Double>("preco_produto"));
         quantProdCol.setCellValueFactory(new PropertyValueFactory<Produto, Integer>("qtd_produto"));
         unidProdCol.setCellValueFactory(new PropertyValueFactory<Produto, String>("und_medida"));
         
         codigo.addAll(produto.listarCodigo());
         atualizarTabela();
+        listaUnd();
         
-        tabelasProdutos.setOnMouseClicked(event -> {
+        tabelasProdutos.setOnMouseClicked((MouseEvent event) -> {
             mproduto = tabelasProdutos.getSelectionModel().getSelectedItem();
             idProduto.setText(Integer.toString(mproduto.getId_produto()));
             nomeProduto.setText(mproduto.getNome_produto());
             codBarras.setText(mproduto.getCod_barra_produto());
             precoProduto.setText(Double.toString(mproduto.getPreco_produto()));
             quantProduto.setText(Integer.toString(mproduto.getQtd_produto()));
-            unidadeProduto.setText(mproduto.getUnd_medida());
+            caixaDeSelecao.setValue(mproduto.getUnd_medida());
         });
     }    
 
@@ -110,7 +124,11 @@ public class ProdutoController implements Initializable {
                 alert.showAndWait();
         }else{
            if(checkLetters(codBarras.getText(), precoProduto.getText(), quantProduto.getText())){
-                Produto a = new Produto(nomeProduto.getText().toUpperCase(),codBarras.getText(),converterVirgula(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText().toUpperCase());
+                Produto a = new Produto(nomeProduto.getText().toUpperCase(),
+                        codBarras.getText(),
+                        converterVirgula(precoProduto.getText()),
+                        Integer.parseInt(quantProduto.getText()),
+                        caixaDeSelecao.getValue().toString().toUpperCase());
                 produto.cadastrarProduto(a);
                 atualizarTabela();
                 limparCampos();
@@ -120,7 +138,6 @@ public class ProdutoController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("Produto Cadastrado");
                 alert.showAndWait();
-
             }else{
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Atenção");
@@ -134,7 +151,12 @@ public class ProdutoController implements Initializable {
 
     @FXML
     private void atualizarProduto(ActionEvent event) {
-        Produto a = new Produto(Integer.parseInt(idProduto.getText()), nomeProduto.getText().toUpperCase(), codBarras.getText(),converterVirgula(precoProduto.getText()),Integer.parseInt(quantProduto.getText()), unidadeProduto.getText().toUpperCase());
+        Produto a = new Produto(Integer.parseInt(idProduto.getText()),
+                nomeProduto.getText().toUpperCase(),
+                codBarras.getText(),
+                converterVirgula(precoProduto.getText()),
+                Integer.parseInt(quantProduto.getText()),
+                caixaDeSelecao.getValue().toString().toUpperCase());
         produto.atulizarProduto(a);
        //p.atulizarProduto(tabelasProdutos.getSelectionModel().getSelectedItem());
         atualizarTabela();
@@ -166,7 +188,7 @@ public class ProdutoController implements Initializable {
         codBarras.clear();
         precoProduto.clear();
         quantProduto.clear();
-        unidadeProduto.clear();
+        caixaDeSelecao.setValue("Escolha uma opção");
     }
 
     @FXML
@@ -184,5 +206,16 @@ public class ProdutoController implements Initializable {
     }
     private double converterVirgula(String entrada){
         return Double.parseDouble(entrada.replace(',', '.'));
+    }
+
+    private void listaUnd() {
+        uMed.addAll(
+            "KG",
+            "LT",
+            "PC",
+            "CX",
+            "UN",
+            "DZ");
+        caixaDeSelecao.setItems(uMed);
     }
 }
